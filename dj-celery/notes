@@ -1,0 +1,8 @@
+DO NOT USE python3 (Use python2.7)
+install django: https://www.djangoproject.com/download/
+install django celery: sudo pip install django-celery
+install mysql: https://help.ubuntu.com/lts/serverguide/mysql.html (root/root)
+install rabbitmq: http://www.rabbitmq.com/install-debian.html
+setup rabbitmq: http://docs.celeryproject.org/en/latest/getting-started/brokers/rabbitmq.html
+install python-anyjson: sudo pip install anyjson
+install mysql-python: sudo pip install MySQL-python, sudo apt-get install python-mysqldb

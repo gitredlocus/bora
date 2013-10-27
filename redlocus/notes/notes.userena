@@ -1,0 +1,59 @@
+Try following steps:
+
+In your settings.py file, add ’userena’, ’guardian’, ’easy_thumbnails’ to your INSTALLED_APPS tuple.
+
+Then again in your settings.py file, add the following:
+
+AUTHENTICATION_BACKENDS = (
+'userena.backends.UserenaAuthenticationBackend',
+'guardian.backends.ObjectPermissionBackend',
+'django.contrib.auth.backends.ModelBackend',
+)
+
+ANONYMOUS_USER_ID = -1
+
+The above is used to get django-guardian working (another Django-Userena dependency that’s automatically installed to control permissions)
+
+Next, create a new app for your Django-Userena app. In your Command Prompt shell, type: “python manage.py startapp accounts”. We are creating a new app for Django-Userena titled ‘accounts’.
+
+Now add ’accounts’ to your INSTALLED_APPS tuple in your settings.py file.
+
+Copy the following into accounts/models.py:
+
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
+from userena.models import UserenaBaseProfile
+
+class MyProfile(UserenaBaseProfile):
+user = models.OneToOneField(User,unique=True,
+                            verbose_name=_('user'),related_name='my_profile')
+favourite_snack = models.CharField(_('favourite snack'),max_length=5)
+
+Next add the following into settings.py file :
+
+AUTH_PROFILE_MODULE = 'accounts.MyProfile'
+
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
+The ‘accounts.MyProfile’ in AUTH_PROFILE_MODULE refers to the app ‘accounts’ containing the model class MyProfile as we defined earlier. The 3 login/logout URL statements tell Django where to have the URLs for Django-Userena to work.
+
+Add the following into urls.py under the ‘urlpatterns’ tuple:
+
+(r'^accounts/', include('userena.urls')),
+
+Configure your Django SMTP email settings to use Gmail in settings.py:
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yourgmailaccount@gmail.com'
+EMAIL_HOST_PASSWORD = 'yourgmailpassword'
+
+Go to your Command Prompt shell and type:
+python manage.py check_permissions
+
+run /accounts/signin/
+
+There is no signout link upon login.

@@ -1,0 +1,16 @@
+{
+   "DOTCLOUD_ENVIRONMENT": "default",
+   "DOTCLOUD_DB_MYSQL_LOGIN": "root",
+   "DOTCLOUD_DB_MYSQL_URL": "mysql://root:pass@7a96f954.dotcloud.com:7780",
+   "DOTCLOUD_DB_MYSQL_PASSWORD": "root",
+   "DOTCLOUD_PROJECT": "demodcapp",
+   "DOTCLOUD_SERVICE_NAME": "www",
+   "DOTCLOUD_DB_MYSQL_PORT": "8477",
+   "DOTCLOUD_DB_MYSQL_HOST": "",
+   "DOTCLOUD_SERVICE_ID": "0",
+   "RABBITMQ_HOST": "bmehta-latitude",
+   "RABBITMQ_PORT": "5672",
+   "RABBITMQ_LOGIN": "myuser",
+   "RABBITMQ_PASSWORD": "mypassword",
+   "RABBITMQ_VIRTUALHOST": "myvhost"
+}

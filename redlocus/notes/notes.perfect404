@@ -1,0 +1,5 @@
+I think you can not change the 404 page in DEBUG = True mode without difficulty.
+
+There is a hint in the documentation (https://docs.djangoproject.com/en/dev/topics/http/views/#the-404-page-not-found-view):
+
+If DEBUG is set to True (in your settings module), then your 404 view will never be used, and your URLconf will be displayed instead, with some debug information.

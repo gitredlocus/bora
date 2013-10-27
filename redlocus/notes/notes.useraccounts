@@ -1,0 +1,4 @@
+pip install django-user-accounts==1.0b14
+pip install pinax-theme-bootstrap-account==1.0b2
+
+couldn't make it work

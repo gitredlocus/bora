@@ -1,0 +1,2 @@
+localhost:8080/admin points to grappelli-fied admin view
+localhost:8080/grappelli results in 404 not found
