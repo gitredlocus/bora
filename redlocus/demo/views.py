@@ -14,6 +14,11 @@ def dashboard(request):
     return render_to_response('demo/dashboard/dashboard.html', args,
                               context_instance=RequestContext(request))
 
+def project(request):
+    args = {}
+    args.update(csrf(request))
+    return render_to_response('demo/project/project-dashboard.html', args,
+                              context_instance=RequestContext(request))
 
 def forms(request):
     args = {}

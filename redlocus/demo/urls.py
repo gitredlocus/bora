@@ -4,6 +4,7 @@ urlpatterns = patterns('',
     url(r'^dashboard/', 'demo.views.dashboard'),
     url(r'^forms/', 'demo.views.forms'),
     url(r'^charts/', 'demo.views.charts'),
+    url(r'^project/', 'demo.views.project'),
     # ui_lab
     url(r'^ui_lab/buttons', 'demo.views.buttons'),
     url(r'^ui_lab/general', 'demo.views.general'),
