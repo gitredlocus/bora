@@ -1,18 +1,32 @@
 from django.shortcuts import render_to_response, render
 from django.core.context_processors import csrf
 from django.template import RequestContext
-
+from django.http import HttpResponse
+from django.template import Context, loader
 import logging
+
+from demo.models import Project
 
 logr = logging.getLogger(__name__)
 
 # Create your views here.
 
+
 def dashboard(request):
     args = {}
+    projectList = Project.objects.all()
+    args['project_list'] = projectList
     args.update(csrf(request))
-    return render_to_response('demo/dashboard/dashboard.html', args,
-                              context_instance=RequestContext(request))
+    #return render_to_response('demo/dashboard/dashboard.html', {'project_list':projectList}  ,
+    return render_to_response('demo/dashboard/dashboard.html', args  ,
+                             context_instance=RequestContext(request))
+    #return render_to_response('demo/dashboard/dashboard.html', {'project_list':projectList}, mimetype="application/xhtml+xml")
+
+    #t = loader.get_template('demo/dashboard/dashboard.html')
+    #c = Context({
+    #    'project_list': projectList,
+    #})
+    #return HttpResponse(t.render(c))
 
 def project(request):
     args = {}
