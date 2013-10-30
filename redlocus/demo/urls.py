@@ -5,7 +5,7 @@ urlpatterns = patterns('',
     url(r'^forms/', 'demo.views.forms'),
     url(r'^charts/', 'demo.views.charts'),
    # url(r'^project/', 'demo.views.project'),
-    url(r'^project/\d+/$', 'demo.views.project'),  # support added for dynamic project ids 
+    url(r'^project/(\d+)/$', 'demo.views.project'),  # support added for dynamic project ids 
     # ui_lab
     url(r'^ui_lab/buttons', 'demo.views.buttons'),
     url(r'^ui_lab/general', 'demo.views.general'),

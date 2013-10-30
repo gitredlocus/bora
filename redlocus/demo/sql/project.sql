@@ -1,1 +1,8 @@
-INSERT INTO `demo_project` (`project_name`,`group_name`,`trend`,`action`) VALUES ("Empire Glactica2, 'Lennon2', 'Upwards2', '2deleteAndPurge2");
+INSERT INTO `demo_project` SET
+`project_name` = 'empire_glactica3',
+`group_name` = 'cherry',
+`trend` = -10;
+INSERT INTO `demo_project` SET
+`project_name` = 'empire_glactica2',
+`group_name` = 'cherry',
+`trend` = +5;

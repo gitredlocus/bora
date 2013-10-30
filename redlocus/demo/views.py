@@ -28,11 +28,18 @@ def dashboard(request):
     #})
     #return HttpResponse(t.render(c))
 
-def project(request):
-    args = {}
-    args.update(csrf(request))
-    return render_to_response('demo/project/project-dashboard.html', args,
+def project(request, project_id):
+    try:
+        project_id = int(project_id)
+    	project = Project.objects.filter(id=project_id)
+    	args = {}
+    	args['project_name'] =  project[0].project_name
+
+    	args.update(csrf(request))
+    	return render_to_response('demo/project/project-dashboard.html', args,
                               context_instance=RequestContext(request))
+    except ValueError:
+        raise Http404()
 
 def forms(request):
     args = {}
