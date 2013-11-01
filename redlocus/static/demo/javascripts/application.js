@@ -57167,12 +57167,15 @@ $(function(){
     }
 
 
+
 });
 $(function () {
     var data = [
         {
             "xScale":"ordinal",
             "comp":[],
+    	    //"main": ($("#xchart-sine")).xchart-data,
+            //"main": $(this).attr("data-value"),
             "main":[
                 {
                     "className":".main.l1",
@@ -57196,7 +57199,19 @@ $(function () {
                         {"y":18,"x":"2012-11-24T00:00:00"},
                         {"y":8,"x":"2012-11-25T00:00:00"}
                     ]
+                },{
+                    "className":".main.l2",
+                    "data":[
+                        {"y":25,"x":"2012-11-19T00:00:00"},
+                        {"y":33,"x":"2012-11-20T00:00:00"},
+                        {"y":14,"x":"2012-11-21T00:00:00"},
+                        {"y":17,"x":"2012-11-22T00:00:00"},
+                        {"y":7,"x":"2012-11-23T00:00:00"},
+                        {"y":83,"x":"2012-11-24T00:00:00"},
+                        {"y":84,"x":"2012-11-25T00:00:00"}
+                    ]
                 }
+
             ],
             "type":"line-dotted",
             "yScale":"linear"
@@ -57273,11 +57288,11 @@ $(function () {
         chart = new xChart('bar', data[order[i]], '#xchart-sine', {
             axisPaddingTop: 5,
             paddingLeft: 30,
-            dataFormatX: function (x) { return new Date(x); },
-            tickFormatX: function (x) { return d3.time.format('%a')(x); }
+            //dataFormatX: function (x) { return new Date(x); },
+            //tickFormatX: function (x) { return d3.time.format('%a')(x); }
         });
 
-        rotateTimer = setTimeout(rotateChart, t);
+        //rotateTimer = setTimeout(rotateChart, t);
     }
 
     function updateChart(i) {
@@ -57668,7 +57683,8 @@ $(function () {
         min: 0,
         max: 100,
         title: $(this).attr("data-title"),
-        value: getRandomInt(1, 80),
+        value: $(this).attr("data-value"),
+        //value: getRandomInt(1, 80),
         label: "",
         levelColorsGradient: false,
         showMinMax: showMinMax,
@@ -57680,11 +57696,11 @@ $(function () {
         levelColors: [Theme.colors.green, Theme.colors.orange, Theme.colors.red]
       }));
     });
-    setInterval(function() {
+    /*setInterval(function() {
       return $(gauges).each(function() {
         return this.refresh(getRandomInt(0, 80));
       });
-    }, 2500);
+    }, 2500);*/
     $(".easy-pie-chart").each(function() {
       var el;
       el = $(this);
