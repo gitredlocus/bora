@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.template import Context, loader
 import logging
+import json
 
 from demo.models import Project
 
@@ -40,8 +41,13 @@ def project(request, project_id):
     	args['mcc_no']   =  30
     	args['cpd_no']   =  40
     	args['ct_no']    =  50
-	
-	main = [
+
+	#data = json.load(open('data.json'))
+	data = [
+        {
+            "xScale":"ordinal",
+            "comp":[],
+            "main":[
                 {
                     "className":".main.l1",
                     "data":[
@@ -53,35 +59,17 @@ def project(request, project_id):
                         { "y":6, "x":"2012-11-24T00:00:00" },
                         { "y":8, "x":"2012-11-25T00:00:00" }
                     ]
-                },{
-                    "className":".main.l2",
-                    "data":[
-                        {"y":29,"x":"2012-11-19T00:00:00"},
-                        {"y":33,"x":"2012-11-20T00:00:00"},
-                        {"y":13,"x":"2012-11-21T00:00:00"},
-                        {"y":16,"x":"2012-11-22T00:00:00"},
-                        {"y":7,"x":"2012-11-23T00:00:00"},
-                        {"y":18,"x":"2012-11-24T00:00:00"},
-                        {"y":8,"x":"2012-11-25T00:00:00"}
-                    ]
-                },{
-                    "className":".main.l2",
-                    "data":[
-                        {"y":25,"x":"2012-11-19T00:00:00"},
-                        {"y":33,"x":"2012-11-20T00:00:00"},
-                        {"y":14,"x":"2012-11-21T00:00:00"},
-                        {"y":17,"x":"2012-11-22T00:00:00"},
-                        {"y":72,"x":"2012-11-23T00:00:00"},
-                        {"y":83,"x":"2012-11-24T00:00:00"},
-                        {"y":84,"x":"2012-11-25T00:00:00"}
-                    ]
                 }
+            ],
+            "type":"line-dotted",
+            "yScale":"linear"
+        }
+        ]
 
-         ]
-    	args['main']    = main
-
-    	args.update(csrf(request))
-    	return render_to_response('demo/project/project-dashboard.html', args,
+	print json.dumps(data)
+	args['data'] =json.loads(json.dumps(data))
+	args.update(csrf(request))
+	return render_to_response('demo/project/project-dashboard.html', args,
                               context_instance=RequestContext(request))
     except ValueError:
         raise Http404()

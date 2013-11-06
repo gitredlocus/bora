@@ -1,5 +1,12 @@
 import os
+import json
 # Django settings for redlocus project.
+
+# Load the DotCloud environment
+with open('environment.json') as f:
+  global_env = json.load(f)
+
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
