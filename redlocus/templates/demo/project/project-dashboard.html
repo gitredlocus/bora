@@ -1,5 +1,5 @@
 
-{% extends "demo/base/base.html" %}
+{% extends "demo/base/base_proj.html" %}
 
 {% block content %}
 <div class="main-content">
@@ -12,9 +12,6 @@
             <i class="icon-bar-chart"></i>
             {{ project_name }}
           </h3>
-          <h5>
-            A subtitle can be added here
-          </h5>
         </div>
 
         <ul class="inline pull-right sparkline-box">
@@ -65,7 +62,7 @@
 
   <div class="container-fluid padded">
     <div class="box">
-  <div class="box-header"><span class="title">Trends</span></div>
+  <div class="box-header"><span class="title">Trend</span></div>
   <div class="box-content padded">
     <div class="sine-chart" style="height: 250px" id="xchart-sine" data-value = {{ data }} ></div>
   </div>
