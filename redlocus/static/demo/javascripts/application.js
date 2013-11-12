@@ -57349,8 +57349,8 @@ var xyz =[
 	
 	//console.log(datan[0]);
 	//document.write(datan);
-        chart = new xChart('bar', pdata[0], '#xchart-sine', {
-        //chart = new xChart('bar', data[order[i]], '#xchart-sine', {
+        //chart = new xChart('bar', pdata[0], '#xchart-sine', {
+        chart = new xChart('bar', data[order[i]], '#xchart-sine', {
         //chart = new xChart('bar', datan[0], '#xchart-sine', {
             axisPaddingTop: 5,
             paddingLeft: 30,
