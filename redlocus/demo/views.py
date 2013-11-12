@@ -12,6 +12,22 @@ logr = logging.getLogger(__name__)
 
 # Create your views here.
 
+def home(request):
+    args = {}
+    projectList = Project.objects.all()
+    args['project_list'] = projectList
+    args.update(csrf(request))
+    return render_to_response('demo/home/home.html', args  ,
+                             context_instance=RequestContext(request))
+    #return render_to_response('demo/dashboard/dashboard.html', {'project_list':projectList}, mimetype="application/xhtml+xml")
+
+    #t = loader.get_template('demo/dashboard/dashboard.html')
+    #c = Context({
+    #    'project_list': projectList,
+    #})
+    #return HttpResponse(t.render(c))
+
+
 
 def dashboard(request):
     args = {}
