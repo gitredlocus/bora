@@ -57752,7 +57752,7 @@ $(function () {
         max: 100,
         title: $(this).attr("data-title"),
         value: $(this).attr("data-value"),
-        //value: getRandomInt(1, 80),
+        value: getRandomInt(1, 80),
         label: "",
         levelColorsGradient: false,
         showMinMax: showMinMax,
