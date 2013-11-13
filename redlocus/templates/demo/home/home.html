@@ -102,7 +102,7 @@
   <th><div>End Date</div></th>
   <th><div>Trend</div></th>
   <th><div>Ship Criteria</div></th>
-  <th><div>Action</div></th>
+  <th><div>Actions</div></th>
 </tr>
 </thead>
 <tbody>
@@ -119,12 +119,13 @@
 	   <td class="status-success"><i class="icon-circle-arrow-up"></i> {{ item.trend }} </td>
 	{% endif %}
 	 <td class="status-success"><i class="icon-ok"></i> </td>
-        <td> <div class="btn-group">
-            <button class="btn btn-default"><i class="icon-chevron-right"></i><a href= /demo/project/{{ item.id }} ></a></button>
+        <td>
+	    <div class="btn-group">
+            <button class="btn btn-default"><i class="icon-list-ul"></i></button>
+            <button class="btn btn-default"><i class="icon-trash"></i></button>
             <button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class=" icon-chevron-right"></i></button>
             <ul class="dropdown-menu">
               <li><a href= /demo/project/{{ item.id }} >Details</a></li>
-              <li><a href="#">Delete</a></li>
             </ul>
           </div>
 	</td>
