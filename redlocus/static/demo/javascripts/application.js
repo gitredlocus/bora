@@ -57752,8 +57752,9 @@ $(function () {
         max: 100,
         title: $(this).attr("data-title"),
         value: $(this).attr("data-value"),
-        value: getRandomInt(1, 80),
-        label: "",
+        //value: getRandomInt(1, 80),
+        label: $(this).attr("label"),
+        //gaugeColor: $(this).attr("color"), 
         levelColorsGradient: false,
         showMinMax: showMinMax,
         gaugeWidthScale: gaugeWidthScale,
@@ -57793,24 +57794,26 @@ $(function () {
       });
     });
     $(".easy-pie-chart-percent").easyPieChart({
-      animate: 1000,
+      //animate: 1000,
       trackColor: "#444",
+      val: $(this).attr("data-percent"),
       scaleColor: "#444",
       lineCap: 'square',
       lineWidth: 15,
       size: 150,
-      barColor: function(percent) {
+      barColor:  $(this).attr("data-color")
+      /*barColor: function(percent) {
         return "rgb(" + Math.round(200 * percent / 100) + ", " + Math.round(200 * (1 - percent / 100)) + ", 0)";
-      }
+      }*/
     });
     return setInterval(function() {
-      return $(".easy-pie-chart, .easy-pie-chart-percent").each(function() {
+    /*  return $(".easy-pie-chart, .easy-pie-chart-percent").each(function() {
         var val;
         val = getRandomInt(0, 80);
         $(this).data("easyPieChart").update(val);
         return $(this).find("span").text("" + val + "%");
       });
-    }, 2500);
+    */}, 2500);
   });
 
 }).call(this);

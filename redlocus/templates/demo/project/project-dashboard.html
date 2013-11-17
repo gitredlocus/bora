@@ -24,8 +24,8 @@
           </div>
           <div class="btn-group">
             <button class="btn btn-default"><i class="icon-off"></i></button>
-            <button class="btn btn-default"><i class="icon-copy"></i></button>
-            <button class="btn btn-default"><i class="icon-paste"></i></button>
+            <button class="btn btn-default"><i class="icon-refresh"></i></button>
+            <button class="btn btn-default"><i class=" icon-share"></i></button>
           </div>
           <div class="btn-group">
             <button class="btn btn-default"><i class="icon-search"></i></button>
@@ -83,12 +83,12 @@
 <div class="box">
   <div class="box-header"><span class="title">Metrics</span></div>
   <div class="box-content padded" style="text-align: center">
-    <div class="justgage" data-title="LCOV" id="gauge2" data-value = {{ lcov_no }}></div>
-    <div class="justgage" data-title="MCC" id="gauge3" data-value = {{ mcc_no }}></div>
-    <div class="justgage" data-title="CLANG" id="gauge1"  data-value = {{ clang_no }} ></div>
-    <div class="justgage" data-title="CPD" id="gauge4" data-value = {{ cpd_no }}></div>
-    <div class="justgage" data-title="CT" id="gauge5" data-value = {{ ct_no }}></div>
-    <div class="justgage" data-title="P0 Bugs" id="gauge6" data-value = {{ ct_no }}></div>
+    <div class="justgage" data-title="SA"  id="gauge1"  data-value = {{ clang_no }} color="orange"label ="22" ></div>
+    <div class="justgage" data-title="CPD" id="gauge2" data-value = {{ cpd_no }}    color="red"   label ="21"></div>
+    <div class="justgage" data-title="CA"  id="gauge3" data-value = {{ ct_no }}     color="green" label = "31"></div>
+    <div class="justgage" data-title="COV" id="gauge4" data-value = {{ lcov_no }}   color="blue"  label ="12"></div>
+    <div class="justgage" data-title="MCC" id="gauge5" data-value = {{ mcc_no }}    color="green" label ="21" ></div>
+    <div class="justgage" data-title="P0"  id="gauge6" data-value = {{ ct_no }}     color="red"   label ="0"></div>
     <!--div class="justgage" data-title="No labels" data-labels="false" id="hZjhQPhKNf"></div>
     <div class="justgage" data-title="Custom Width" data-gauge-width-scale="0.2" id="RpvjDvpvLu"></div>
     <div class="justgage" data-title="Custom Animation" data-animation-type="bounce" id="jNEjQrCacW"></div-->
