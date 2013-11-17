@@ -34601,7 +34601,7 @@ Za(E,1);Z||(n.afterShow||xb)();F--}}function S(k){if(j()){F++;pa();o===ma&&u();v
 
 var wysihtml5 = {
   version: "0.3.0",
-  
+
   // namespaces
   commands:   {},
   dom:        {},
@@ -34610,14 +34610,14 @@ var wysihtml5 = {
   lang:       {},
   selection:  {},
   views:      {},
-  
+
   INVISIBLE_SPACE: "\uFEFF",
-  
+
   EMPTY_FUNCTION: function() {},
-  
+
   ELEMENT_NODE: 1,
   TEXT_NODE:    3,
-  
+
   BACKSPACE_KEY:  8,
   ENTER_KEY:      13,
   ESCAPE_KEY:     27,
@@ -35292,7 +35292,7 @@ rangy.createModule("DomUtil", function(api, module) {
     var dom = api.dom;
     var DomPosition = dom.DomPosition;
     var DOMException = api.DOMException;
-    
+
     /*----------------------------------------------------------------------------------------------------------------*/
 
     // Utility functions
@@ -37846,7 +37846,7 @@ var Base = function() {
 
 Base.extend = function(_instance, _static) { // subclass
 	var extend = Base.prototype.extend;
-	
+
 	// build the prototype
 	Base._prototyping = true;
 	var proto = new this;
@@ -37855,7 +37855,7 @@ Base.extend = function(_instance, _static) { // subclass
     // call this method from any other method to invoke that method's ancestor
   };
 	delete Base._prototyping;
-	
+
 	// create the wrapper for the constructor function
 	//var constructor = proto.constructor.valueOf(); //-dean
 	var constructor = proto.constructor;
@@ -37870,7 +37870,7 @@ Base.extend = function(_instance, _static) { // subclass
 			}
 		}
 	};
-	
+
 	// build the class interface
 	klass.ancestor = this;
 	klass.extend = this.extend;
@@ -37888,7 +37888,7 @@ Base.extend = function(_instance, _static) { // subclass
 	return klass;
 };
 
-Base.prototype = {	
+Base.prototype = {
 	extend: function(source, value) {
 		if (arguments.length > 1) { // extending with a name/value pair
 			var ancestor = this[source];
@@ -37947,7 +37947,7 @@ Base = Base.extend({
 }, {
 	ancestor: Object,
 	version: "1.1",
-	
+
 	forEach: function(object, block, context) {
 		for (var key in object) {
 			if (this.prototype[key] === undefined) {
@@ -37955,7 +37955,7 @@ Base = Base.extend({
 			}
 		}
 	},
-		
+
 	implement: function() {
 		for (var i = 0; i < arguments.length; i++) {
 			if (typeof arguments[i] == "function") {
@@ -37968,7 +37968,7 @@ Base = Base.extend({
 		}
 		return this;
 	},
-	
+
 	toString: function() {
 		return String(this.valueOf());
 	}
@@ -37984,15 +37984,15 @@ wysihtml5.browser = (function() {
       isWebKit    = userAgent.indexOf("AppleWebKit/") !== -1,
       isChrome    = userAgent.indexOf("Chrome/")      !== -1,
       isOpera     = userAgent.indexOf("Opera/")       !== -1;
-  
+
   function iosVersion(userAgent) {
     return ((/ipad|iphone|ipod/.test(userAgent) && userAgent.match(/ os (\d+).+? like mac os x/)) || [, 0])[1];
   }
-  
+
   return {
     // Static variable needed, publicly accessible, to be able override it in unit tests
     USER_AGENT: userAgent,
-    
+
     /**
      * Exclude browsers that are not capable of displaying and handling
      * contentEditable as desired:
@@ -38011,22 +38011,22 @@ wysihtml5.browser = (function() {
           hasQuerySelectorSupport     = document.querySelector && document.querySelectorAll,
           // contentEditable is unusable in mobile browsers (tested iOS 4.2.2, Android 2.2, Opera Mobile, WebOS 3.05)
           isIncompatibleMobileBrowser = (this.isIos() && iosVersion(userAgent) < 5) || userAgent.indexOf("opera mobi") !== -1 || userAgent.indexOf("hpwos/") !== -1;
-      
+
       return hasContentEditableSupport
         && hasEditingApiSupport
         && hasQuerySelectorSupport
         && !isIncompatibleMobileBrowser;
     },
-    
+
     isTouchDevice: function() {
       return this.supportsEvent("touchmove");
     },
-    
+
     isIos: function() {
       var userAgent = this.USER_AGENT.toLowerCase();
       return userAgent.indexOf("webkit") !== -1 && userAgent.indexOf("mobile") !== -1;
     },
-    
+
     /**
      * Whether the browser supports sandboxed iframes
      * Currently only IE 6+ offers such feature <iframe security="restricted">
@@ -38100,7 +38100,7 @@ wysihtml5.browser = (function() {
     firesOnDropOnlyWhenOnDragOverIsCancelled: function() {
       return isWebKit || isGecko;
     },
-    
+
     /**
      * Whether the browser supports the event.dataTransfer property in a proper way
      */
@@ -38151,7 +38151,7 @@ wysihtml5.browser = (function() {
         "insertUnorderedList":  isIE || isOpera || isWebKit,
         "insertOrderedList":    isIE || isOpera || isWebKit
       };
-      
+
       // Firefox throws errors for queryCommandSupported, so we have to build up our own object of supported commands
       var supported = {
         "insertHTML": isGecko
@@ -38268,7 +38268,7 @@ wysihtml5.browser = (function() {
     supportsSelectionModify: function() {
       return "getSelection" in window && "modify" in window.getSelection();
     },
-    
+
     /**
      * Whether the browser supports the classList object for fast className manipulation
      * See https://developer.mozilla.org/en/DOM/element.classList
@@ -38276,14 +38276,14 @@ wysihtml5.browser = (function() {
     supportsClassList: function() {
       return "classList" in testElement;
     },
-    
+
     /**
      * Opera needs a white space after a <br> in order to position the caret correctly
      */
     needsSpaceAfterLineBreak: function() {
       return isOpera;
     },
-    
+
     /**
      * Whether the browser supports the speech api on the given element
      * See http://mikepultz.com/2011/03/accessing-google-speech-api-chrome-11/
@@ -38298,7 +38298,7 @@ wysihtml5.browser = (function() {
       var chromeVersion = userAgent.match(/Chrome\/(\d+)/) || [, 0];
       return chromeVersion[1] >= 11 && ("onwebkitspeechchange" in input || "speech" in input);
     },
-    
+
     /**
      * IE9 crashes when setting a getter via Object.defineProperty on XMLHttpRequest or XDomainRequest
      * See https://connect.microsoft.com/ie/feedback/details/650112
@@ -38307,21 +38307,21 @@ wysihtml5.browser = (function() {
     crashesWhenDefineProperty: function(property) {
       return isIE && (property === "XMLHttpRequest" || property === "XDomainRequest");
     },
-    
+
     /**
      * IE is the only browser who fires the "focus" event not immediately when .focus() is called on an element
      */
     doesAsyncFocus: function() {
       return isIE;
     },
-    
+
     /**
      * In IE it's impssible for the user and for the selection library to set the caret after an <img> when it's the lastChild in the document
      */
     hasProblemsSettingCaretAfterImg: function() {
       return isIE;
     },
-    
+
     hasUndoInContextMenu: function() {
       return isGecko || isChrome || isOpera;
     }
@@ -38345,7 +38345,7 @@ wysihtml5.browser = (function() {
         return false;
       }
     },
-    
+
     /**
      * Substract one array from another
      *
@@ -38365,10 +38365,10 @@ wysihtml5.browser = (function() {
       }
       return newArr;
     },
-    
+
     /**
      * Return a clean native array
-     * 
+     *
      * Following will convert a Live NodeList to a proper Array
      * @example
      *    var childNodes = wysihtml5.lang.array(document.body.childNodes).get();
@@ -38439,11 +38439,11 @@ wysihtml5.browser = (function() {
       }
       return this;
     },
-    
+
     get: function() {
       return obj;
     },
-    
+
     /**
      * @example
      *    wysihtml5.lang.object({ foo: 1 }).clone();
@@ -38457,7 +38457,7 @@ wysihtml5.browser = (function() {
       }
       return newObj;
     },
-    
+
     /**
      * @example
      *    wysihtml5.lang.object([]).isArray();
@@ -38481,7 +38481,7 @@ wysihtml5.browser = (function() {
       trim: function() {
         return str.replace(WHITE_SPACE_START, "").replace(WHITE_SPACE_END, "");
       },
-      
+
       /**
        * @example
        *    wysihtml5.lang.string("Hello #{name}").interpolate({ name: "Christopher" });
@@ -38493,7 +38493,7 @@ wysihtml5.browser = (function() {
         }
         return str;
       },
-      
+
       /**
        * @example
        *    wysihtml5.lang.string("Hello Tom").replace("Tom").with("Hans");
@@ -38537,7 +38537,7 @@ wysihtml5.browser = (function() {
       TRAILING_CHAR_REG_EXP = /([^\w\/\-](,?))$/i,
       MAX_DISPLAY_LENGTH    = 100,
       BRACKETS              = { ")": "(", "]": "[", "}": "{" };
-  
+
   function autoLink(element) {
     if (_hasParentThatShouldBeIgnored(element)) {
       return element;
@@ -38549,7 +38549,7 @@ wysihtml5.browser = (function() {
 
     return _parseNode(element);
   }
-  
+
   /**
    * This is basically a rebuild of
    * the rails auto_link_urls text helper
@@ -38573,11 +38573,11 @@ wysihtml5.browser = (function() {
       if (realUrl.substr(0, 4) === "www.") {
         realUrl = "http://" + realUrl;
       }
-      
+
       return '<a href="' + realUrl + '">' + displayUrl + '</a>' + punctuation;
     });
   }
-  
+
   /**
    * Creates or (if already cached) returns a temp element
    * for the given document object
@@ -38589,26 +38589,26 @@ wysihtml5.browser = (function() {
     }
     return tempElement;
   }
-  
+
   /**
    * Replaces the original text nodes with the newly auto-linked dom tree
    */
   function _wrapMatchesInNode(textNode) {
     var parentNode  = textNode.parentNode,
         tempElement = _getTempElement(parentNode.ownerDocument);
-    
+
     // We need to insert an empty/temporary <span /> to fix IE quirks
     // Elsewise IE would strip white space in the beginning
     tempElement.innerHTML = "<span></span>" + _convertUrlsToLinks(textNode.data);
     tempElement.removeChild(tempElement.firstChild);
-    
+
     while (tempElement.firstChild) {
       // inserts tempElement.firstChild before textNode
       parentNode.insertBefore(tempElement.firstChild, textNode);
     }
     parentNode.removeChild(textNode);
   }
-  
+
   function _hasParentThatShouldBeIgnored(node) {
     var nodeName;
     while (node.parentNode) {
@@ -38622,36 +38622,36 @@ wysihtml5.browser = (function() {
     }
     return false;
   }
-  
+
   function _parseNode(element) {
     if (IGNORE_URLS_IN.contains(element.nodeName)) {
       return;
     }
-    
+
     if (element.nodeType === wysihtml5.TEXT_NODE && element.data.match(URL_REG_EXP)) {
       _wrapMatchesInNode(element);
       return;
     }
-    
+
     var childNodes        = wysihtml5.lang.array(element.childNodes).get(),
         childNodesLength  = childNodes.length,
         i                 = 0;
-    
+
     for (; i<childNodesLength; i++) {
       _parseNode(childNodes[i]);
     }
-    
+
     return element;
   }
-  
+
   wysihtml5.dom.autoLink = autoLink;
-  
+
   // Reveal url reg exp to the outside
   wysihtml5.dom.autoLink.URL_REG_EXP = URL_REG_EXP;
 })(wysihtml5);(function(wysihtml5) {
   var supportsClassList = wysihtml5.browser.supportsClassList(),
       api               = wysihtml5.dom;
-  
+
   api.addClass = function(element, className) {
     if (supportsClassList) {
       return element.classList.add(className);
@@ -38661,20 +38661,20 @@ wysihtml5.browser = (function() {
     }
     element.className += " " + className;
   };
-  
+
   api.removeClass = function(element, className) {
     if (supportsClassList) {
       return element.classList.remove(className);
     }
-    
+
     element.className = element.className.replace(new RegExp("(^|\\s+)" + className + "(\\s+|$)"), " ");
   };
-  
+
   api.hasClass = function(element, className) {
     if (supportsClassList) {
       return element.classList.contains(className);
     }
-    
+
     var elementClassName = element.className;
     return (elementClassName.length > 0 && (elementClassName == className || new RegExp("(^|\\s)" + className + "(\\s|$)").test(elementClassName)));
   };
@@ -38726,17 +38726,17 @@ wysihtml5.dom.convertToList = (function() {
     list.appendChild(listItem);
     return listItem;
   }
-  
+
   function _createList(doc, type) {
     return doc.createElement(type);
   }
-  
+
   function convertToList(element, listType) {
     if (element.nodeName === "UL" || element.nodeName === "OL" || element.nodeName === "MENU") {
       // Already a list
       return element;
     }
-    
+
     var doc               = element.ownerDocument,
         list              = _createList(doc, listType),
         lineBreaks        = element.querySelectorAll("br"),
@@ -38750,7 +38750,7 @@ wysihtml5.dom.convertToList = (function() {
         isLineBreak,
         currentListItem,
         i;
-    
+
     // First find <br> at the end of inline elements and move them behind them
     for (i=0; i<lineBreaksLength; i++) {
       lineBreak = lineBreaks[i];
@@ -38762,16 +38762,16 @@ wysihtml5.dom.convertToList = (function() {
         wysihtml5.dom.insert(lineBreak).after(lineBreak.parentNode);
       }
     }
-    
+
     childNodes        = wysihtml5.lang.array(element.childNodes).get();
     childNodesLength  = childNodes.length;
-    
+
     for (i=0; i<childNodesLength; i++) {
       currentListItem   = currentListItem || _createListItem(doc, list);
       childNode         = childNodes[i];
       isBlockElement    = wysihtml5.dom.getStyle("display").from(childNode) === "block";
       isLineBreak       = childNode.nodeName === "BR";
-      
+
       if (isBlockElement) {
         // Append blockElement to current <li> if empty, otherwise create a new one
         currentListItem = currentListItem.firstChild ? _createListItem(doc, list) : currentListItem;
@@ -38779,27 +38779,27 @@ wysihtml5.dom.convertToList = (function() {
         currentListItem = null;
         continue;
       }
-      
+
       if (isLineBreak) {
         // Only create a new list item in the next iteration when the current one has already content
         currentListItem = currentListItem.firstChild ? null : currentListItem;
         continue;
       }
-      
+
       currentListItem.appendChild(childNode);
     }
-    
+
     element.parentNode.replaceChild(list, element);
     return list;
   }
-  
+
   return convertToList;
 })();/**
  * Copy a set of attributes from one element to another
  *
  * @param {Array} attributesToCopy List of attributes which should be copied
  * @return {Object} Returns an object which offers the "from" method which can be invoked with the element where to
- *    copy the attributes from., this again returns an object which provides a method named "to" which can be invoked 
+ *    copy the attributes from., this again returns an object which provides a method named "to" which can be invoked
  *    with the element where to copy the attributes to (see example)
  *
  * @example
@@ -38837,7 +38837,7 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
  *
  * @param {Array} stylesToCopy List of styles which should be copied
  * @return {Object} Returns an object which offers the "from" method which can be invoked with the element where to
- *    copy the styles from., this again returns an object which provides a method named "to" which can be invoked 
+ *    copy the styles from., this again returns an object which provides a method named "to" which can be invoked
  *    with the element where to copy the styles to (see example)
  *
  * @example
@@ -38848,21 +38848,21 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
  *
  */
 (function(dom) {
-  
+
   /**
    * Mozilla, WebKit and Opera recalculate the computed width when box-sizing: boder-box; is set
-   * So if an element has "width: 200px; -moz-box-sizing: border-box; border: 1px;" then 
+   * So if an element has "width: 200px; -moz-box-sizing: border-box; border: 1px;" then
    * its computed css width will be 198px
    */
   var BOX_SIZING_PROPERTIES = ["-webkit-box-sizing", "-moz-box-sizing", "-ms-box-sizing", "box-sizing"];
-  
+
   var shouldIgnoreBoxSizingBorderBox = function(element) {
     if (hasBoxSizingBorderBox(element)) {
        return parseInt(dom.getStyle("width").from(element), 10) < element.offsetWidth;
     }
     return false;
   };
-  
+
   var hasBoxSizingBorderBox = function(element) {
     var i       = 0,
         length  = BOX_SIZING_PROPERTIES.length;
@@ -38872,14 +38872,14 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
       }
     }
   };
-  
+
   dom.copyStyles = function(stylesToCopy) {
     return {
       from: function(element) {
         if (shouldIgnoreBoxSizingBorderBox(element)) {
           stylesToCopy = wysihtml5.lang.array(stylesToCopy).without(BOX_SIZING_PROPERTIES);
         }
-        
+
         var cssText = "",
             length  = stylesToCopy.length,
             i       = 0,
@@ -38888,7 +38888,7 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
           property = stylesToCopy[i];
           cssText += property + ":" + dom.getStyle(property).from(element) + ";";
         }
-        
+
         return {
           to: function(element) {
             dom.setStyles(cssText).on(element);
@@ -38907,12 +38907,12 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
  *    });
  */
 (function(wysihtml5) {
-  
+
   wysihtml5.dom.delegate = function(container, selector, eventName, handler) {
     return wysihtml5.dom.observe(container, eventName, function(event) {
       var target    = event.target,
           match     = wysihtml5.lang.array(container.querySelectorAll(selector));
-      
+
       while (target && target !== container) {
         if (match.contains(target)) {
           handler.call(target, event);
@@ -38922,13 +38922,13 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
       }
     });
   };
-  
+
 })(wysihtml5);/**
  * Returns the given html wrapped in a div element
  *
  * Fixing IE's inability to treat unknown elements (HTML5 section, article, ...) correctly
  * when inserted via innerHTML
- * 
+ *
  * @param {String} html The html which should be wrapped in a dom element
  * @param {Obejct} [context] Document object of the context the html belongs to
  *
@@ -38936,7 +38936,7 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
  *    wysihtml5.dom.getAsDom("<article>foo</article>");
  */
 wysihtml5.dom.getAsDom = (function() {
-  
+
   var _innerHTMLShiv = function(html, context) {
     var tempElement = context.createElement("div");
     tempElement.style.display = "none";
@@ -38946,7 +38946,7 @@ wysihtml5.dom.getAsDom = (function() {
     context.body.removeChild(tempElement);
     return tempElement;
   };
-  
+
   /**
    * Make sure IE supports HTML5 tags, which is accomplished by simply creating one instance of each element
    */
@@ -38959,8 +38959,8 @@ wysihtml5.dom.getAsDom = (function() {
     }
     context._wysihtml5_supportsHTML5Tags = true;
   };
-  
-  
+
+
   /**
    * List of html5 tags
    * taken from http://simon.html5.org/html5-elements
@@ -38970,7 +38970,7 @@ wysihtml5.dom.getAsDom = (function() {
     "figure", "footer", "header", "hgroup", "keygen", "mark", "meter", "nav", "output", "progress",
     "rp", "rt", "ruby", "svg", "section", "source", "summary", "time", "track", "video", "wbr"
   ];
-  
+
   return function(html, context) {
     context = context || document;
     var tempElement;
@@ -39002,23 +39002,23 @@ wysihtml5.dom.getAsDom = (function() {
  *    var coloredElement = wysihtml5.dom.getParentElement(myTextNode, { nodeName: "SPAN", className: "wysiwyg-color-red", classRegExp: /wysiwyg-color-[a-z]/g });
  */
 wysihtml5.dom.getParentElement = (function() {
-  
+
   function _isSameNodeName(nodeName, desiredNodeNames) {
     if (!desiredNodeNames || !desiredNodeNames.length) {
       return true;
     }
-    
+
     if (typeof(desiredNodeNames) === "string") {
       return nodeName === desiredNodeNames;
     } else {
       return wysihtml5.lang.array(desiredNodeNames).contains(nodeName);
     }
   }
-  
+
   function _isElement(node) {
     return node.nodeType === wysihtml5.ELEMENT_NODE;
   }
-  
+
   function _hasClassName(element, className, classRegExp) {
     var classNames = (element.className || "").match(classRegExp) || [];
     if (!className) {
@@ -39026,7 +39026,7 @@ wysihtml5.dom.getParentElement = (function() {
     }
     return classNames[classNames.length - 1] === className;
   }
-  
+
   function _getParentElementWithNodeName(node, nodeName, levels) {
     while (levels-- && node && node.nodeName !== "BODY") {
       if (_isSameNodeName(node.nodeName, nodeName)) {
@@ -39036,7 +39036,7 @@ wysihtml5.dom.getParentElement = (function() {
     }
     return null;
   }
-  
+
   function _getParentElementWithNodeNameAndClassName(node, nodeName, className, classRegExp, levels) {
     while (levels-- && node && node.nodeName !== "BODY") {
       if (_isElement(node) &&
@@ -39048,7 +39048,7 @@ wysihtml5.dom.getParentElement = (function() {
     }
     return null;
   }
-  
+
   return function(node, matchingSet, levels) {
     levels = levels || 50; // Go max 50 nodes upwards from current node
     if (matchingSet.className || matchingSet.classRegExp) {
@@ -39077,20 +39077,20 @@ wysihtml5.dom.getStyle = (function() {
         "float": ("styleFloat" in document.createElement("div").style) ? "styleFloat" : "cssFloat"
       },
       REG_EXP_CAMELIZE = /\-[a-z]/g;
-  
+
   function camelize(str) {
     return str.replace(REG_EXP_CAMELIZE, function(match) {
       return match.charAt(1).toUpperCase();
     });
   }
-  
+
   return function(property) {
     return {
       from: function(element) {
         if (element.nodeType !== wysihtml5.ELEMENT_NODE) {
           return;
         }
-        
+
         var doc               = element.ownerDocument,
             camelizedProperty = stylePropertyMapping[property] || camelize(property),
             style             = element.style,
@@ -39099,7 +39099,7 @@ wysihtml5.dom.getStyle = (function() {
         if (styleValue) {
           return styleValue;
         }
-        
+
         // currentStyle is no standard and only supported by Opera and IE but it has one important advantage over the standard-compliant
         // window.getComputedStyle, since it returns css property values in their original unit:
         // If you set an elements width to "50%", window.getComputedStyle will give you it's current width in px while currentStyle
@@ -39147,18 +39147,18 @@ wysihtml5.dom.getStyle = (function() {
 wysihtml5.dom.hasElementWithTagName = (function() {
   var LIVE_CACHE          = {},
       DOCUMENT_IDENTIFIER = 1;
-  
+
   function _getDocumentIdentifier(doc) {
     return doc._wysihtml5_identifier || (doc._wysihtml5_identifier = DOCUMENT_IDENTIFIER++);
   }
-  
+
   return function(doc, tagName) {
     var key         = _getDocumentIdentifier(doc) + ":" + tagName,
         cacheEntry  = LIVE_CACHE[key];
     if (!cacheEntry) {
       cacheEntry = LIVE_CACHE[key] = doc.getElementsByTagName(tagName);
     }
-    
+
     return cacheEntry.length > 0;
   };
 })();/**
@@ -39178,7 +39178,7 @@ wysihtml5.dom.hasElementWithTagName = (function() {
   function _getDocumentIdentifier(doc) {
     return doc._wysihtml5_identifier || (doc._wysihtml5_identifier = DOCUMENT_IDENTIFIER++);
   }
-  
+
   wysihtml5.dom.hasElementWithClassName = function(doc, className) {
     // getElementsByClassName is not supported by IE<9
     // but is sometimes mocked via library code (which then doesn't return live node lists)
@@ -39200,18 +39200,18 @@ wysihtml5.dom.insert = function(elementToInsert) {
     after: function(element) {
       element.parentNode.insertBefore(elementToInsert, element.nextSibling);
     },
-    
+
     before: function(element) {
       element.parentNode.insertBefore(elementToInsert, element);
     },
-    
+
     into: function(element) {
       element.appendChild(elementToInsert);
     }
   };
 };wysihtml5.dom.insertCSS = function(rules) {
   rules = rules.join("\n");
-  
+
   return {
     into: function(doc) {
       var head         = doc.head || doc.getElementsByTagName("head")[0],
@@ -39238,12 +39238,12 @@ wysihtml5.dom.insert = function(elementToInsert) {
  */
 wysihtml5.dom.observe = function(element, eventNames, handler) {
   eventNames = typeof(eventNames) === "string" ? [eventNames] : eventNames;
-  
+
   var handlerWrapper,
       eventName,
       i       = 0,
       length  = eventNames.length;
-  
+
   for (; i<length; i++) {
     eventName = eventNames[i];
     if (element.addEventListener) {
@@ -39264,7 +39264,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
       element.attachEvent("on" + eventName, handlerWrapper);
     }
   }
-  
+
   return {
     stop: function() {
       var eventName,
@@ -39333,7 +39333,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  *    // => '<p class="red">foo</p><p>bar</p>'
  */
 wysihtml5.dom.parse = (function() {
-  
+
   /**
    * It's not possible to use a XMLParser/DOMParser as HTML5 is not always well-formed XML
    * new DOMParser().parseFromString('<img src="foo.gif">') will cause a parseError since the
@@ -39350,27 +39350,27 @@ wysihtml5.dom.parse = (function() {
       WHITE_SPACE_REG_EXP = /\s+/,
       defaultRules        = { tags: {}, classes: {} },
       currentRules        = {};
-  
+
   /**
    * Iterates over all childs of the element, recreates them, appends them into a document fragment
    * which later replaces the entire body content
    */
   function parse(elementOrHtml, rules, context, cleanUp) {
     wysihtml5.lang.object(currentRules).merge(defaultRules).merge(rules).get();
-    
+
     context           = context || elementOrHtml.ownerDocument || document;
     var fragment      = context.createDocumentFragment(),
         isString      = typeof(elementOrHtml) === "string",
         element,
         newNode,
         firstChild;
-    
+
     if (isString) {
       element = wysihtml5.dom.getAsDom(elementOrHtml, context);
     } else {
       element = elementOrHtml;
     }
-    
+
     while (element.firstChild) {
       firstChild  = element.firstChild;
       element.removeChild(firstChild);
@@ -39379,16 +39379,16 @@ wysihtml5.dom.parse = (function() {
         fragment.appendChild(newNode);
       }
     }
-    
+
     // Clear element contents
     element.innerHTML = "";
-    
+
     // Insert new DOM tree
     element.appendChild(fragment);
-    
+
     return isString ? wysihtml5.quirks.getCorrectInnerHTML(element) : element;
   }
-  
+
   function _convert(oldNode, cleanUp) {
     var oldNodeType     = oldNode.nodeType,
         oldChilds       = oldNode.childNodes,
@@ -39396,20 +39396,20 @@ wysihtml5.dom.parse = (function() {
         newNode,
         method          = NODE_TYPE_MAPPING[oldNodeType],
         i               = 0;
-    
+
     newNode = method && method(oldNode);
-    
+
     if (!newNode) {
       return null;
     }
-    
+
     for (i=0; i<oldChildsLength; i++) {
       newChild = _convert(oldChilds[i], cleanUp);
       if (newChild) {
         newNode.appendChild(newChild);
       }
     }
-    
+
     // Cleanup senseless <span> elements
     if (cleanUp &&
         newNode.childNodes.length <= 1 &&
@@ -39417,10 +39417,10 @@ wysihtml5.dom.parse = (function() {
         !newNode.attributes.length) {
       return newNode.firstChild;
     }
-    
+
     return newNode;
   }
-  
+
   function _handleElement(oldNode) {
     var rule,
         newNode,
@@ -39428,7 +39428,7 @@ wysihtml5.dom.parse = (function() {
         tagRules    = currentRules.tags,
         nodeName    = oldNode.nodeName.toLowerCase(),
         scopeName   = oldNode.scopeName;
-    
+
     /**
      * We already parsed that element
      * ignore it! (yes, this sometimes happens in IE8 when the html is invalid)
@@ -39437,11 +39437,11 @@ wysihtml5.dom.parse = (function() {
       return null;
     }
     oldNode._wysihtml5 = 1;
-    
+
     if (oldNode.className === "wysihtml5-temp") {
       return null;
     }
-    
+
     /**
      * IE is the only browser who doesn't include the namespace in the
      * nodeName, that's why we have to prepend it by ourselves
@@ -39451,7 +39451,7 @@ wysihtml5.dom.parse = (function() {
     if (scopeName && scopeName != "HTML") {
       nodeName = scopeName + ":" + nodeName;
     }
-    
+
     /**
      * Repair node
      * IE is a bit bitchy when it comes to invalid nested markup which includes unclosed tags
@@ -39464,13 +39464,13 @@ wysihtml5.dom.parse = (function() {
         nodeName = "div";
       }
     }
-    
+
     if (nodeName in tagRules) {
       rule = tagRules[nodeName];
       if (!rule || rule.remove) {
         return null;
       }
-      
+
       rule = typeof(rule) === "string" ? { rename_tag: rule } : rule;
     } else if (oldNode.firstChild) {
       rule = { rename_tag: DEFAULT_NODE_NAME };
@@ -39478,14 +39478,14 @@ wysihtml5.dom.parse = (function() {
       // Remove empty unknown elements
       return null;
     }
-    
+
     newNode = oldNode.ownerDocument.createElement(rule.rename_tag || nodeName);
     _handleAttributes(oldNode, newNode, rule);
-    
+
     oldNode = null;
     return newNode;
   }
-  
+
   function _handleAttributes(oldNode, newNode, rule) {
     var attributes          = {},                         // fresh new set of attributes to set on newNode
         setClass            = rule.set_class,             // classes to set
@@ -39505,11 +39505,11 @@ wysihtml5.dom.parse = (function() {
         attributeName,
         newAttributeValue,
         method;
-    
+
     if (setAttributes) {
       attributes = wysihtml5.lang.object(setAttributes).clone();
     }
-    
+
     if (checkAttributes) {
       for (attributeName in checkAttributes) {
         method = attributeCheckMethods[checkAttributes[attributeName]];
@@ -39522,11 +39522,11 @@ wysihtml5.dom.parse = (function() {
         }
       }
     }
-    
+
     if (setClass) {
       classes.push(setClass);
     }
-    
+
     if (addClass) {
       for (attributeName in addClass) {
         method = addClassMethods[addClass[attributeName]];
@@ -39539,10 +39539,10 @@ wysihtml5.dom.parse = (function() {
         }
       }
     }
-    
+
     // make sure that wysihtml5 temp class doesn't get stripped out
     allowedClasses["_wysihtml5-temp-placeholder"] = 1;
-    
+
     // add old classes last
     oldClasses = oldNode.getAttribute("class");
     if (oldClasses) {
@@ -39555,7 +39555,7 @@ wysihtml5.dom.parse = (function() {
         newClasses.push(currentClass);
       }
     }
-    
+
     // remove duplicate entries and preserve class specificity
     newClassesLength = newClasses.length;
     while (newClassesLength--) {
@@ -39564,11 +39564,11 @@ wysihtml5.dom.parse = (function() {
         newUniqueClasses.unshift(currentClass);
       }
     }
-    
+
     if (newUniqueClasses.length) {
       attributes["class"] = newUniqueClasses.join(" ");
     }
-    
+
     // set attributes on newNode
     for (attributeName in attributes) {
       // Setting attributes can cause a js error in IE under certain circumstances
@@ -39578,7 +39578,7 @@ wysihtml5.dom.parse = (function() {
         newNode.setAttribute(attributeName, attributes[attributeName]);
       } catch(e) {}
     }
-    
+
     // IE8 sometimes loses the width/height attributes when those are set before the "src"
     // so we make sure to set them again
     if (attributes.src) {
@@ -39590,7 +39590,7 @@ wysihtml5.dom.parse = (function() {
       }
     }
   }
-  
+
   /**
    * IE gives wrong results for hasAttribute/getAttribute, for example:
    *    var td = document.createElement("td");
@@ -39613,13 +39613,13 @@ wysihtml5.dom.parse = (function() {
       var outerHTML      = node.outerHTML.toLowerCase(),
           // TODO: This might not work for attributes without value: <input disabled>
           hasAttribute   = outerHTML.indexOf(" " + attributeName +  "=") != -1;
-      
+
       return hasAttribute ? node.getAttribute(attributeName) : null;
     } else{
       return node.getAttribute(attributeName);
     }
   }
-  
+
   /**
    * Check whether the given node is a proper loaded image
    * FIXME: Returns undefined when unknown (Chrome, Safari)
@@ -39633,12 +39633,12 @@ wysihtml5.dom.parse = (function() {
       }
     }
   }
-  
+
   function _handleText(oldNode) {
     return oldNode.ownerDocument.createTextNode(oldNode.data);
   }
-  
-  
+
+
   // ------------ attribute checks ------------ \\
   var attributeCheckMethods = {
     url: (function() {
@@ -39652,7 +39652,7 @@ wysihtml5.dom.parse = (function() {
         });
       };
     })(),
-    
+
     alt: (function() {
       var REG_EXP = /[^ a-z0-9_\-]/gi;
       return function(attributeValue) {
@@ -39662,7 +39662,7 @@ wysihtml5.dom.parse = (function() {
         return attributeValue.replace(REG_EXP, "");
       };
     })(),
-    
+
     numbers: (function() {
       var REG_EXP = /\D/g;
       return function(attributeValue) {
@@ -39671,7 +39671,7 @@ wysihtml5.dom.parse = (function() {
       };
     })()
   };
-  
+
   // ------------ class converter (converts an html attribute to a class name) ------------ \\
   var addClassMethods = {
     align_img: (function() {
@@ -39683,7 +39683,7 @@ wysihtml5.dom.parse = (function() {
         return mapping[String(attributeValue).toLowerCase()];
       };
     })(),
-    
+
     align_text: (function() {
       var mapping = {
         left:     "wysiwyg-text-align-left",
@@ -39695,7 +39695,7 @@ wysihtml5.dom.parse = (function() {
         return mapping[String(attributeValue).toLowerCase()];
       };
     })(),
-    
+
     clear_br: (function() {
       var mapping = {
         left:   "wysiwyg-clear-left",
@@ -39707,7 +39707,7 @@ wysihtml5.dom.parse = (function() {
         return mapping[String(attributeValue).toLowerCase()];
       };
     })(),
-    
+
     size_font: (function() {
       var mapping = {
         "1": "wysiwyg-font-size-xx-small",
@@ -39725,7 +39725,7 @@ wysihtml5.dom.parse = (function() {
       };
     })()
   };
-  
+
   return parse;
 })();/**
  * Checks for empty text node childs and removes them
@@ -39782,7 +39782,7 @@ wysihtml5.dom.renameElement = function(element, newNodeName) {
   return newElement;
 };/**
  * Takes an element, removes it and replaces it with it's childs
- * 
+ *
  * @param {Object} node The node which to replace with it's child nodes
  * @example
  *    <div id="foo">
@@ -39797,12 +39797,12 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
   if (!node.parentNode) {
     return;
   }
-  
+
   if (!node.firstChild) {
     node.parentNode.removeChild(node);
     return;
   }
-  
+
   var fragment = node.ownerDocument.createDocumentFragment();
   while (node.firstChild) {
     fragment.appendChild(node.firstChild);
@@ -39836,21 +39836,21 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
   function _isBlockElement(node) {
     return dom.getStyle("display").from(node) === "block";
   }
-  
+
   function _isLineBreak(node) {
     return node.nodeName === "BR";
   }
-  
+
   function _appendLineBreak(element) {
     var lineBreak = element.ownerDocument.createElement("br");
     element.appendChild(lineBreak);
   }
-  
+
   function resolveList(list) {
     if (list.nodeName !== "MENU" && list.nodeName !== "UL" && list.nodeName !== "OL") {
       return;
     }
-    
+
     var doc             = list.ownerDocument,
         fragment        = doc.createDocumentFragment(),
         previousSibling = list.previousElementSibling || list.previousSibling,
@@ -39859,11 +39859,11 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
         isLastChild,
         shouldAppendLineBreak,
         listItem;
-    
+
     if (previousSibling && !_isBlockElement(previousSibling)) {
       _appendLineBreak(fragment);
     }
-    
+
     while (listItem = list.firstChild) {
       lastChild = listItem.lastChild;
       while (firstChild = listItem.firstChild) {
@@ -39875,12 +39875,12 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
           _appendLineBreak(fragment);
         }
       }
-      
+
       listItem.parentNode.removeChild(listItem);
     }
     list.parentNode.replaceChild(fragment, list);
   }
-  
+
   dom.resolveList = resolveList;
 })(wysihtml5.dom);/**
  * Sandbox for executing javascript, parsing css styles and doing dom operations in a secure way
@@ -39932,7 +39932,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
         "referrer",
         "write", "open", "close"
       ];
-  
+
   wysihtml5.dom.Sandbox = Base.extend(
     /** @scope wysihtml5.dom.Sandbox.prototype */ {
 
@@ -39941,12 +39941,12 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
       this.config   = wysihtml5.lang.object({}).merge(config).get();
       this.iframe   = this._createIframe();
     },
-    
+
     insertInto: function(element) {
       if (typeof(element) === "string") {
         element = doc.getElementById(element);
       }
-      
+
       element.appendChild(this.iframe);
     },
 
@@ -39982,7 +39982,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
      *    In order to make this happen we need to set the "allow-scripts" flag.
      *    A combination of allow-scripts and allow-same-origin is almost the same as setting no sandbox attribute at all.
      *  - Chrome & Safari, doesn't seem to support sandboxing correctly when the iframe's html is inlined (no physical document)
-     *  - IE needs to have the security="restricted" attribute set before the iframe is 
+     *  - IE needs to have the security="restricted" attribute set before the iframe is
      *    inserted into the dom tree
      *  - Believe it or not but in IE "security" in document.createElement("iframe") is false, even
      *    though it supports it
@@ -40059,7 +40059,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
 
       if (!wysihtml5.browser.supportsSandboxedIframes()) {
         // Unset a bunch of sensitive variables
-        // Please note: This isn't hack safe!  
+        // Please note: This isn't hack safe!
         // It more or less just takes care of basic attacks and prevents accidental theft of sensitive information
         // IE is secure though, which is the most important thing, since IE is the only browser, who
         // takes over scripts & styles into contentEditable elements when copied from external websites
@@ -40074,7 +40074,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
         for (i=0, length=documentProperties.length; i<length; i++) {
           this._unset(iframeDocument, documentProperties[i]);
         }
-        // This doesn't work in Safari 5 
+        // This doesn't work in Safari 5
         // See http://stackoverflow.com/questions/992461/is-it-possible-to-override-document-cookie-in-webkit
         this._unset(iframeDocument, "cookie", "", true);
       }
@@ -40246,11 +40246,11 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     // When pasting underlined links <a> into a contentEditable, IE thinks, it has to insert <u> to keep the styling
     "a u": wysihtml5.dom.replaceWithChildNodes
   };
-  
+
   function cleanPastedHTML(elementOrHtml, rules, context) {
     rules   = rules || defaultRules;
     context = context || elementOrHtml.ownerDocument || document;
-    
+
     var element,
         isString = typeof(elementOrHtml) === "string",
         method,
@@ -40263,7 +40263,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     } else {
       element = elementOrHtml;
     }
-    
+
     for (i in rules) {
       matches       = element.querySelectorAll(i);
       method        = rules[i];
@@ -40272,12 +40272,12 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         method(matches[j]);
       }
     }
-    
+
     matches = elementOrHtml = rules = null;
-    
+
     return isString ? element.innerHTML : element;
   }
-  
+
   return cleanPastedHTML;
 })();/**
  * IE and Opera leave an empty paragraph in the contentEditable element after clearing it
@@ -40288,7 +40288,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
  */
 (function(wysihtml5) {
   var dom = wysihtml5.dom;
-  
+
   wysihtml5.quirks.ensureProperClearing = (function() {
     var clearIfNecessary = function(event) {
       var element = this;
@@ -40375,7 +40375,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     if (innerHTML.indexOf(TILDE_ESCAPED) === -1) {
       return innerHTML;
     }
-    
+
     var elementsWithTilde = element.querySelectorAll("[href*='~'], [src*='~']"),
         url,
         urlToSearch,
@@ -40403,7 +40403,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
   var dom                                           = wysihtml5.dom,
       USE_NATIVE_LINE_BREAK_WHEN_CARET_INSIDE_TAGS  = ["LI", "P", "H1", "H2", "H3", "H4", "H5", "H6"],
       LIST_TAGS                                     = ["UL", "OL", "MENU"];
-  
+
   wysihtml5.quirks.insertLineBreakOnReturn = function(composer) {
     function unwrap(selectedNode) {
       var parentElement = dom.getParentElement(selectedNode, { nodeName: ["P", "DIV"] }, 2);
@@ -40452,7 +40452,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
           setTimeout(function() {
             unwrap(composer.selection.getSelectedNode());
           }, 0);
-        } 
+        }
         return;
       }
 
@@ -40461,7 +40461,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         event.preventDefault();
       }
     }
-    
+
     // keypress doesn't fire when you hit backspace
     dom.observe(composer.element.ownerDocument, "keydown", keyDown);
   };
@@ -40475,11 +40475,11 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
  */
 (function(wysihtml5) {
   var CLASS_NAME = "wysihtml5-quirks-redraw";
-  
+
   wysihtml5.quirks.redraw = function(element) {
     wysihtml5.dom.addClass(element, CLASS_NAME);
     wysihtml5.dom.removeClass(element, CLASS_NAME);
-    
+
     // Following hack is needed for firefox to make sure that image resize handles are properly removed
     try {
       var doc = element.ownerDocument;
@@ -40495,7 +40495,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
  */
 (function(wysihtml5) {
   var dom = wysihtml5.dom;
-  
+
   function _getCumulativeOffsetTop(element) {
     var top = 0;
     if (element.parentNode) {
@@ -40506,18 +40506,18 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     }
     return top;
   }
-  
+
   wysihtml5.Selection = Base.extend(
     /** @scope wysihtml5.Selection.prototype */ {
     constructor: function(editor) {
       // Make sure that our external range library is initialized
       window.rangy.init();
-      
+
       this.editor   = editor;
       this.composer = editor.composer;
       this.doc      = this.composer.doc;
     },
-    
+
     /**
      * Get the current selection as a bookmark to be able to later restore it
      *
@@ -40642,23 +40642,23 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
           placeholderHTML       = '<span class="' + className + '">' + wysihtml5.INVISIBLE_SPACE + '</span>',
           range                 = this.getRange(this.doc),
           newRange;
-      
+
       // Nothing selected, execute and say goodbye
       if (!range) {
         method(body, body);
         return;
       }
-      
+
       var node = range.createContextualFragment(placeholderHTML);
       range.insertNode(node);
-      
+
       // Make sure that a potential error doesn't cause our placeholder element to be left as a placeholder
       try {
         method(range.startContainer, range.endContainer);
       } catch(e3) {
         setTimeout(function() { throw e3; }, 0);
       }
-      
+
       caretPlaceholder = this.doc.querySelector("." + className);
       if (caretPlaceholder) {
         newRange = rangy.createRange(this.doc);
@@ -40887,7 +40887,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         return [];
       }
     },
-    
+
     getRange: function() {
       var selection = this.getSelection();
       return selection && selection.rangeCount && selection.getRangeAt(0);
@@ -40903,7 +40903,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
       return selection.setSingleRange(range);
     }
   });
-  
+
 })(wysihtml5);
 /**
  * Inspired by the rangy CSS Applier module written by Tim Down and licensed under the MIT license.
@@ -40915,14 +40915,14 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
  */
 (function(wysihtml5, rangy) {
   var defaultTagName = "span";
-  
+
   var REG_EXP_WHITE_SPACE = /\s+/g;
-  
+
   function hasClass(el, cssClass, regExp) {
     if (!el.className) {
       return false;
     }
-    
+
     var matchingClassNames = el.className.match(regExp) || [];
     return matchingClassNames[matchingClassNames.length - 1] === cssClass;
   }
@@ -40941,7 +40941,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
       el.className = el.className.replace(regExp, "");
     }
   }
-  
+
   function hasSameClasses(el1, el2) {
     return el1.className.replace(REG_EXP_WHITE_SPACE, " ") == el2.className.replace(REG_EXP_WHITE_SPACE, " ");
   }
@@ -41014,7 +41014,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     }
     return (descendantNode == node) ? newNode : splitNodeAt(node, newNode.parentNode, rangy.dom.getNodeIndex(newNode));
   }
-  
+
   function Merge(firstNode) {
     this.isElementMerge = (firstNode.nodeType == wysihtml5.ELEMENT_NODE);
     this.firstTextNode = this.isElementMerge ? firstNode.lastChild : firstNode;
@@ -41130,7 +41130,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         range.setEnd(rangeEndNode, rangeEndOffset);
       }
     },
-    
+
     getAdjacentMergeableTextNode: function(node, forward) {
         var isTextNode = (node.nodeType == wysihtml5.TEXT_NODE);
         var el = isTextNode ? node.parentNode : node;
@@ -41151,7 +41151,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         }
         return null;
     },
-    
+
     areElementsMergeable: function(el1, el2) {
       return rangy.dom.arrayContains(this.tagNames, (el1.tagName || "").toLowerCase())
         && rangy.dom.arrayContains(this.tagNames, (el2.tagName || "").toLowerCase())
@@ -41198,7 +41198,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
           ancestorWithClass = splitNodeAt(ancestorWithClass, range.startContainer, range.startOffset);
         }
       }
-      
+
       if (this.similarClassRegExp) {
         removeClass(ancestorWithClass, this.similarClassRegExp);
       }
@@ -41217,10 +41217,10 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
             return;
           } catch(e) {}
         }
-        
+
         range.splitBoundaries();
         textNodes = range.getNodes([wysihtml5.TEXT_NODE]);
-        
+
         if (textNodes.length) {
           var textNode;
 
@@ -41230,11 +41230,11 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
               this.applyToTextNode(textNode);
             }
           }
-          
+
           range.setStart(textNodes[0], 0);
           textNode = textNodes[textNodes.length - 1];
           range.setEnd(textNode, textNode.length);
-          
+
           if (this.normalize) {
             this.postApply(textNodes, range);
           }
@@ -41253,7 +41253,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         range.selectNode(node);
         textNodes = [node];
       }
-      
+
       for (var i = 0, len = textNodes.length; i < len; ++i) {
         textNode = textNodes[i];
         ancestorWithClass = this.getAncestorWithClass(textNode);
@@ -41261,7 +41261,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
           this.undoToTextNode(textNode, range, ancestorWithClass);
         }
       }
-      
+
       if (len == 1) {
         this.selectNode(range, textNodes[0]);
       } else {
@@ -41274,7 +41274,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         }
       }
     },
-    
+
     selectNode: function(range, node) {
       var isElement       = node.nodeType === wysihtml5.ELEMENT_NODE,
           canHaveHTML     = "canHaveHTML" in node ? node.canHaveHTML : true,
@@ -41293,7 +41293,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         range.setEndAfter(node);
       }
     },
-    
+
     getTextSelectedByRange: function(textNode, range) {
       var textRange = range.cloneRange();
       textRange.selectNodeContents(textNode);
@@ -41313,7 +41313,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
         ancestor = this.getAncestorWithClass(range.startContainer);
         return ancestor ? [ancestor] : false;
       }
-      
+
       for (var i = 0, len = textNodes.length, selectedText; i < len; ++i) {
         selectedText = this.getTextSelectedByRange(textNodes[i], range);
         ancestor = this.getAncestorWithClass(textNodes[i]);
@@ -41336,10 +41336,10 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
   };
 
   wysihtml5.selection.HTMLApplier = HTMLApplier;
-  
+
 })(wysihtml5, rangy);/**
  * Rich Text Query/Formatting Commands
- * 
+ *
  * @example
  *    var commands = new wysihtml5.Commands(editor);
  */
@@ -41350,7 +41350,7 @@ wysihtml5.Commands = Base.extend(
     this.composer = editor.composer;
     this.doc      = this.composer.doc;
   },
-  
+
   /**
    * Check whether the browser supports the given command
    *
@@ -41361,7 +41361,7 @@ wysihtml5.Commands = Base.extend(
   support: function(command) {
     return wysihtml5.browser.supportsCommand(this.doc, command);
   },
-  
+
   /**
    * Check whether the browser supports the given command
    *
@@ -41375,9 +41375,9 @@ wysihtml5.Commands = Base.extend(
         args    = wysihtml5.lang.array(arguments).get(),
         method  = obj && obj.exec,
         result  = null;
-    
+
     this.editor.fire("beforecommand:composer");
-    
+
     if (method) {
       args.unshift(this.composer);
       result = method.apply(obj, args);
@@ -41387,11 +41387,11 @@ wysihtml5.Commands = Base.extend(
         result = this.doc.execCommand(command, false, value);
       } catch(e) {}
     }
-    
+
     this.editor.fire("aftercommand:composer");
     return result;
   },
-  
+
   /**
    * Check whether the current command is active
    * If the caret is within a bold text, then calling this with command "bold" should return true
@@ -41418,7 +41418,7 @@ wysihtml5.Commands = Base.extend(
       }
     }
   },
-  
+
   /**
    * Get the current command's value
    *
@@ -41444,7 +41444,7 @@ wysihtml5.Commands = Base.extend(
 });
 (function(wysihtml5) {
   var undef;
-  
+
   wysihtml5.commands.bold = {
     exec: function(composer, command) {
       return wysihtml5.commands.formatInline.exec(composer, command, "b");
@@ -41469,7 +41469,7 @@ wysihtml5.Commands = Base.extend(
   var undef,
       NODE_NAME = "A",
       dom       = wysihtml5.dom;
-  
+
   function _removeFormat(composer, anchors) {
     var length  = anchors.length,
         i       = 0,
@@ -41532,7 +41532,7 @@ wysihtml5.Commands = Base.extend(
     }
     composer.selection.setAfter(elementToSetCaretAfter);
   }
-  
+
   wysihtml5.commands.createLink = {
     /**
      * TODO: Use HTMLApplier or formatInline here
@@ -41540,7 +41540,7 @@ wysihtml5.Commands = Base.extend(
      * Turns selection into a link
      * If selection is already a link, it removes the link and wraps it with a <code> element
      * The <code> element is needed to avoid auto linking
-     * 
+     *
      * @example
      *    // either ...
      *    wysihtml5.commands.createLink.exec(composer, "createLink", "http://www.google.de");
@@ -41577,7 +41577,7 @@ wysihtml5.Commands = Base.extend(
 (function(wysihtml5) {
   var undef,
       REG_EXP = /wysiwyg-font-size-[a-z\-]+/g;
-  
+
   wysihtml5.commands.fontSize = {
     exec: function(composer, command, size) {
       return wysihtml5.commands.formatInline.exec(composer, command, "span", "wysiwyg-font-size-" + size, REG_EXP);
@@ -41600,7 +41600,7 @@ wysihtml5.Commands = Base.extend(
 (function(wysihtml5) {
   var undef,
       REG_EXP = /wysiwyg-color-[a-z]+/g;
-  
+
   wysihtml5.commands.foreColor = {
     exec: function(composer, command, color) {
       return wysihtml5.commands.formatInline.exec(composer, command, "span", "wysiwyg-color-" + color, REG_EXP);
@@ -41622,7 +41622,7 @@ wysihtml5.Commands = Base.extend(
       // when the caret is within a H1 and the H4 is invoked, the H1 should turn into H4
       // instead of creating a H4 within a H1 which would result in semantically invalid html
       BLOCK_ELEMENTS_GROUP    = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "BLOCKQUOTE", DEFAULT_NODE_NAME];
-  
+
   /**
    * Remove similiar classes (based on classRegExp)
    * and add the desired class name
@@ -41764,7 +41764,7 @@ wysihtml5.Commands = Base.extend(
   function _hasClasses(element) {
     return !!wysihtml5.lang.string(element.className).trim();
   }
-  
+
   wysihtml5.commands.formatBlock = {
     exec: function(composer, command, nodeName, className, classRegExp) {
       var doc          = composer.doc,
@@ -41846,12 +41846,12 @@ wysihtml5.Commands = Base.extend(
  *      abcdefg|
  *   output:
  *      abcdefg<b>|</b>
- *   
+ *
  *   #2 unformatted text selected:
  *      abc|deg|h
  *   output:
  *      abc<b>|deg|</b>h
- *   
+ *
  *   #3 unformatted text selected across boundaries:
  *      ab|c <span>defg|h</span>
  *   output:
@@ -41882,12 +41882,12 @@ wysihtml5.Commands = Base.extend(
         "i":      "em"
       },
       htmlApplier = {};
-  
+
   function _getTagNames(tagName) {
     var alias = ALIAS_MAPPING[tagName];
     return alias ? [tagName.toLowerCase(), alias.toLowerCase()] : [tagName.toLowerCase()];
   }
-  
+
   function _getApplier(tagName, className, classRegExp) {
     var identifier = tagName + ":" + className;
     if (!htmlApplier[identifier]) {
@@ -41895,7 +41895,7 @@ wysihtml5.Commands = Base.extend(
     }
     return htmlApplier[identifier];
   }
-  
+
   wysihtml5.commands.formatInline = {
     exec: function(composer, command, tagName, className, classRegExp) {
       var range = composer.selection.getRange();
@@ -41936,7 +41936,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var undef;
-  
+
   wysihtml5.commands.insertHTML = {
     exec: function(composer, command, html) {
       if (composer.commands.support(command)) {
@@ -41956,12 +41956,12 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var NODE_NAME = "IMG";
-  
+
   wysihtml5.commands.insertImage = {
     /**
      * Inserts an <img>
      * If selection is already an image link, it removes it
-     * 
+     *
      * @example
      *    // either ...
      *    wysihtml5.commands.insertImage.exec(composer, "insertImage", "http://www.google.de/logo.jpg");
@@ -42060,7 +42060,7 @@ wysihtml5.Commands = Base.extend(
 })(wysihtml5);(function(wysihtml5) {
   var undef,
       LINE_BREAK = "<br>" + (wysihtml5.browser.needsSpaceAfterLineBreak() ? " " : "");
-  
+
   wysihtml5.commands.insertLineBreak = {
     exec: function(composer, command) {
       if (composer.commands.support(command)) {
@@ -42083,7 +42083,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var undef;
-  
+
   wysihtml5.commands.insertOrderedList = {
     exec: function(composer, command) {
       var doc           = composer.doc,
@@ -42093,12 +42093,12 @@ wysihtml5.Commands = Base.extend(
           tempClassName =  "_wysihtml5-temp-" + new Date().getTime(),
           isEmpty,
           tempElement;
-      
+
       if (composer.commands.support(command)) {
         doc.execCommand(command, false, null);
         return;
       }
-      
+
       if (list) {
         // Unwrap list
         // <ol><li>foo</li><li>bar</li></ol>
@@ -42128,7 +42128,7 @@ wysihtml5.Commands = Base.extend(
         }
       }
     },
-    
+
     state: function(composer) {
       var selectedNode = composer.selection.getSelectedNode();
       return wysihtml5.dom.getParentElement(selectedNode, { nodeName: "OL" });
@@ -42140,7 +42140,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var undef;
-  
+
   wysihtml5.commands.insertUnorderedList = {
     exec: function(composer, command) {
       var doc           = composer.doc,
@@ -42150,12 +42150,12 @@ wysihtml5.Commands = Base.extend(
           tempClassName =  "_wysihtml5-temp-" + new Date().getTime(),
           isEmpty,
           tempElement;
-      
+
       if (composer.commands.support(command)) {
         doc.execCommand(command, false, null);
         return;
       }
-      
+
       if (list) {
         // Unwrap list
         // <ul><li>foo</li><li>bar</li></ul>
@@ -42185,7 +42185,7 @@ wysihtml5.Commands = Base.extend(
         }
       }
     },
-    
+
     state: function(composer) {
       var selectedNode = composer.selection.getSelectedNode();
       return wysihtml5.dom.getParentElement(selectedNode, { nodeName: "UL" });
@@ -42197,7 +42197,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var undef;
-  
+
   wysihtml5.commands.italic = {
     exec: function(composer, command) {
       return wysihtml5.commands.formatInline.exec(composer, command, "i");
@@ -42220,7 +42220,7 @@ wysihtml5.Commands = Base.extend(
   var undef,
       CLASS_NAME  = "wysiwyg-text-align-center",
       REG_EXP     = /wysiwyg-text-align-[a-z]+/g;
-  
+
   wysihtml5.commands.justifyCenter = {
     exec: function(composer, command) {
       return wysihtml5.commands.formatBlock.exec(composer, "formatBlock", null, CLASS_NAME, REG_EXP);
@@ -42238,7 +42238,7 @@ wysihtml5.Commands = Base.extend(
   var undef,
       CLASS_NAME  = "wysiwyg-text-align-left",
       REG_EXP     = /wysiwyg-text-align-[a-z]+/g;
-  
+
   wysihtml5.commands.justifyLeft = {
     exec: function(composer, command) {
       return wysihtml5.commands.formatBlock.exec(composer, "formatBlock", null, CLASS_NAME, REG_EXP);
@@ -42256,7 +42256,7 @@ wysihtml5.Commands = Base.extend(
   var undef,
       CLASS_NAME  = "wysiwyg-text-align-right",
       REG_EXP     = /wysiwyg-text-align-[a-z]+/g;
-  
+
   wysihtml5.commands.justifyRight = {
     exec: function(composer, command) {
       return wysihtml5.commands.formatBlock.exec(composer, "formatBlock", null, CLASS_NAME, REG_EXP);
@@ -42298,14 +42298,14 @@ wysihtml5.Commands = Base.extend(
       UNDO_HTML           = '<span id="_wysihtml5-undo" class="_wysihtml5-temp">' + wysihtml5.INVISIBLE_SPACE + '</span>',
       REDO_HTML           = '<span id="_wysihtml5-redo" class="_wysihtml5-temp">' + wysihtml5.INVISIBLE_SPACE + '</span>',
       dom                 = wysihtml5.dom;
-  
+
   function cleanTempElements(doc) {
     var tempElement;
     while (tempElement = doc.querySelector("._wysihtml5-temp")) {
       tempElement.parentNode.removeChild(tempElement);
     }
   }
-  
+
   wysihtml5.UndoManager = wysihtml5.lang.Dispatcher.extend(
     /** @scope wysihtml5.UndoManager.prototype */ {
     constructor: function(editor) {
@@ -42314,28 +42314,28 @@ wysihtml5.Commands = Base.extend(
       this.element = this.composer.element;
       this.history = [this.composer.getValue()];
       this.position = 1;
-      
+
       // Undo manager currently only supported in browsers who have the insertHTML command (not IE)
       if (this.composer.commands.support("insertHTML")) {
         this._observe();
       }
     },
-    
+
     _observe: function() {
       var that      = this,
           doc       = this.composer.sandbox.getDocument(),
           lastKey;
-          
+
       // Catch CTRL+Z and CTRL+Y
       dom.observe(this.element, "keydown", function(event) {
         if (event.altKey || (!event.ctrlKey && !event.metaKey)) {
           return;
         }
-        
+
         var keyCode = event.keyCode,
             isUndo = keyCode === Z_KEY && !event.shiftKey,
             isRedo = (keyCode === Z_KEY && event.shiftKey) || (keyCode === Y_KEY);
-        
+
         if (isUndo) {
           that.undo();
           event.preventDefault();
@@ -42344,21 +42344,21 @@ wysihtml5.Commands = Base.extend(
           event.preventDefault();
         }
       });
-      
+
       // Catch delete and backspace
       dom.observe(this.element, "keydown", function(event) {
         var keyCode = event.keyCode;
         if (keyCode === lastKey) {
           return;
         }
-        
+
         lastKey = keyCode;
-        
+
         if (keyCode === BACKSPACE_KEY || keyCode === DELETE_KEY) {
           that.transact();
         }
       });
-      
+
       // Now this is very hacky:
       // These days browsers don't offer a undo/redo event which we could hook into
       // to be notified when the user hits undo/redo in the contextmenu.
@@ -42371,7 +42371,7 @@ wysihtml5.Commands = Base.extend(
           cleanTempElements(doc);
           clearInterval(interval);
         };
-        
+
         dom.observe(this.element, "contextmenu", function() {
           cleanUp();
           that.composer.selection.executeAndRestoreSimple(function() {
@@ -42403,55 +42403,55 @@ wysihtml5.Commands = Base.extend(
           }
         });
       }
-      
+
       this.editor
         .observe("newword:composer", function() {
           that.transact();
         })
-        
+
         .observe("beforecommand:composer", function() {
           that.transact();
         });
     },
-    
+
     transact: function() {
       var previousHtml  = this.history[this.position - 1],
           currentHtml   = this.composer.getValue();
-      
+
       if (currentHtml == previousHtml) {
         return;
       }
-      
+
       var length = this.history.length = this.position;
       if (length > MAX_HISTORY_ENTRIES) {
         this.history.shift();
         this.position--;
       }
-      
+
       this.position++;
       this.history.push(currentHtml);
     },
-    
+
     undo: function() {
       this.transact();
-      
+
       if (this.position <= 1) {
         return;
       }
-      
+
       this.set(this.history[--this.position - 1]);
       this.editor.fire("undo:composer");
     },
-    
+
     redo: function() {
       if (this.position >= this.history.length) {
         return;
       }
-      
+
       this.set(this.history[++this.position - 1]);
       this.editor.fire("redo:composer");
     },
-    
+
     set: function(html) {
       this.composer.setValue(html);
       this.editor.focus(true);
@@ -42467,10 +42467,10 @@ wysihtml5.views.View = Base.extend(
     this.parent   = parent;
     this.element  = textareaElement;
     this.config   = config;
-    
+
     this._observeViewChange();
   },
-  
+
   _observeViewChange: function() {
     var that = this;
     this.parent.observe("beforeload", function() {
@@ -42486,34 +42486,34 @@ wysihtml5.views.View = Base.extend(
       });
     });
   },
-  
+
   focus: function() {
     if (this.element.ownerDocument.querySelector(":focus") === this.element) {
       return;
     }
-    
+
     try { this.element.focus(); } catch(e) {}
   },
-  
+
   hide: function() {
     this.element.style.display = "none";
   },
-  
+
   show: function() {
     this.element.style.display = "";
   },
-  
+
   disable: function() {
     this.element.setAttribute("disabled", "disabled");
   },
-  
+
   enable: function() {
     this.element.removeAttribute("disabled");
   }
 });(function(wysihtml5) {
   var dom       = wysihtml5.dom,
       browser   = wysihtml5.browser;
-  
+
   wysihtml5.views.Composer = wysihtml5.views.View.extend(
     /** @scope wysihtml5.views.Composer.prototype */ {
     name: "composer",
@@ -42533,7 +42533,7 @@ wysihtml5.views.View = Base.extend(
 
     getValue: function(parse) {
       var value = this.isEmpty() ? "" : wysihtml5.quirks.getCorrectInnerHTML(this.element);
-      
+
       if (parse) {
         value = this.parent.parse(value);
       }
@@ -42586,9 +42586,9 @@ wysihtml5.views.View = Base.extend(
       if (wysihtml5.browser.doesAsyncFocus() && this.hasPlaceholderSet()) {
         this.clear();
       }
-      
+
       this.base();
-      
+
       var lastChild = this.element.lastChild;
       if (setToEnd && lastChild) {
         if (lastChild.nodeName === "BR") {
@@ -42610,7 +42610,7 @@ wysihtml5.views.View = Base.extend(
     isEmpty: function() {
       var innerHTML               = this.element.innerHTML,
           elementsWithVisualValue = "blockquote, ul, ol, img, embed, object, table, iframe, svg, video, audio, button, input, select, textarea";
-      return innerHTML === ""              || 
+      return innerHTML === ""              ||
              innerHTML === this.CARET_HACK ||
              this.hasPlaceholderSet()      ||
              (this.getTextContent() === "" && !this.element.querySelector(elementsWithVisualValue));
@@ -42618,7 +42618,7 @@ wysihtml5.views.View = Base.extend(
 
     _initSandbox: function() {
       var that = this;
-      
+
       this.sandbox = new dom.Sandbox(function() {
         that._create();
       }, {
@@ -42640,23 +42640,23 @@ wysihtml5.views.View = Base.extend(
 
     _create: function() {
       var that = this;
-      
+
       this.doc                = this.sandbox.getDocument();
       this.element            = this.doc.body;
       this.textarea           = this.parent.textarea;
       this.element.innerHTML  = this.textarea.getValue(true);
       this.enable();
-      
+
       // Make sure our selection handler is ready
       this.selection = new wysihtml5.Selection(this.parent);
-      
+
       // Make sure commands dispatcher is ready
       this.commands  = new wysihtml5.Commands(this.parent);
 
       dom.copyAttributes([
         "className", "spellcheck", "title", "lang", "dir", "accessKey"
       ]).from(this.textarea.element).to(this.element);
-      
+
       dom.addClass(this.element, this.config.composerClassName);
 
       // Make the editor look like the original textarea, by syncing styles
@@ -42679,7 +42679,7 @@ wysihtml5.views.View = Base.extend(
       if (placeholderText) {
         dom.simulatePlaceholder(this.parent, this, placeholderText);
       }
-      
+
       // Make sure that the browser avoids using inline styles whenever possible
       this.commands.exec("styleWithCSS", false);
 
@@ -42787,9 +42787,9 @@ wysihtml5.views.View = Base.extend(
       var properties        = ["width", "height"],
           propertiesLength  = properties.length,
           element           = this.element;
-      
+
       this.commands.exec("enableObjectResizing", this.config.allowObjectResizing);
-      
+
       if (this.config.allowObjectResizing) {
          // IE sets inline styles after resizing objects
          // The following lines make sure that the width/height css properties
@@ -42817,7 +42817,7 @@ wysihtml5.views.View = Base.extend(
         }
       }
     },
-    
+
     _initUndoManager: function() {
       new wysihtml5.UndoManager(this.parent);
     }
@@ -42874,13 +42874,13 @@ wysihtml5.views.View = Base.extend(
         "body             { min-height: 100%; padding: 0; margin: 0; margin-top: -1px; padding-top: 1px; }",
         "._wysihtml5-temp { display: none; }",
         wysihtml5.browser.isGecko ?
-          "body.placeholder { color: graytext !important; }" : 
+          "body.placeholder { color: graytext !important; }" :
           "body.placeholder { color: #a9a9a9 !important; }",
         "body[disabled]   { background-color: #eee !important; color: #999 !important; cursor: default !important; }",
         // Ensure that user see's broken images and can delete them
         "img:-moz-broken  { -moz-force-broken-image-icon: 1; height: 24px; width: 24px; }"
       ];
-  
+
   /**
    * With "setActive" IE offers a smart way of focusing elements without scrolling them into view:
    * http://msdn.microsoft.com/en-us/library/ms536738(v=vs.85).aspx
@@ -42904,7 +42904,7 @@ wysihtml5.views.View = Base.extend(
             left:             elementStyle.left,
             WebkitUserSelect: elementStyle.WebkitUserSelect
           };
-      
+
       dom.setStyles({
         position:         "absolute",
         top:              "-99999px",
@@ -42912,11 +42912,11 @@ wysihtml5.views.View = Base.extend(
         // Don't ask why but temporarily setting -webkit-user-select to none makes the whole thing performing smoother
         WebkitUserSelect: "none"
       }).on(element);
-      
+
       element.focus();
-      
+
       dom.setStyles(originalStyles).on(element);
-      
+
       if (win.scrollTo) {
         // Some browser extensions unset this method to prevent annoyances
         // "Better PopUp Blocker" for Chrome http://code.google.com/p/betterpopupblocker/source/browse/trunk/blockStart.js#100
@@ -42925,8 +42925,8 @@ wysihtml5.views.View = Base.extend(
       }
     }
   };
-  
-  
+
+
   wysihtml5.views.Composer.prototype.style = function() {
     var that                  = this,
         originalActiveElement = doc.querySelector(":focus"),
@@ -42935,47 +42935,47 @@ wysihtml5.views.View = Base.extend(
         originalPlaceholder   = hasPlaceholder && textareaElement.getAttribute("placeholder");
     this.focusStylesHost      = this.focusStylesHost  || HOST_TEMPLATE.cloneNode(false);
     this.blurStylesHost       = this.blurStylesHost   || HOST_TEMPLATE.cloneNode(false);
-  
+
     // Remove placeholder before copying (as the placeholder has an affect on the computed style)
     if (hasPlaceholder) {
       textareaElement.removeAttribute("placeholder");
     }
-  
+
     if (textareaElement === originalActiveElement) {
       textareaElement.blur();
     }
-  
+
     // --------- iframe styles (has to be set before editor styles, otherwise IE9 sets wrong fontFamily on blurStylesHost) ---------
     dom.copyStyles(BOX_FORMATTING).from(textareaElement).to(this.iframe).andTo(this.blurStylesHost);
-  
+
     // --------- editor styles ---------
     dom.copyStyles(TEXT_FORMATTING).from(textareaElement).to(this.element).andTo(this.blurStylesHost);
-  
+
     // --------- apply standard rules ---------
     dom.insertCSS(ADDITIONAL_CSS_RULES).into(this.element.ownerDocument);
-  
+
     // --------- :focus styles ---------
     focusWithoutScrolling(textareaElement);
     dom.copyStyles(BOX_FORMATTING).from(textareaElement).to(this.focusStylesHost);
     dom.copyStyles(TEXT_FORMATTING).from(textareaElement).to(this.focusStylesHost);
-  
+
     // Make sure that we don't change the display style of the iframe when copying styles oblur/onfocus
     // this is needed for when the change_view event is fired where the iframe is hidden and then
     // the blur event fires and re-displays it
     var boxFormattingStyles = wysihtml5.lang.array(BOX_FORMATTING).without(["display"]);
-  
+
     // --------- restore focus ---------
     if (originalActiveElement) {
       originalActiveElement.focus();
     } else {
       textareaElement.blur();
     }
-  
+
     // --------- restore placeholder ---------
     if (hasPlaceholder) {
       textareaElement.setAttribute("placeholder", originalPlaceholder);
     }
-  
+
     // When copying styles, we only get the computed style which is never returned in percent unit
     // Therefore we've to recalculate style onresize
     if (!wysihtml5.browser.hasCurrentStyleProperty()) {
@@ -42998,7 +42998,7 @@ wysihtml5.views.View = Base.extend(
         textareaElement.style.display = originalTextareaDisplayStyle;
       });
     }
-  
+
     // --------- Sync focus/blur styles ---------
     this.parent.observe("focus:composer", function() {
       dom.copyStyles(boxFormattingStyles) .from(that.focusStylesHost).to(that.iframe);
@@ -43009,7 +43009,7 @@ wysihtml5.views.View = Base.extend(
       dom.copyStyles(boxFormattingStyles) .from(that.blurStylesHost).to(that.iframe);
       dom.copyStyles(TEXT_FORMATTING)     .from(that.blurStylesHost).to(that.element);
     });
-  
+
     return this;
   };
 })(wysihtml5);/**
@@ -43031,7 +43031,7 @@ wysihtml5.views.View = Base.extend(
         "73": "italic",   // I
         "85": "underline" // U
       };
-  
+
   wysihtml5.views.Composer.prototype.observe = function() {
     var that                = this,
         state               = this.getValue(),
@@ -43071,7 +43071,7 @@ wysihtml5.views.View = Base.extend(
       }
       that.parent.fire("blur").fire("blur:composer");
     });
-    
+
     if (wysihtml5.browser.isIos()) {
       // When on iPad/iPhone/IPod after clicking outside of editor, the editor loses focus
       // but the UI still acts as if the editor has focus (blinking caret and onscreen keyboard visible)
@@ -43087,7 +43087,7 @@ wysihtml5.views.View = Base.extend(
         }
         input.focus();
         input.parentNode.removeChild(input);
-        
+
         window.scrollTo(originalScrollLeft, originalScrollTop);
       });
     }
@@ -43147,7 +43147,7 @@ wysihtml5.views.View = Base.extend(
         }
       });
     }
-    
+
     // --------- Shortcut logic ---------
     dom.observe(element, "keydown", function(event) {
       var keyCode  = event.keyCode,
@@ -43182,7 +43182,7 @@ wysihtml5.views.View = Base.extend(
       IMG: "Image: ",
       A:   "Link: "
     };
-    
+
     dom.observe(element, "mouseover", function(event) {
       var target   = event.target,
           nodeName = target.nodeName,
@@ -43202,7 +43202,7 @@ wysihtml5.views.View = Base.extend(
  */
 (function(wysihtml5) {
   var INTERVAL = 400;
-  
+
   wysihtml5.views.Synchronizer = Base.extend(
     /** @scope wysihtml5.views.Synchronizer.prototype */ {
 
@@ -43297,17 +43297,17 @@ wysihtml5.views.View = Base.extend(
 wysihtml5.views.Textarea = wysihtml5.views.View.extend(
   /** @scope wysihtml5.views.Textarea.prototype */ {
   name: "textarea",
-  
+
   constructor: function(parent, textareaElement, config) {
     this.base(parent, textareaElement, config);
-    
+
     this._observe();
   },
-  
+
   clear: function() {
     this.element.value = "";
   },
-  
+
   getValue: function(parse) {
     var value = this.isEmpty() ? "" : this.element.value;
     if (parse) {
@@ -43315,14 +43315,14 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     }
     return value;
   },
-  
+
   setValue: function(html, parse) {
     if (parse) {
       html = this.parent.parse(html);
     }
     this.element.value = html;
   },
-  
+
   hasPlaceholderSet: function() {
     var supportsPlaceholder = wysihtml5.browser.supportsPlaceholderAttributeOn(this.element),
         placeholderText     = this.element.getAttribute("placeholder") || null,
@@ -43330,11 +43330,11 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         isEmpty             = !value;
     return (supportsPlaceholder && isEmpty) || (value === placeholderText);
   },
-  
+
   isEmpty: function() {
     return !wysihtml5.lang.string(this.element.value).trim() || this.hasPlaceholderSet();
   },
-  
+
   _observe: function() {
     var element = this.element,
         parent  = this.parent,
@@ -43347,13 +43347,13 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
          * This is the case for focusin and focusout, so let's use them whenever possible, kkthxbai
          */
         events = wysihtml5.browser.supportsEvent("focusin") ? ["focusin", "focusout", "change"] : ["focus", "blur", "change"];
-    
+
     parent.observe("beforeload", function() {
       wysihtml5.dom.observe(element, events, function(event) {
         var eventName = eventMapping[event.type] || event.type;
         parent.fire(eventName).fire(eventName + ":textarea");
       });
-      
+
       wysihtml5.dom.observe(element, ["paste", "drop"], function() {
         setTimeout(function() { parent.fire("paste").fire("paste:textarea"); }, 0);
       });
@@ -43395,8 +43395,8 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       SELECTOR_FORM_ELEMENTS  = "input, select, textarea",
       SELECTOR_FIELDS         = "[data-wysihtml5-dialog-field]",
       ATTRIBUTE_FIELDS        = "data-wysihtml5-dialog-field";
-      
-  
+
+
   wysihtml5.toolbar.Dialog = wysihtml5.lang.Dispatcher.extend(
     /** @scope wysihtml5.toolbar.Dialog.prototype */ {
     constructor: function(link, container) {
@@ -43408,7 +43408,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       if (this._observed) {
         return;
       }
-      
+
       var that = this,
           callbackWrapper = function(event) {
             var attributes = that._serialize();
@@ -43476,14 +43476,14 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     /**
      * Takes the attributes of the "elementToChange"
      * and inserts them in their corresponding dialog input fields
-     * 
+     *
      * Assume the "elementToChange" looks like this:
      *    <a href="http://www.google.com" target="_blank">foo</a>
      *
      * and we have the following dialog:
      *    <input type="text" data-wysihtml5-dialog-field="href" value="">
      *    <input type="text" data-wysihtml5-dialog-field="target" value="">
-     * 
+     *
      * after calling _interpolate() the dialog will look like this
      *    <input type="text" data-wysihtml5-dialog-field="href" value="http://www.google.com">
      *    <input type="text" data-wysihtml5-dialog-field="target" value="_blank">
@@ -43501,18 +43501,18 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           i              = 0;
       for (; i<length; i++) {
         field = fields[i];
-        
+
         // Never change elements where the user is currently typing in
         if (field === focusedElement) {
           continue;
         }
-        
+
         // Don't update hidden fields
         // See https://github.com/xing/wysihtml5/pull/14
         if (avoidHiddenFields && field.type === "hidden") {
           continue;
         }
-        
+
         fieldName = field.getAttribute(ATTRIBUTE_FIELDS);
         newValue  = this.elementToChange ? (this.elementToChange[fieldName] || "") : field.defaultValue;
         field.value = newValue;
@@ -43562,17 +43562,17 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
  *
  * Current HTML5 draft can be found here
  * http://lists.w3.org/Archives/Public/public-xg-htmlspeech/2011Feb/att-0020/api-draft.html
- * 
+ *
  * "Accessing Google Speech API Chrome 11"
  * http://mikepultz.com/2011/03/accessing-google-speech-api-chrome-11/
  */
 (function(wysihtml5) {
   var dom = wysihtml5.dom;
-  
+
   var linkStyles = {
     position: "relative"
   };
-  
+
   var wrapperStyles = {
     left:     0,
     margin:   0,
@@ -43583,7 +43583,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     top:      0,
     zIndex:   1
   };
-  
+
   var inputStyles = {
     cursor:     "inherit",
     fontSize:   "50px",
@@ -43595,46 +43595,46 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     right:      "-4px",
     top:        "50%"
   };
-  
+
   var inputAttributes = {
     "x-webkit-speech": "",
     "speech":          ""
   };
-  
+
   wysihtml5.toolbar.Speech = function(parent, link) {
     var input = document.createElement("input");
     if (!wysihtml5.browser.supportsSpeechApiOn(input)) {
       link.style.display = "none";
       return;
     }
-    
+
     var wrapper = document.createElement("div");
-    
+
     wysihtml5.lang.object(wrapperStyles).merge({
       width:  link.offsetWidth  + "px",
       height: link.offsetHeight + "px"
     });
-    
+
     dom.insert(input).into(wrapper);
     dom.insert(wrapper).into(link);
-    
+
     dom.setStyles(inputStyles).on(input);
     dom.setAttributes(inputAttributes).on(input)
-    
+
     dom.setStyles(wrapperStyles).on(wrapper);
     dom.setStyles(linkStyles).on(link);
-    
+
     var eventName = "onwebkitspeechchange" in input ? "webkitspeechchange" : "speechchange";
     dom.observe(input, eventName, function() {
       parent.execCommand("insertText", input.value);
       input.value = "";
     });
-    
+
     dom.observe(input, "click", function(event) {
       if (dom.hasClass(link, "wysihtml5-command-disabled")) {
         event.preventDefault();
       }
-      
+
       event.stopPropagation();
     });
   };
@@ -43660,7 +43660,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       CLASS_NAME_COMMAND_ACTIVE     = "wysihtml5-command-active",
       CLASS_NAME_ACTION_ACTIVE      = "wysihtml5-action-active",
       dom                           = wysihtml5.dom;
-  
+
   wysihtml5.toolbar.Toolbar = Base.extend(
     /** @scope wysihtml5.toolbar.Toolbar.prototype */ {
     constructor: function(editor, container) {
@@ -43673,7 +43673,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
 
       this._observe();
       this.show();
-      
+
       var speechInputLinks  = this.container.querySelectorAll("[data-wysihtml5-command=insertSpeech]"),
           length            = speechInputLinks.length,
           i                 = 0;
@@ -43698,7 +43698,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         value   = link.getAttribute("data-wysihtml5-" + type + "-value");
         group   = this.container.querySelector("[data-wysihtml5-" + type + "-group='" + name + "']");
         dialog  = this._getDialog(link, name);
-        
+
         mapping[name + ":" + value] = {
           link:   link,
           group:  group,
@@ -43715,7 +43715,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           dialogElement = this.container.querySelector("[data-wysihtml5-dialog='" + command + "']"),
           dialog,
           caretBookmark;
-      
+
       if (dialogElement) {
         dialog = new wysihtml5.toolbar.Dialog(link, dialogElement);
 
@@ -43730,7 +43730,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
             that.composer.selection.setBookmark(caretBookmark);
           }
           that._execCommand(command, attributes);
-          
+
           that.editor.fire("save:dialog", { command: command, dialogContainer: dialogElement, commandLink: link });
         });
 
@@ -43791,7 +43791,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           links     = this.commandLinks.concat(this.actionLinks),
           length    = links.length,
           i         = 0;
-      
+
       for (; i<length; i++) {
         // 'javascript:;' and unselectable=on Needed for IE, but done in all browsers to make sure that all get the same css applied
         // (you know, a:link { ... } doesn't match anchors with missing href attribute)
@@ -43803,7 +43803,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
 
       // Needed for opera
       dom.delegate(container, "[data-wysihtml5-command]", "mousedown", function(event) { event.preventDefault(); });
-      
+
       dom.delegate(container, "[data-wysihtml5-command]", "click", function(event) {
         var link          = this,
             command       = link.getAttribute("data-wysihtml5-command"),
@@ -43908,10 +43908,10 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           }
         }
       }
-      
+
       for (i in actionMapping) {
         action = actionMapping[i];
-        
+
         if (action.name === "change_view") {
           action.state = this.editor.currentView === this.editor.textarea;
           if (action.state) {
@@ -43931,7 +43931,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       this.container.style.display = "none";
     }
   });
-  
+
 })(wysihtml5);
 /**
  * WYSIHTML5 Editor
@@ -43964,9 +43964,9 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
  */
 (function(wysihtml5) {
   var undef;
-  
+
   var defaultConfig = {
-    // Give the editor a name, the name will also be set as class name on the iframe and on the iframe's body 
+    // Give the editor a name, the name will also be set as class name on the iframe and on the iframe's body
     name:                 undef,
     // Whether the editor should look like the textarea (by adopting styles)
     style:                true,
@@ -43992,7 +43992,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     // Whether the rich text editor should be rendered on touch devices (wysihtml5 >= 0.3.0 comes with basic support for iOS 5)
     supportTouchDevices:  true
   };
-  
+
   wysihtml5.Editor = wysihtml5.lang.Dispatcher.extend(
     /** @scope wysihtml5.Editor.prototype */ {
     constructor: function(textareaElement, config) {
@@ -44001,36 +44001,36 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       this.textarea         = new wysihtml5.views.Textarea(this, this.textareaElement, this.config);
       this.currentView      = this.textarea;
       this._isCompatible    = wysihtml5.browser.supported();
-      
+
       // Sort out unsupported/unwanted browsers here
       if (!this._isCompatible || (!this.config.supportTouchDevices && wysihtml5.browser.isTouchDevice())) {
         var that = this;
         setTimeout(function() { that.fire("beforeload").fire("load"); }, 0);
         return;
       }
-      
+
       // Add class name to body, to indicate that the editor is supported
       wysihtml5.dom.addClass(document.body, this.config.bodyClassName);
-      
+
       this.composer = new wysihtml5.views.Composer(this, this.textareaElement, this.config);
       this.currentView = this.composer;
-      
+
       if (typeof(this.config.parser) === "function") {
         this._initParser();
       }
-      
+
       this.observe("beforeload", function() {
         this.synchronizer = new wysihtml5.views.Synchronizer(this, this.textarea, this.composer);
         if (this.config.toolbar) {
           this.toolbar = new wysihtml5.toolbar.Toolbar(this, this.config.toolbar);
         }
       });
-      
+
       try {
         console.log("Heya! This page is using wysihtml5 for rich text editing. Check out https://github.com/xing/wysihtml5");
       } catch(e) {}
     },
-    
+
     isCompatible: function() {
       return this._isCompatible;
     },
@@ -44064,7 +44064,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       this.currentView.disable();
       return this;
     },
-    
+
     /**
      * Activate editor
      */
@@ -44072,15 +44072,15 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       this.currentView.enable();
       return this;
     },
-    
+
     isEmpty: function() {
       return this.currentView.isEmpty();
     },
-    
+
     hasPlaceholderSet: function() {
       return this.currentView.hasPlaceholderSet();
     },
-    
+
     parse: function(htmlOrElement) {
       var returnValue = this.config.parser(htmlOrElement, this.config.parserRules, this.composer.sandbox.getDocument(), true);
       if (typeof(htmlOrElement) === "object") {
@@ -44088,7 +44088,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       }
       return returnValue;
     },
-    
+
     /**
      * Prepare html parser logic
      *  - Observes for paste and drop
@@ -44102,7 +44102,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           that.parse(that.composer.element);
         }, keepScrollPosition);
       });
-      
+
       this.observe("paste:textarea", function() {
         var value   = this.textarea.getValue(),
             newValue;
@@ -44257,7 +44257,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
 
         createEditor: function(options) {
             options = options || {};
-            
+
             // Add the toolbar to a clone of the options object so multiple instances
             // of the WYISYWG don't break because "toolbar" is already defined
             options = $.extend(true, {}, options);
@@ -44486,7 +44486,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
             return methods.init.apply( this, arguments );
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.wysihtml5' );
-        }    
+        }
     };
 
     $.fn.wysihtml5.Constructor = Wysihtml5;
@@ -45848,7 +45848,7 @@ var ie = (function(){
 				if (this.args.progressBarCurrent) {
 					var last_percent = this.percentComplete;
 					this.percentComplete = i * 100.0 / this._cards.length;
-					this.updateProgressBar(this.percentComplete);					
+					this.updateProgressBar(this.percentComplete);
 				}
 				else {
 					var last_percent = this.percentComplete;
@@ -46837,26 +46837,26 @@ $(document).ready(function() {
       });
     }
   };
-   
+
   $(window).load(updateTables);
   $(window).bind("resize", updateTables);
-   
-	
+
+
 	function splitTable(original)
 	{
 		original.wrap("<div class='table-wrapper' />");
-		
+
 		var copy = original.clone();
 		copy.find("td:not(:first-child), th:not(:first-child)").css("display", "none");
 		copy.removeClass("responsive");
-		
+
 		original.closest(".table-wrapper").append(copy);
 		copy.wrap("<div class='pinned' />");
 		original.wrap("<div class='scrollable' />");
 
     setCellHeights(original, copy);
 	}
-	
+
 	function unsplitTable(original) {
     original.closest(".table-wrapper").find(".pinned").remove();
     original.unwrap();
@@ -49259,7 +49259,7 @@ $(document).ready(function() {
 // license : MIT
 // momentjs.com
 (function(e){function O(e,t){return function(n){return j(e.call(this,n),t)}}function M(e){return function(t){return this.lang().ordinal(e.call(this,t))}}function _(){}function D(e){H(this,e)}function P(e){var t=this._data={},n=e.years||e.year||e.y||0,r=e.months||e.month||e.M||0,i=e.weeks||e.week||e.w||0,s=e.days||e.day||e.d||0,o=e.hours||e.hour||e.h||0,u=e.minutes||e.minute||e.m||0,a=e.seconds||e.second||e.s||0,f=e.milliseconds||e.millisecond||e.ms||0;this._milliseconds=f+a*1e3+u*6e4+o*36e5,this._days=s+i*7,this._months=r+n*12,t.milliseconds=f%1e3,a+=B(f/1e3),t.seconds=a%60,u+=B(a/60),t.minutes=u%60,o+=B(u/60),t.hours=o%24,s+=B(o/24),s+=i*7,t.days=s%30,r+=B(s/30),t.months=r%12,n+=B(r/12),t.years=n}function H(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e}function B(e){return e<0?Math.ceil(e):Math.floor(e)}function j(e,t){var n=e+"";while(n.length<t)n="0"+n;return n}function F(e,t,n){var r=t._milliseconds,i=t._days,s=t._months,o;r&&e._d.setTime(+e+r*n),i&&e.date(e.date()+i*n),s&&(o=e.date(),e.date(1).month(e.month()+s*n).date(Math.min(o,e.daysInMonth())))}function I(e){return Object.prototype.toString.call(e)==="[object Array]"}function q(e,t){var n=Math.min(e.length,t.length),r=Math.abs(e.length-t.length),i=0,s;for(s=0;s<n;s++)~~e[s]!==~~t[s]&&i++;return i+r}function R(e,t){return t.abbr=e,s[e]||(s[e]=new _),s[e].set(t),s[e]}function U(e){return e?(!s[e]&&o&&require("./lang/"+e),s[e]):t.fn._lang}function z(e){return e.match(/\[.*\]/)?e.replace(/^\[|\]$/g,""):e.replace(/\\/g,"")}function W(e){var t=e.match(a),n,r;for(n=0,r=t.length;n<r;n++)A[t[n]]?t[n]=A[t[n]]:t[n]=z(t[n]);return function(i){var s="";for(n=0;n<r;n++)s+=typeof t[n].call=="function"?t[n].call(i,e):t[n];return s}}function X(e,t){function r(t){return e.lang().longDateFormat(t)||t}var n=5;while(n--&&f.test(t))t=t.replace(f,r);return C[t]||(C[t]=W(t)),C[t](e)}function V(e){switch(e){case"DDDD":return p;case"YYYY":return d;case"YYYYY":return v;case"S":case"SS":case"SSS":case"DDD":return h;case"MMM":case"MMMM":case"dd":case"ddd":case"dddd":case"a":case"A":return m;case"X":return b;case"Z":case"ZZ":return g;case"T":return y;case"MM":case"DD":case"YY":case"HH":case"hh":case"mm":case"ss":case"M":case"D":case"d":case"H":case"h":case"m":case"s":return c;default:return new RegExp(e.replace("\\",""))}}function $(e,t,n){var r,i,s=n._a;switch(e){case"M":case"MM":s[1]=t==null?0:~~t-1;break;case"MMM":case"MMMM":r=U(n._l).monthsParse(t),r!=null?s[1]=r:n._isValid=!1;break;case"D":case"DD":case"DDD":case"DDDD":t!=null&&(s[2]=~~t);break;case"YY":s[0]=~~t+(~~t>68?1900:2e3);break;case"YYYY":case"YYYYY":s[0]=~~t;break;case"a":case"A":n._isPm=(t+"").toLowerCase()==="pm";break;case"H":case"HH":case"h":case"hh":s[3]=~~t;break;case"m":case"mm":s[4]=~~t;break;case"s":case"ss":s[5]=~~t;break;case"S":case"SS":case"SSS":s[6]=~~(("0."+t)*1e3);break;case"X":n._d=new Date(parseFloat(t)*1e3);break;case"Z":case"ZZ":n._useUTC=!0,r=(t+"").match(x),r&&r[1]&&(n._tzh=~~r[1]),r&&r[2]&&(n._tzm=~~r[2]),r&&r[0]==="+"&&(n._tzh=-n._tzh,n._tzm=-n._tzm)}t==null&&(n._isValid=!1)}function J(e){var t,n,r=[];if(e._d)return;for(t=0;t<7;t++)e._a[t]=r[t]=e._a[t]==null?t===2?1:0:e._a[t];r[3]+=e._tzh||0,r[4]+=e._tzm||0,n=new Date(0),e._useUTC?(n.setUTCFullYear(r[0],r[1],r[2]),n.setUTCHours(r[3],r[4],r[5],r[6])):(n.setFullYear(r[0],r[1],r[2]),n.setHours(r[3],r[4],r[5],r[6])),e._d=n}function K(e){var t=e._f.match(a),n=e._i,r,i;e._a=[];for(r=0;r<t.length;r++)i=(V(t[r]).exec(n)||[])[0],i&&(n=n.slice(n.indexOf(i)+i.length)),A[t[r]]&&$(t[r],i,e);e._isPm&&e._a[3]<12&&(e._a[3]+=12),e._isPm===!1&&e._a[3]===12&&(e._a[3]=0),J(e)}function Q(e){var t,n,r,i=99,s,o,u;while(e._f.length){t=H({},e),t._f=e._f.pop(),K(t),n=new D(t);if(n.isValid()){r=n;break}u=q(t._a,n.toArray()),u<i&&(i=u,r=n)}H(e,r)}function G(e){var t,n=e._i;if(w.exec(n)){e._f="YYYY-MM-DDT";for(t=0;t<4;t++)if(S[t][1].exec(n)){e._f+=S[t][0];break}g.exec(n)&&(e._f+=" Z"),K(e)}else e._d=new Date(n)}function Y(t){var n=t._i,r=u.exec(n);n===e?t._d=new Date:r?t._d=new Date(+r[1]):typeof n=="string"?G(t):I(n)?(t._a=n.slice(0),J(t)):t._d=n instanceof Date?new Date(+n):new Date(n)}function Z(e,t,n,r,i){return i.relativeTime(t||1,!!n,e,r)}function et(e,t,n){var i=r(Math.abs(e)/1e3),s=r(i/60),o=r(s/60),u=r(o/24),a=r(u/365),f=i<45&&["s",i]||s===1&&["m"]||s<45&&["mm",s]||o===1&&["h"]||o<22&&["hh",o]||u===1&&["d"]||u<=25&&["dd",u]||u<=45&&["M"]||u<345&&["MM",r(u/30)]||a===1&&["y"]||["yy",a];return f[2]=t,f[3]=e>0,f[4]=n,Z.apply({},f)}function tt(e,n,r){var i=r-n,s=r-e.day();return s>i&&(s-=7),s<i-7&&(s+=7),Math.ceil(t(e).add("d",s).dayOfYear()/7)}function nt(e){var n=e._i,r=e._f;return n===null||n===""?null:(typeof n=="string"&&(e._i=n=U().preparse(n)),t.isMoment(n)?(e=H({},n),e._d=new Date(+n._d)):r?I(r)?Q(e):K(e):Y(e),new D(e))}function rt(e,n){t.fn[e]=t.fn[e+"s"]=function(e){var t=this._isUTC?"UTC":"";return e!=null?(this._d["set"+t+n](e),this):this._d["get"+t+n]()}}function it(e){t.duration.fn[e]=function(){return this._data[e]}}function st(e,n){t.duration.fn["as"+e]=function(){return+this/n}}var t,n="2.0.0",r=Math.round,i,s={},o=typeof module!="undefined"&&module.exports,u=/^\/?Date\((\-?\d+)/i,a=/(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|YYYYY|YYYY|YY|a|A|hh?|HH?|mm?|ss?|SS?S?|X|zz?|ZZ?|.)/g,f=/(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g,l=/([0-9a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)/gi,c=/\d\d?/,h=/\d{1,3}/,p=/\d{3}/,d=/\d{1,4}/,v=/[+\-]?\d{1,6}/,m=/[0-9]*[a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF]+\s*?[\u0600-\u06FF]+/i,g=/Z|[\+\-]\d\d:?\d\d/i,y=/T/i,b=/[\+\-]?\d+(\.\d{1,3})?/,w=/^\s*\d{4}-\d\d-\d\d((T| )(\d\d(:\d\d(:\d\d(\.\d\d?\d?)?)?)?)?([\+\-]\d\d:?\d\d)?)?/,E="YYYY-MM-DDTHH:mm:ssZ",S=[["HH:mm:ss.S",/(T| )\d\d:\d\d:\d\d\.\d{1,3}/],["HH:mm:ss",/(T| )\d\d:\d\d:\d\d/],["HH:mm",/(T| )\d\d:\d\d/],["HH",/(T| )\d\d/]],x=/([\+\-]|\d\d)/gi,T="Month|Date|Hours|Minutes|Seconds|Milliseconds".split("|"),N={Milliseconds:1,Seconds:1e3,Minutes:6e4,Hours:36e5,Days:864e5,Months:2592e6,Years:31536e6},C={},k="DDD w W M D d".split(" "),L="M D H h m s w W".split(" "),A={M:function(){return this.month()+1},MMM:function(e){return this.lang().monthsShort(this,e)},MMMM:function(e){return this.lang().months(this,e)},D:function(){return this.date()},DDD:function(){return this.dayOfYear()},d:function(){return this.day()},dd:function(e){return this.lang().weekdaysMin(this,e)},ddd:function(e){return this.lang().weekdaysShort(this,e)},dddd:function(e){return this.lang().weekdays(this,e)},w:function(){return this.week()},W:function(){return this.isoWeek()},YY:function(){return j(this.year()%100,2)},YYYY:function(){return j(this.year(),4)},YYYYY:function(){return j(this.year(),5)},a:function(){return this.lang().meridiem(this.hours(),this.minutes(),!0)},A:function(){return this.lang().meridiem(this.hours(),this.minutes(),!1)},H:function(){return this.hours()},h:function(){return this.hours()%12||12},m:function(){return this.minutes()},s:function(){return this.seconds()},S:function(){return~~(this.milliseconds()/100)},SS:function(){return j(~~(this.milliseconds()/10),2)},SSS:function(){return j(this.milliseconds(),3)},Z:function(){var e=-this.zone(),t="+";return e<0&&(e=-e,t="-"),t+j(~~(e/60),2)+":"+j(~~e%60,2)},ZZ:function(){var e=-this.zone(),t="+";return e<0&&(e=-e,t="-"),t+j(~~(10*e/6),4)},X:function(){return this.unix()}};while(k.length)i=k.pop(),A[i+"o"]=M(A[i]);while(L.length)i=L.pop(),A[i+i]=O(A[i],2);A.DDDD=O(A.DDD,3),_.prototype={set:function(e){var t,n;for(n in e)t=e[n],typeof t=="function"?this[n]=t:this["_"+n]=t},_months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_"),months:function(e){return this._months[e.month()]},_monthsShort:"Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),monthsShort:function(e){return this._monthsShort[e.month()]},monthsParse:function(e){var n,r,i,s;this._monthsParse||(this._monthsParse=[]);for(n=0;n<12;n++){this._monthsParse[n]||(r=t([2e3,n]),i="^"+this.months(r,"")+"|^"+this.monthsShort(r,""),this._monthsParse[n]=new RegExp(i.replace(".",""),"i"));if(this._monthsParse[n].test(e))return n}},_weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),weekdays:function(e){return this._weekdays[e.day()]},_weekdaysShort:"Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),weekdaysShort:function(e){return this._weekdaysShort[e.day()]},_weekdaysMin:"Su_Mo_Tu_We_Th_Fr_Sa".split("_"),weekdaysMin:function(e){return this._weekdaysMin[e.day()]},_longDateFormat:{LT:"h:mm A",L:"MM/DD/YYYY",LL:"MMMM D YYYY",LLL:"MMMM D YYYY LT",LLLL:"dddd, MMMM D YYYY LT"},longDateFormat:function(e){var t=this._longDateFormat[e];return!t&&this._longDateFormat[e.toUpperCase()]&&(t=this._longDateFormat[e.toUpperCase()].replace(/MMMM|MM|DD|dddd/g,function(e){return e.slice(1)}),this._longDateFormat[e]=t),t},meridiem:function(e,t,n){return e>11?n?"pm":"PM":n?"am":"AM"},_calendar:{sameDay:"[Today at] LT",nextDay:"[Tomorrow at] LT",nextWeek:"dddd [at] LT",lastDay:"[Yesterday at] LT",lastWeek:"[last] dddd [at] LT",sameElse:"L"},calendar:function(e,t){var n=this._calendar[e];return typeof n=="function"?n.apply(t):n},_relativeTime:{future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"},relativeTime:function(e,t,n,r){var i=this._relativeTime[n];return typeof i=="function"?i(e,t,n,r):i.replace(/%d/i,e)},pastFuture:function(e,t){var n=this._relativeTime[e>0?"future":"past"];return typeof n=="function"?n(t):n.replace(/%s/i,t)},ordinal:function(e){return this._ordinal.replace("%d",e)},_ordinal:"%d",preparse:function(e){return e},postformat:function(e){return e},week:function(e){return tt(e,this._week.dow,this._week.doy)},_week:{dow:0,doy:6}},t=function(e,t,n){return nt({_i:e,_f:t,_l:n,_isUTC:!1})},t.utc=function(e,t,n){return nt({_useUTC:!0,_isUTC:!0,_l:n,_i:e,_f:t})},t.unix=function(e){return t(e*1e3)},t.duration=function(e,n){var r=t.isDuration(e),i=typeof e=="number",s=r?e._data:i?{}:e,o;return i&&(n?s[n]=e:s.milliseconds=e),o=new P(s),r&&e.hasOwnProperty("_lang")&&(o._lang=e._lang),o},t.version=n,t.defaultFormat=E,t.lang=function(e,n){var r;if(!e)return t.fn._lang._abbr;n?R(e,n):s[e]||U(e),t.duration.fn._lang=t.fn._lang=U(e)},t.langData=function(e){return e&&e._lang&&e._lang._abbr&&(e=e._lang._abbr),U(e)},t.isMoment=function(e){return e instanceof D},t.isDuration=function(e){return e instanceof P},t.fn=D.prototype={clone:function(){return t(this)},valueOf:function(){return+this._d},unix:function(){return Math.floor(+this._d/1e3)},toString:function(){return this.format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")},toDate:function(){return this._d},toJSON:function(){return t.utc(this).format("YYYY-MM-DD[T]HH:mm:ss.SSS[Z]")},toArray:function(){var e=this;return[e.year(),e.month(),e.date(),e.hours(),e.minutes(),e.seconds(),e.milliseconds()]},isValid:function(){return this._isValid==null&&(this._a?this._isValid=!q(this._a,(this._isUTC?t.utc(this._a):t(this._a)).toArray()):this._isValid=!isNaN(this._d.getTime())),!!this._isValid},utc:function(){return this._isUTC=!0,this},local:function(){return this._isUTC=!1,this},format:function(e){var n=X(this,e||t.defaultFormat);return this.lang().postformat(n)},add:function(e,n){var r;return typeof e=="string"?r=t.duration(+n,e):r=t.duration(e,n),F(this,r,1),this},subtract:function(e,n){var r;return typeof e=="string"?r=t.duration(+n,e):r=t.duration(e,n),F(this,r,-1),this},diff:function(e,n,r){var i=this._isUTC?t(e).utc():t(e).local(),s=(this.zone()-i.zone())*6e4,o,u;return n&&(n=n.replace(/s$/,"")),n==="year"||n==="month"?(o=(this.daysInMonth()+i.daysInMonth())*432e5,u=(this.year()-i.year())*12+(this.month()-i.month()),u+=(this-t(this).startOf("month")-(i-t(i).startOf("month")))/o,n==="year"&&(u/=12)):(o=this-i-s,u=n==="second"?o/1e3:n==="minute"?o/6e4:n==="hour"?o/36e5:n==="day"?o/864e5:n==="week"?o/6048e5:o),r?u:B(u)},from:function(e,n){return t.duration(this.diff(e)).lang(this.lang()._abbr).humanize(!n)},fromNow:function(e){return this.from(t(),e)},calendar:function(){var e=this.diff(t().startOf("day"),"days",!0),n=e<-6?"sameElse":e<-1?"lastWeek":e<0?"lastDay":e<1?"sameDay":e<2?"nextDay":e<7?"nextWeek":"sameElse";return this.format(this.lang().calendar(n,this))},isLeapYear:function(){var e=this.year();return e%4===0&&e%100!==0||e%400===0},isDST:function(){return this.zone()<t([this.year()]).zone()||this.zone()<t([this.year(),5]).zone()},day:function(e){var t=this._isUTC?this._d.getUTCDay():this._d.getDay();return e==null?t:this.add({d:e-t})},startOf:function(e){e=e.replace(/s$/,"");switch(e){case"year":this.month(0);case"month":this.date(1);case"week":case"day":this.hours(0);case"hour":this.minutes(0);case"minute":this.seconds(0);case"second":this.milliseconds(0)}return e==="week"&&this.day(0),this},endOf:function(e){return this.startOf(e).add(e.replace(/s?$/,"s"),1).subtract("ms",1)},isAfter:function(e,n){return n=typeof n!="undefined"?n:"millisecond",+this.clone().startOf(n)>+t(e).startOf(n)},isBefore:function(e,n){return n=typeof n!="undefined"?n:"millisecond",+this.clone().startOf(n)<+t(e).startOf(n)},isSame:function(e,n){return n=typeof n!="undefined"?n:"millisecond",+this.clone().startOf(n)===+t(e).startOf(n)},zone:function(){return this._isUTC?0:this._d.getTimezoneOffset()},daysInMonth:function(){return t.utc([this.year(),this.month()+1,0]).date()},dayOfYear:function(e){var n=r((t(this).startOf("day")-t(this).startOf("year"))/864e5)+1;return e==null?n:this.add("d",e-n)},isoWeek:function(e){var t=tt(this,1,4);return e==null?t:this.add("d",(e-t)*7)},week:function(e){var t=this.lang().week(this);return e==null?t:this.add("d",(e-t)*7)},lang:function(t){return t===e?this._lang:(this._lang=U(t),this)}};for(i=0;i<T.length;i++)rt(T[i].toLowerCase().replace(/s$/,""),T[i]);rt("year","FullYear"),t.fn.days=t.fn.day,t.fn.weeks=t.fn.week,t.fn.isoWeeks=t.fn.isoWeek,t.duration.fn=P.prototype={weeks:function(){return B(this.days()/7)},valueOf:function(){return this._milliseconds+this._days*864e5+this._months*2592e6},humanize:function(e){var t=+this,n=et(t,!e,this.lang());return e&&(n=this.lang().pastFuture(t,n)),this.lang().postformat(n)},lang:t.fn.lang};for(i in N)N.hasOwnProperty(i)&&(st(i,N[i]),it(i.toLowerCase()));st("Weeks",6048e5),t.lang("en",{ordinal:function(e){var t=e%10,n=~~(e%100/10)===1?"th":t===1?"st":t===2?"nd":t===3?"rd":"th";return e+n}}),o&&(module.exports=t),typeof ender=="undefined"&&(this.moment=t),typeof define=="function"&&define.amd&&define("moment",[],function(){return t})}).call(this);
-/*! X-editable - v1.5.0 
+/*! X-editable - v1.5.0
 * In-place editing with Twitter Bootstrap, jQuery UI or pure jQuery
 * http://github.com/vitalets/x-editable
 * Copyright (c) 2013 Vitaliy Potapov; Licensed MIT */
@@ -49275,7 +49275,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
 (function ($) {
     "use strict";
-    
+
     var EditableForm = function (div, options) {
         this.options = $.extend({}, $.fn.editableform.defaults, options);
         this.$div = $(div); //div, containing form. Not form tag. Not editable-element.
@@ -49290,16 +49290,16 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         initInput: function() {  //called once
             //take input from options (as it is created in editable-element)
             this.input = this.options.input;
-            
+
             //set initial value
-            //todo: may be add check: typeof str === 'string' ? 
-            this.value = this.input.str2value(this.options.value); 
-            
+            //todo: may be add check: typeof str === 'string' ?
+            this.value = this.input.str2value(this.options.value);
+
             //prerender: get input.$input
             this.input.prerender();
         },
         initTemplate: function() {
-            this.$form = $($.fn.editableform.template); 
+            this.$form = $($.fn.editableform.template);
         },
         initButtons: function() {
             var $btn = this.$form.find('.editable-buttons');
@@ -49312,12 +49312,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         Renders editableform
 
         @method render
-        **/        
+        **/
         render: function() {
             //init loader
-            this.$loading = $($.fn.editableform.loading);        
+            this.$loading = $($.fn.editableform.loading);
             this.$div.empty().append(this.$loading);
-            
+
             //init form template and buttons
             this.initTemplate();
             if(this.options.showbuttons) {
@@ -49327,39 +49327,39 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             }
 
             //show loading state
-            this.showLoading();            
-            
-            //flag showing is form now saving value to server. 
+            this.showLoading();
+
+            //flag showing is form now saving value to server.
             //It is needed to wait when closing form.
             this.isSaving = false;
-            
-            /**        
+
+            /**
             Fired when rendering starts
-            @event rendering 
+            @event rendering
             @param {Object} event event object
-            **/            
+            **/
             this.$div.triggerHandler('rendering');
-            
+
             //init input
             this.initInput();
-            
+
             //append input to form
-            this.$form.find('div.editable-input').append(this.input.$tpl);            
-            
+            this.$form.find('div.editable-input').append(this.input.$tpl);
+
             //append form to container
             this.$div.append(this.$form);
-            
+
             //render input
             $.when(this.input.render())
             .then($.proxy(function () {
                 //setup input to submit automatically when no buttons shown
                 if(!this.options.showbuttons) {
-                    this.input.autosubmit(); 
+                    this.input.autosubmit();
                 }
-                 
+
                 //attach 'cancel' handler
                 this.$form.find('.editable-cancel').click($.proxy(this.cancel, this));
-                
+
                 if(this.input.error) {
                     this.error(this.input.error);
                     this.$form.find('.editable-submit').attr('disabled', true);
@@ -49376,27 +49376,27 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     this.$form.submit($.proxy(this.submit, this));
                 }
 
-                /**        
+                /**
                 Fired when form is rendered
                 @event rendered
                 @param {Object} event event object
-                **/            
-                this.$div.triggerHandler('rendered');                
+                **/
+                this.$div.triggerHandler('rendered');
 
                 this.showForm();
-                
+
                 //call postrender method to perform actions required visibility of form
                 if(this.input.postrender) {
                     this.input.postrender();
-                }                
+                }
             }, this));
         },
-        cancel: function() {   
-            /**        
+        cancel: function() {
+            /**
             Fired when form was cancelled by user
-            @event cancel 
+            @event cancel
             @param {Object} event event object
-            **/              
+            **/
             this.$div.triggerHandler('cancel');
         },
         showLoading: function() {
@@ -49404,7 +49404,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             if(this.$form) {
                 //set loading size equal to form
                 w = this.$form.outerWidth();
-                h = this.$form.outerHeight(); 
+                h = this.$form.outerHeight();
                 if(w) {
                     this.$loading.width(w);
                 }
@@ -49419,20 +49419,20 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     this.$loading.width(w);
                 }
             }
-            this.$loading.show(); 
+            this.$loading.show();
         },
 
         showForm: function(activate) {
             this.$loading.hide();
             this.$form.show();
             if(activate !== false) {
-                this.input.activate(); 
+                this.input.activate();
             }
-            /**        
+            /**
             Fired when form is shown
-            @event show 
+            @event show
             @param {Object} event event object
-            **/                    
+            **/
             this.$div.triggerHandler('show');
         },
 
@@ -49443,7 +49443,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
             if(msg === false) {
                 $group.removeClass($.fn.editableform.errorGroupClass);
-                $block.removeClass($.fn.editableform.errorBlockClass).empty().hide(); 
+                $block.removeClass($.fn.editableform.errorBlockClass).empty().hide();
             } else {
                 //convert newline to <br> for more pretty error display
                 if(msg) {
@@ -49461,7 +49461,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         submit: function(e) {
             e.stopPropagation();
             e.preventDefault();
-            
+
             var error,
                 newValue = this.input.input2value(); //get new value from input
 
@@ -49470,26 +49470,26 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 this.error(error);
                 this.showForm();
                 return;
-            } 
-            
+            }
+
             //if value not changed --> trigger 'nochange' event and return
             /*jslint eqeq: true*/
             if (!this.options.savenochange && this.input.value2str(newValue) == this.input.value2str(this.value)) {
-            /*jslint eqeq: false*/                
-                /**        
+            /*jslint eqeq: false*/
+                /**
                 Fired when value not changed but form is submitted. Requires savenochange = false.
-                @event nochange 
+                @event nochange
                 @param {Object} event event object
-                **/                    
-                this.$div.triggerHandler('nochange');            
+                **/
+                this.$div.triggerHandler('nochange');
                 return;
-            } 
+            }
 
             //convert value for submitting to server
             var submitValue = this.input.value2submit(newValue);
-            
+
             this.isSaving = true;
-            
+
             //sending data to server
             $.when(this.save(submitValue))
             .done($.proxy(function(response) {
@@ -49505,7 +49505,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     return;
                 }
 
-                //if success callback returns string -->  keep form open, show error and activate input               
+                //if success callback returns string -->  keep form open, show error and activate input
                 if(typeof res === 'string') {
                     this.error(res);
                     this.showForm();
@@ -49519,11 +49519,11 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 }
 
                 //clear error message
-                this.error(false);   
+                this.error(false);
                 this.value = newValue;
-                /**        
+                /**
                 Fired when form is submitted
-                @event save 
+                @event save
                 @param {Object} event event object
                 @param {Object} params additional params
                 @param {mixed} params.newValue raw new value
@@ -49553,14 +49553,14 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         },
 
         save: function(submitValue) {
-            //try parse composite pk defined as json string in data-pk 
-            this.options.pk = $.fn.editableutils.tryParseJson(this.options.pk, true); 
-            
+            //try parse composite pk defined as json string in data-pk
+            this.options.pk = $.fn.editableutils.tryParseJson(this.options.pk, true);
+
             var pk = (typeof this.options.pk === 'function') ? this.options.pk.call(this.options.scope) : this.options.pk,
             /*
               send on server in following cases:
               1. url is function
-              2. url is string AND (pk defined OR send option = always) 
+              2. url is string AND (pk defined OR send option = always)
             */
             send = !!(typeof this.options.url === 'function' || (this.options.url && ((this.options.send === 'always') || (this.options.send === 'auto' && pk !== null && pk !== undefined)))),
             params;
@@ -49572,21 +49572,21 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 params = {
                     name: this.options.name || '',
                     value: submitValue,
-                    pk: pk 
+                    pk: pk
                 };
 
                 //additional params
                 if(typeof this.options.params === 'function') {
-                    params = this.options.params.call(this.options.scope, params);  
+                    params = this.options.params.call(this.options.scope, params);
                 } else {
                     //try parse json in single quotes (from data-params attribute)
-                    this.options.params = $.fn.editableutils.tryParseJson(this.options.params, true);   
+                    this.options.params = $.fn.editableutils.tryParseJson(this.options.params, true);
                     $.extend(params, this.options.params);
                 }
 
                 if(typeof this.options.url === 'function') { //user's function
                     return this.options.url.call(this.options.scope, params);
-                } else {  
+                } else {
                     //send ajax to server and return deferred object
                     return $.ajax($.extend({
                         url     : this.options.url,
@@ -49595,7 +49595,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     }, this.options.ajaxOptions));
                 }
             }
-        }, 
+        },
 
         validate: function (value) {
             if (value === undefined) {
@@ -49610,11 +49610,11 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             if(key in this.options) {
                 this.options[key] = value;
             }
-            
+
             if(key === 'value') {
                 this.setValue(value);
             }
-            
+
             //do not pass option to input as it is passed in editable-element
         },
 
@@ -49624,12 +49624,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             } else {
                 this.value = value;
             }
-            
+
             //if form is visible, update input
             if(this.$form && this.$form.is(':visible')) {
                 this.input.value2input(this.value);
-            }            
-        }               
+            }
+        }
     };
 
     /*
@@ -49646,26 +49646,26 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
     });
 
     //to display form you should call 'render' method
-    $form.editableform('render');     
+    $form.editableform('render');
     */
     $.fn.editableform = function (option) {
         var args = arguments;
         return this.each(function () {
-            var $this = $(this), 
-            data = $this.data('editableform'), 
-            options = typeof option === 'object' && option; 
+            var $this = $(this),
+            data = $this.data('editableform'),
+            options = typeof option === 'object' && option;
             if (!data) {
                 $this.data('editableform', (data = new EditableForm(this, options)));
             }
 
-            if (typeof option === 'string') { //call method 
+            if (typeof option === 'string') { //call method
                 data[option].apply(data, Array.prototype.slice.call(args, 1));
-            } 
+            }
         });
     };
 
     //keep link to constructor to allow inheritance
-    $.fn.editableform.Constructor = EditableForm;    
+    $.fn.editableform.Constructor = EditableForm;
 
     //defaults
     $.fn.editableform.defaults = {
@@ -49674,16 +49674,16 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         /**
         Type of input. Can be <code>text|textarea|select|date|checklist</code>
 
-        @property type 
+        @property type
         @type string
         @default 'text'
         **/
         type: 'text',
         /**
-        Url for submit, e.g. <code>'/post'</code>  
+        Url for submit, e.g. <code>'/post'</code>
         If function - it will be called instead of ajax. Function should return deferred object to run fail/done callbacks.
 
-        @property url 
+        @property url
         @type string|function
         @default null
         @example
@@ -49694,18 +49694,18 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             } else {
                 //async saving data in js model
                 someModel.asyncSaveMethod({
-                   ..., 
+                   ...,
                    success: function(){
                       d.resolve();
                    }
-                }); 
+                });
                 return d.promise();
             }
-        } 
-        **/        
+        }
+        **/
         url:null,
         /**
-        Additional params for submit. If defined as <code>object</code> - it is **appended** to original ajax data (pk, name and value).  
+        Additional params for submit. If defined as <code>object</code> - it is **appended** to original ajax data (pk, name and value).
         If defined as <code>function</code> - returned object **overwrites** original ajax data.
         @example
         params: function(params) {
@@ -49714,59 +49714,59 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             return params;
         }
 
-        @property params 
+        @property params
         @type object|function
         @default null
-        **/          
+        **/
         params:null,
         /**
         Name of field. Will be submitted on server. Can be taken from <code>id</code> attribute
 
-        @property name 
+        @property name
         @type string
         @default null
-        **/         
+        **/
         name: null,
         /**
         Primary key of editable object (e.g. record id in database). For composite keys use object, e.g. <code>{id: 1, lang: 'en'}</code>.
         Can be calculated dynamically via function.
 
-        @property pk 
+        @property pk
         @type string|object|function
         @default null
-        **/         
+        **/
         pk: null,
         /**
         Initial value. If not defined - will be taken from element's content.
         For __select__ type should be defined (as it is ID of shown text).
 
-        @property value 
+        @property value
         @type string|object
         @default null
-        **/        
+        **/
         value: null,
         /**
         Value that will be displayed in input if original field value is empty (`null|undefined|''`).
 
-        @property defaultValue 
+        @property defaultValue
         @type string|object
         @default null
         @since 1.4.6
-        **/        
+        **/
         defaultValue: null,
         /**
         Strategy for sending data on server. Can be `auto|always|never`.
         When 'auto' data will be sent on server **only if pk and url defined**, otherwise new value will be stored locally.
 
-        @property send 
+        @property send
         @type string
         @default 'auto'
-        **/          
-        send: 'auto', 
+        **/
+        send: 'auto',
         /**
         Function for client-side validation. If returns string - means validation not passed and string showed as error.
 
-        @property validate 
+        @property validate
         @type function
         @default null
         @example
@@ -49775,31 +49775,31 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 return 'This field is required';
             }
         }
-        **/         
+        **/
         validate: null,
         /**
-        Success callback. Called when value successfully sent on server and **response status = 200**.  
+        Success callback. Called when value successfully sent on server and **response status = 200**.
         Usefull to work with json response. For example, if your backend response can be <code>{success: true}</code>
-        or <code>{success: false, msg: "server error"}</code> you can check it inside this callback.  
-        If it returns **string** - means error occured and string is shown as error message.  
-        If it returns **object like** <code>{newValue: &lt;something&gt;}</code> - it overwrites value, submitted by user.  
+        or <code>{success: false, msg: "server error"}</code> you can check it inside this callback.
+        If it returns **string** - means error occured and string is shown as error message.
+        If it returns **object like** <code>{newValue: &lt;something&gt;}</code> - it overwrites value, submitted by user.
         Otherwise newValue simply rendered into element.
-        
-        @property success 
+
+        @property success
         @type function
         @default null
         @example
         success: function(response, newValue) {
             if(!response.success) return response.msg;
         }
-        **/          
+        **/
         success: null,
         /**
-        Error callback. Called when request failed (response status != 200).  
+        Error callback. Called when request failed (response status != 200).
         Usefull when you want to parse error response and display a custom message.
         Must return **string** - the message to be displayed in the error block.
-                
-        @property error 
+
+        @property error
         @type function
         @default null
         @since 1.4.4
@@ -49811,64 +49811,64 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 return response.responseText;
             }
         }
-        **/          
+        **/
         error: null,
         /**
         Additional options for submit ajax request.
         List of values: http://api.jquery.com/jQuery.ajax
-        
-        @property ajaxOptions 
+
+        @property ajaxOptions
         @type object
         @default null
-        @since 1.1.1        
-        @example 
+        @since 1.1.1
+        @example
         ajaxOptions: {
             type: 'put',
             dataType: 'json'
-        }        
-        **/        
+        }
+        **/
         ajaxOptions: null,
         /**
-        Where to show buttons: left(true)|bottom|false  
+        Where to show buttons: left(true)|bottom|false
         Form without buttons is auto-submitted.
 
-        @property showbuttons 
+        @property showbuttons
         @type boolean|string
         @default true
         @since 1.1.1
-        **/         
+        **/
         showbuttons: true,
         /**
-        Scope for callback methods (success, validate).  
-        If <code>null</code> means editableform instance itself. 
+        Scope for callback methods (success, validate).
+        If <code>null</code> means editableform instance itself.
 
-        @property scope 
+        @property scope
         @type DOMElement|object
         @default null
         @since 1.2.0
         @private
-        **/            
+        **/
         scope: null,
         /**
         Whether to save or cancel value when it was not changed but form was submitted
 
-        @property savenochange 
+        @property savenochange
         @type boolean
         @default false
         @since 1.2.0
         **/
         savenochange: false
-    };   
+    };
 
     /*
     Note: following params could redefined in engine: bootstrap or jqueryui:
     Classes 'control-group' and 'editable-error-block' must always present!
-    */      
+    */
     $.fn.editableform.template = '<form class="form-inline editableform">'+
-    '<div class="control-group">' + 
+    '<div class="control-group">' +
     '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>'+
-    '<div class="editable-error-block"></div>' + 
-    '</div>' + 
+    '<div class="editable-error-block"></div>' +
+    '</div>' +
     '</form>';
 
     //loading div
@@ -49876,14 +49876,14 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
     //buttons
     $.fn.editableform.buttons = '<button type="submit" class="editable-submit">ok</button>'+
-    '<button type="button" class="editable-cancel">cancel</button>';      
+    '<button type="button" class="editable-cancel">cancel</button>';
 
     //error class attached to control-group
-    $.fn.editableform.errorGroupClass = null;  
+    $.fn.editableform.errorGroupClass = null;
 
     //error class attached to editable-error-block
     $.fn.editableform.errorBlockClass = 'editable-error';
-    
+
     //engine
     $.fn.editableform.engine = 'jquery';
 }(window.jQuery));
@@ -49893,12 +49893,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 */
 (function ($) {
     "use strict";
-    
+
     //utils
     $.fn.editableutils = {
         /**
         * classic JS inheritance function
-        */  
+        */
         inherit: function (Child, Parent) {
             var F = function() { };
             F.prototype = Parent.prototype;
@@ -49910,7 +49910,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         /**
         * set caret position in input
         * see http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
-        */        
+        */
         setCursorPosition: function(elem, pos) {
             if (elem.setSelectionRange) {
                 elem.setSelectionRange(pos, pos);
@@ -49998,7 +49998,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         */
         objectKeys: function(o) {
             if (Object.keys) {
-                return Object.keys(o);  
+                return Object.keys(o);
             } else {
                 if (o !== Object(o)) {
                     throw new TypeError('Object.keys called on a non-object');
@@ -50013,14 +50013,14 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             }
 
         },
-        
+
        /**
         method to escape html.
        **/
        escape: function(str) {
            return $('<div>').text(str).html();
        },
-       
+
        /*
         returns array items from sourceData having value property equal or inArray of 'value'
        */
@@ -50028,14 +50028,14 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
            if(!sourceData || value === null) {
                return [];
            }
-           
+
            if (typeof(valueProp) !== "function") {
                var idKey = valueProp || 'value';
                valueProp = function (e) { return e[idKey]; };
            }
-                      
+
            var isValArray = $.isArray(value),
-           result = [], 
+           result = [],
            that = this;
 
            $.each(sourceData, function(i, o) {
@@ -50045,23 +50045,23 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                    /*jslint eqeq: true*/
                    if(isValArray) {
                        if($.grep(value, function(v){  return v == (o && typeof o === 'object' ? valueProp(o) : o); }).length) {
-                           result.push(o); 
+                           result.push(o);
                        }
                    } else {
                        var itemValue = (o && (typeof o === 'object')) ? valueProp(o) : o;
                        if(value == itemValue) {
-                           result.push(o); 
+                           result.push(o);
                        }
                    }
                    /*jslint eqeq: false*/
                }
            });
-           
+
            return result;
        },
-       
+
        /*
-       Returns input by options: type, mode. 
+       Returns input by options: type, mode.
        */
        createInput: function(options) {
            var TypeConstructor, typeOptions, input,
@@ -50085,17 +50085,17 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                        type = 'dateui';
                    }
                }
-               
+
                //if type still `date` and not exist in types, replace with `combodate` that is base input
                if(type === 'date' && !$.fn.editabletypes.date) {
                    type = 'combodate';
-               } 
+               }
            }
-           
+
            //`datetime` should be datetimefield in 'inline' mode
            if(type === 'datetime' && options.mode === 'inline') {
-             type = 'datetimefield';  
-           }           
+             type = 'datetimefield';
+           }
 
            //change wysihtml5 to textarea for jquery UI and plain versions
            if(type === 'wysihtml5' && !$.fn.editabletypes[type]) {
@@ -50110,32 +50110,32 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                return input;
            } else {
                $.error('Unknown type: '+ type);
-               return false; 
-           }  
+               return false;
+           }
        },
-       
+
        //see http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
        supportsTransitions: function () {
            var b = document.body || document.documentElement,
                s = b.style,
                p = 'transition',
                v = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'];
-               
+
            if(typeof s[p] === 'string') {
-               return true; 
+               return true;
            }
 
            // Tests for vendor specific prop
            p = p.charAt(0).toUpperCase() + p.substr(1);
            for(var i=0; i<v.length; i++) {
-               if(typeof s[v[i] + p] === 'string') { 
-                   return true; 
+               if(typeof s[v[i] + p] === 'string') {
+                   return true;
                }
            }
            return false;
-       }            
-       
-    };      
+       }
+
+    };
 }(window.jQuery));
 
 /**
@@ -50153,10 +50153,10 @@ Applied as jQuery method.
     var Popup = function (element, options) {
         this.init(element, options);
     };
-    
+
     var Inline = function (element, options) {
         this.init(element, options);
-    };    
+    };
 
     //methods
     Popup.prototype = {
@@ -50165,48 +50165,48 @@ Applied as jQuery method.
         innerCss: null, //tbd in child class
         containerClass: 'editable-container editable-popup', //css class applied to container element
         defaults: {}, //container itself defaults
-        
+
         init: function(element, options) {
             this.$element = $(element);
             //since 1.4.1 container do not use data-* directly as they already merged into options.
-            this.options = $.extend({}, $.fn.editableContainer.defaults, options);         
+            this.options = $.extend({}, $.fn.editableContainer.defaults, options);
             this.splitOptions();
-            
+
             //set scope of form callbacks to element
-            this.formOptions.scope = this.$element[0]; 
-            
+            this.formOptions.scope = this.$element[0];
+
             this.initContainer();
-            
+
             //flag to hide container, when saving value will finish
             this.delayedHide = false;
 
             //bind 'destroyed' listener to destroy container when element is removed from dom
             this.$element.on('destroyed', $.proxy(function(){
                 this.destroy();
-            }, this)); 
-            
+            }, this));
+
             //attach document handler to close containers on click / escape
             if(!$(document).data('editable-handlers-attached')) {
                 //close all on escape
                 $(document).on('keyup.editable', function (e) {
                     if (e.which === 27) {
                         $('.editable-open').editableContainer('hide');
-                        //todo: return focus on element 
+                        //todo: return focus on element
                     }
                 });
 
-                //close containers when click outside 
+                //close containers when click outside
                 //(mousedown could be better than click, it closes everything also on drag drop)
                 $(document).on('click.editable', function(e) {
                     var $target = $(e.target), i,
-                        exclude_classes = ['.editable-container', 
-                                           '.ui-datepicker-header', 
+                        exclude_classes = ['.editable-container',
+                                           '.ui-datepicker-header',
                                            '.datepicker', //in inline mode datepicker is rendered into body
-                                           '.modal-backdrop', 
-                                           '.bootstrap-wysihtml5-insert-image-modal', 
+                                           '.modal-backdrop',
+                                           '.bootstrap-wysihtml5-insert-image-modal',
                                            '.bootstrap-wysihtml5-insert-link-modal'
                                            ];
-                    
+
                     //check if element is detached. It occurs when clicking in bootstrap datepicker
                     if (!$.contains(document.documentElement, e.target)) {
                       return;
@@ -50216,47 +50216,47 @@ Applied as jQuery method.
                     //we need to filter it via construction below. See https://github.com/vitalets/x-editable/issues/199
                     //Possibly related to http://stackoverflow.com/questions/10119793/why-does-firefox-react-differently-from-webkit-and-ie-to-click-event-on-selec
                     if($target.is(document)) {
-                       return; 
+                       return;
                     }
-                    
+
                     //if click inside one of exclude classes --> no nothing
                     for(i=0; i<exclude_classes.length; i++) {
                          if($target.is(exclude_classes[i]) || $target.parents(exclude_classes[i]).length) {
                              return;
                          }
                     }
-                      
+
                     //close all open containers (except one - target)
                     Popup.prototype.closeOthers(e.target);
                 });
-                
+
                 $(document).data('editable-handlers-attached', true);
-            }                        
+            }
         },
 
         //split options on containerOptions and formOptions
         splitOptions: function() {
             this.containerOptions = {};
             this.formOptions = {};
-            
+
             if(!$.fn[this.containerName]) {
-                throw new Error(this.containerName + ' not found. Have you included corresponding js file?');   
+                throw new Error(this.containerName + ' not found. Have you included corresponding js file?');
             }
-            
+
             //keys defined in container defaults go to container, others go to form
             for(var k in this.options) {
               if(k in this.defaults) {
                  this.containerOptions[k] = this.options[k];
               } else {
                  this.formOptions[k] = this.options[k];
-              } 
+              }
             }
         },
-        
+
         /*
         Returns jquery object of container
         @method tip()
-        */         
+        */
         tip: function() {
             return this.container() ? this.container().$tip : null;
         },
@@ -50275,11 +50275,11 @@ Applied as jQuery method.
             return container;
         },
 
-        /* call native method of underlying container, e.g. this.$element.popover('method') */ 
+        /* call native method of underlying container, e.g. this.$element.popover('method') */
         call: function() {
-            this.$element[this.containerName].apply(this.$element, arguments); 
-        },        
-        
+            this.$element[this.containerName].apply(this.$element, arguments);
+        },
+
         initContainer: function(){
             this.call(this.containerOptions);
         },
@@ -50289,7 +50289,7 @@ Applied as jQuery method.
             .editableform(this.formOptions)
             .on({
                 save: $.proxy(this.save, this), //click on submit button (value changed)
-                nochange: $.proxy(function(){ this.hide('nochange'); }, this), //click on submit button (value NOT changed)                
+                nochange: $.proxy(function(){ this.hide('nochange'); }, this), //click on submit button (value NOT changed)
                 cancel: $.proxy(function(){ this.hide('cancel'); }, this), //click on calcel button
                 show: $.proxy(function() {
                     if(this.delayedHide) {
@@ -50300,71 +50300,71 @@ Applied as jQuery method.
                     }
                 }, this), //re-position container every time form is shown (occurs each time after loading state)
                 rendering: $.proxy(this.setPosition, this), //this allows to place container correctly when loading shown
-                resize: $.proxy(this.setPosition, this), //this allows to re-position container when form size is changed 
+                resize: $.proxy(this.setPosition, this), //this allows to re-position container when form size is changed
                 rendered: $.proxy(function(){
-                    /**        
-                    Fired when container is shown and form is rendered (for select will wait for loading dropdown options).  
+                    /**
+                    Fired when container is shown and form is rendered (for select will wait for loading dropdown options).
                     **Note:** Bootstrap popover has own `shown` event that now cannot be separated from x-editable's one.
-                    The workaround is to check `arguments.length` that is always `2` for x-editable.                     
-                    
-                    @event shown 
+                    The workaround is to check `arguments.length` that is always `2` for x-editable.
+
+                    @event shown
                     @param {Object} event event object
                     @example
                     $('#username').on('shown', function(e, editable) {
                         editable.input.$input.val('overwriting value of input..');
-                    });                     
-                    **/                      
+                    });
+                    **/
                     /*
-                     TODO: added second param mainly to distinguish from bootstrap's shown event. It's a hotfix that will be solved in future versions via namespaced events.  
+                     TODO: added second param mainly to distinguish from bootstrap's shown event. It's a hotfix that will be solved in future versions via namespaced events.
                     */
-                    this.$element.triggerHandler('shown', $(this.options.scope).data('editable')); 
-                }, this) 
+                    this.$element.triggerHandler('shown', $(this.options.scope).data('editable'));
+                }, this)
             })
             .editableform('render');
-        },        
+        },
 
         /**
         Shows container with form
         @method show()
         @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
         **/
-        /* Note: poshytip owerwrites this method totally! */          
+        /* Note: poshytip owerwrites this method totally! */
         show: function (closeAll) {
             this.$element.addClass('editable-open');
             if(closeAll !== false) {
                 //close all open containers (except this)
-                this.closeOthers(this.$element[0]);  
+                this.closeOthers(this.$element[0]);
             }
-            
+
             //show container itself
             this.innerShow();
             this.tip().addClass(this.containerClass);
 
             /*
-            Currently, form is re-rendered on every show. 
+            Currently, form is re-rendered on every show.
             The main reason is that we dont know, what will container do with content when closed:
             remove(), detach() or just hide() - it depends on container.
-            
-            Detaching form itself before hide and re-insert before show is good solution, 
-            but visually it looks ugly --> container changes size before hide.  
-            */             
-            
-            //if form already exist - delete previous data 
+
+            Detaching form itself before hide and re-insert before show is good solution,
+            but visually it looks ugly --> container changes size before hide.
+            */
+
+            //if form already exist - delete previous data
             if(this.$form) {
                 //todo: destroy prev data!
                 //this.$form.destroy();
             }
 
             this.$form = $('<div>');
-            
+
             //insert form into container body
             if(this.tip().is(this.innerCss)) {
                 //for inline container
-                this.tip().append(this.$form); 
+                this.tip().append(this.$form);
             } else {
                 this.tip().find(this.innerCss).append(this.$form);
-            } 
-            
+            }
+
             //render form
             this.renderForm();
         },
@@ -50373,29 +50373,29 @@ Applied as jQuery method.
         Hides container with form
         @method hide()
         @param {string} reason Reason caused hiding. Can be <code>save|cancel|onblur|nochange|undefined (=manual)</code>
-        **/         
-        hide: function(reason) {  
+        **/
+        hide: function(reason) {
             if(!this.tip() || !this.tip().is(':visible') || !this.$element.hasClass('editable-open')) {
                 return;
             }
-            
+
             //if form is saving value, schedule hide
             if(this.$form.data('editableform').isSaving) {
                 this.delayedHide = {reason: reason};
-                return;    
+                return;
             } else {
                 this.delayedHide = false;
             }
 
-            this.$element.removeClass('editable-open');   
+            this.$element.removeClass('editable-open');
             this.innerHide();
 
             /**
-            Fired when container was hidden. It occurs on both save or cancel.  
+            Fired when container was hidden. It occurs on both save or cancel.
             **Note:** Bootstrap popover has own `hidden` event that now cannot be separated from x-editable's one.
-            The workaround is to check `arguments.length` that is always `2` for x-editable. 
+            The workaround is to check `arguments.length` that is always `2` for x-editable.
 
-            @event hidden 
+            @event hidden
             @param {object} event event object
             @param {string} reason Reason caused hiding. Can be <code>save|cancel|onblur|nochange|manual</code>
             @example
@@ -50403,48 +50403,48 @@ Applied as jQuery method.
                 if(reason === 'save' || reason === 'cancel') {
                     //auto-open next editable
                     $(this).closest('tr').next().find('.editable').editable('show');
-                } 
+                }
             });
             **/
-            this.$element.triggerHandler('hidden', reason || 'manual');   
+            this.$element.triggerHandler('hidden', reason || 'manual');
         },
 
         /* internal show method. To be overwritten in child classes */
         innerShow: function () {
-             
-        },        
+
+        },
 
         /* internal hide method. To be overwritten in child classes */
         innerHide: function () {
 
         },
-        
+
         /**
         Toggles container visibility (show / hide)
         @method toggle()
         @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
-        **/          
+        **/
         toggle: function(closeAll) {
             if(this.container() && this.tip() && this.tip().is(':visible')) {
                 this.hide();
             } else {
                 this.show(closeAll);
-            } 
+            }
         },
 
         /*
         Updates the position of container when content changed.
         @method setPosition()
-        */       
+        */
         setPosition: function() {
             //tbd in child class
         },
 
         save: function(e, params) {
-            /**        
+            /**
             Fired when new value was submitted. You can use <code>$(this).data('editableContainer')</code> inside handler to access to editableContainer instance
-            
-            @event save 
+
+            @event save
             @param {Object} event event object
             @param {Object} params additional params
             @param {mixed} params.newValue submitted value
@@ -50456,36 +50456,36 @@ Applied as jQuery method.
                 if(params.response && params.response.success) {
                     alert('value: ' + params.newValue + ' with pk: ' + pk + ' saved!');
                 } else {
-                    alert('error!'); 
-                } 
+                    alert('error!');
+                }
             });
-            **/             
+            **/
             this.$element.triggerHandler('save', params);
-            
+
             //hide must be after trigger, as saving value may require methods of plugin, applied to input
             this.hide('save');
         },
 
         /**
         Sets new option
-        
+
         @method option(key, value)
-        @param {string} key 
-        @param {mixed} value 
-        **/         
+        @param {string} key
+        @param {mixed} value
+        **/
         option: function(key, value) {
             this.options[key] = value;
             if(key in this.containerOptions) {
                 this.containerOptions[key] = value;
-                this.setContainerOption(key, value); 
+                this.setContainerOption(key, value);
             } else {
                 this.formOptions[key] = value;
                 if(this.$form) {
-                    this.$form.editableform('option', key, value);  
+                    this.$form.editableform('option', key, value);
                 }
             }
         },
-        
+
         setContainerOption: function(key, value) {
             this.call('option', key, value);
         },
@@ -50493,21 +50493,21 @@ Applied as jQuery method.
         /**
         Destroys the container instance
         @method destroy()
-        **/        
+        **/
         destroy: function() {
             this.hide();
             this.innerDestroy();
             this.$element.off('destroyed');
             this.$element.removeData('editableContainer');
         },
-        
+
         /* to be overwritten in child classes */
         innerDestroy: function() {
-            
-        }, 
-        
+
+        },
+
         /*
-        Closes other containers except one related to passed element. 
+        Closes other containers except one related to passed element.
         Other containers can be cancelled or submitted (depends on onblur option)
         */
         closeOthers: function(element) {
@@ -50517,14 +50517,14 @@ Applied as jQuery method.
                     return;
                 }
 
-                //otherwise cancel or submit all open containers 
+                //otherwise cancel or submit all open containers
                 var $el = $(el),
                 ec = $el.data('editableContainer');
 
                 if(!ec) {
-                    return;  
+                    return;
                 }
-                
+
                 if(ec.options.onblur === 'cancel') {
                     $el.data('editableContainer').hide('onblur');
                 } else if(ec.options.onblur === 'submit') {
@@ -50533,22 +50533,22 @@ Applied as jQuery method.
             });
 
         },
-        
+
         /**
         Activates input of visible container (e.g. set focus)
         @method activate()
-        **/         
+        **/
         activate: function() {
             if(this.tip && this.tip().is(':visible') && this.$form) {
-               this.$form.data('editableform').input.activate(); 
+               this.$form.data('editableform').input.activate();
             }
-        } 
+        }
 
     };
 
     /**
     jQuery method to initialize editableContainer.
-    
+
     @method $().editableContainer(options)
     @params {Object} options
     @example
@@ -50558,25 +50558,25 @@ Applied as jQuery method.
         pk: 1,
         value: 'hello'
     });
-    **/  
+    **/
     $.fn.editableContainer = function (option) {
         var args = arguments;
         return this.each(function () {
             var $this = $(this),
-            dataKey = 'editableContainer', 
+            dataKey = 'editableContainer',
             data = $this.data(dataKey),
             options = typeof option === 'object' && option,
-            Constructor = (options.mode === 'inline') ? Inline : Popup;             
+            Constructor = (options.mode === 'inline') ? Inline : Popup;
 
             if (!data) {
                 $this.data(dataKey, (data = new Constructor(this, options)));
             }
 
-            if (typeof option === 'string') { //call method 
+            if (typeof option === 'string') { //call method
                 data[option].apply(data, Array.prototype.slice.call(args, 1));
-            }            
+            }
         });
-    };     
+    };
 
     //store constructors
     $.fn.editableContainer.Popup = Popup;
@@ -50587,60 +50587,60 @@ Applied as jQuery method.
         /**
         Initial value of form input
 
-        @property value 
+        @property value
         @type mixed
         @default null
         @private
-        **/        
+        **/
         value: null,
         /**
         Placement of container relative to element. Can be <code>top|right|bottom|left</code>. Not used for inline container.
 
-        @property placement 
+        @property placement
         @type string
         @default 'top'
-        **/        
+        **/
         placement: 'top',
         /**
         Whether to hide container on save/cancel.
 
-        @property autohide 
+        @property autohide
         @type boolean
         @default true
-        @private 
-        **/        
+        @private
+        **/
         autohide: true,
         /**
-        Action when user clicks outside the container. Can be <code>cancel|submit|ignore</code>.  
-        Setting <code>ignore</code> allows to have several containers open. 
+        Action when user clicks outside the container. Can be <code>cancel|submit|ignore</code>.
+        Setting <code>ignore</code> allows to have several containers open.
 
-        @property onblur 
+        @property onblur
         @type string
         @default 'cancel'
         @since 1.1.1
-        **/        
+        **/
         onblur: 'cancel',
-        
+
         /**
         Animation speed (inline mode only)
-        @property anim 
+        @property anim
         @type string
         @default false
-        **/        
+        **/
         anim: false,
-        
+
         /**
-        Mode of editable, can be `popup` or `inline` 
-        
-        @property mode 
-        @type string         
+        Mode of editable, can be `popup` or `inline`
+
+        @property mode
+        @type string
         @default 'popup'
-        @since 1.4.0        
-        **/        
-        mode: 'popup'        
+        @since 1.4.0
+        **/
+        mode: 'popup'
     };
 
-    /* 
+    /*
     * workaround to have 'destroyed' event to destroy popover when element is destroyed
     * see http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
     */
@@ -50650,61 +50650,61 @@ Applied as jQuery method.
                 o.handler();
             }
         }
-    };    
+    };
 
 }(window.jQuery));
 
 /**
-* Editable Inline 
+* Editable Inline
 * ---------------------
 */
 (function ($) {
     "use strict";
-    
+
     //copy prototype from EditableContainer
     //extend methods
     $.extend($.fn.editableContainer.Inline.prototype, $.fn.editableContainer.Popup.prototype, {
         containerName: 'editableform',
         innerCss: '.editable-inline',
         containerClass: 'editable-container editable-inline', //css class applied to container element
-                 
+
         initContainer: function(){
             //container is <span> element
             this.$tip = $('<span></span>');
-            
+
             //convert anim to miliseconds (int)
             if(!this.options.anim) {
                 this.options.anim = 0;
-            }         
+            }
         },
-        
+
         splitOptions: function() {
             //all options are passed to form
             this.containerOptions = {};
             this.formOptions = this.options;
         },
-        
+
         tip: function() {
-           return this.$tip; 
+           return this.$tip;
         },
-        
+
         innerShow: function () {
             this.$element.hide();
             this.tip().insertAfter(this.$element).show();
-        }, 
-        
+        },
+
         innerHide: function () {
             this.$tip.hide(this.options.anim, $.proxy(function() {
                 this.$element.show();
                 this.innerDestroy();
-            }, this)); 
+            }, this));
         },
-        
+
         innerDestroy: function() {
             if(this.tip()) {
                 this.tip().empty().remove();
             }
-        } 
+        }
     });
 
 }(window.jQuery));
@@ -50719,14 +50719,14 @@ Makes editable any HTML element on the page. Applied as jQuery method.
 
     var Editable = function (element, options) {
         this.$element = $(element);
-        //data-* has more priority over js options: because dynamically created elements may change data-* 
-        this.options = $.extend({}, $.fn.editable.defaults, options, $.fn.editableutils.getConfigData(this.$element));  
+        //data-* has more priority over js options: because dynamically created elements may change data-*
+        this.options = $.extend({}, $.fn.editable.defaults, options, $.fn.editableutils.getConfigData(this.$element));
         if(this.options.selector) {
             this.initLive();
         } else {
             this.init();
         }
-        
+
         //check for transition support
         if(this.options.highlight && !$.fn.editableutils.supportsTransitions()) {
             this.options.highlight = false;
@@ -50734,21 +50734,21 @@ Makes editable any HTML element on the page. Applied as jQuery method.
     };
 
     Editable.prototype = {
-        constructor: Editable, 
+        constructor: Editable,
         init: function () {
-            var isValueByText = false, 
+            var isValueByText = false,
                 doAutotext, finalize;
 
             //name
             this.options.name = this.options.name || this.$element.attr('id');
-             
+
             //create input of specified type. Input needed already here to convert value for initial display (e.g. show text by id for select)
             //also we set scope option to have access to element inside input specific callbacks (e. g. source as function)
-            this.options.scope = this.$element[0]; 
+            this.options.scope = this.$element[0];
             this.input = $.fn.editableutils.createInput(this.options);
             if(!this.input) {
-                return; 
-            }            
+                return;
+            }
 
             //set value from settings or by element's text
             if (this.options.value === undefined || this.options.value === null) {
@@ -50757,25 +50757,25 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             } else {
                 /*
                   value can be string when received from 'data-value' attribute
-                  for complext objects value can be set as json string in data-value attribute, 
+                  for complext objects value can be set as json string in data-value attribute,
                   e.g. data-value="{city: 'Moscow', street: 'Lenina'}"
                 */
-                this.options.value = $.fn.editableutils.tryParseJson(this.options.value, true); 
+                this.options.value = $.fn.editableutils.tryParseJson(this.options.value, true);
                 if(typeof this.options.value === 'string') {
                     this.value = this.input.str2value(this.options.value);
                 } else {
                     this.value = this.options.value;
                 }
             }
-            
+
             //add 'editable' class to every editable element
             this.$element.addClass('editable');
-            
+
             //specifically for "textarea" add class .editable-pre-wrapped to keep linebreaks
             if(this.input.type === 'textarea') {
                 this.$element.addClass('editable-pre-wrapped');
             }
-            
+
             //attach handler activating editable. In disabled mode it just prevent default action (useful for links)
             if(this.options.toggle !== 'manual') {
                 this.$element.addClass('editable-click');
@@ -50784,10 +50784,10 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                     if(!this.options.disabled) {
                         e.preventDefault();
                     }
-                    
+
                     //stop propagation not required because in document click handler it checks event target
                     //e.stopPropagation();
-                    
+
                     if(this.options.toggle === 'mouseenter') {
                         //for hover only show container
                         this.show();
@@ -50800,13 +50800,13 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             } else {
                 this.$element.attr('tabindex', -1); //do not stop focus on element when toggled manually
             }
-            
+
             //if display is function it's far more convinient to have autotext = always to render correctly on init
             //see https://github.com/vitalets/x-editable-yii/issues/34
             if(typeof this.options.display === 'function') {
                 this.options.autotext = 'always';
             }
-            
+
             //check conditions for autotext:
             switch(this.options.autotext) {
               case 'always':
@@ -50825,13 +50825,13 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 if(this.options.disabled) {
                     this.disable();
                 } else {
-                    this.enable(); 
+                    this.enable();
                 }
-               /**        
-               Fired when element was initialized by `$().editable()` method. 
-               Please note that you should setup `init` handler **before** applying `editable`. 
-                              
-               @event init 
+               /**
+               Fired when element was initialized by `$().editable()` method.
+               Please note that you should setup `init` handler **before** applying `editable`.
+
+               @event init
                @param {Object} event event object
                @param {Object} editable editable instance (as here it cannot accessed via data('editable'))
                @since 1.2.0
@@ -50840,142 +50840,142 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                    alert('initialized ' + editable.options.name);
                });
                $('#username').editable();
-               **/                  
+               **/
                 this.$element.triggerHandler('init', this);
             }, this));
         },
 
         /*
-         Initializes parent element for live editables 
+         Initializes parent element for live editables
         */
         initLive: function() {
-           //store selector 
+           //store selector
            var selector = this.options.selector;
            //modify options for child elements
-           this.options.selector = false; 
+           this.options.selector = false;
            this.options.autotext = 'never';
            //listen toggle events
            this.$element.on(this.options.toggle + '.editable', selector, $.proxy(function(e){
                var $target = $(e.target);
                if(!$target.data('editable')) {
                    //if delegated element initially empty, we need to clear it's text (that was manually set to `empty` by user)
-                   //see https://github.com/vitalets/x-editable/issues/137 
+                   //see https://github.com/vitalets/x-editable/issues/137
                    if($target.hasClass(this.options.emptyclass)) {
                       $target.empty();
                    }
                    $target.editable(this.options).trigger(e);
                }
-           }, this)); 
+           }, this));
         },
-        
+
         /*
         Renders value into element's text.
         Can call custom display method from options.
         Can return deferred object.
         @method render()
         @param {mixed} response server response (if exist) to pass into display function
-        */          
+        */
         render: function(response) {
             //do not display anything
             if(this.options.display === false) {
                 return;
             }
-            
+
             //if input has `value2htmlFinal` method, we pass callback in third param to be called when source is loaded
             if(this.input.value2htmlFinal) {
-                return this.input.value2html(this.value, this.$element[0], this.options.display, response); 
-            //if display method defined --> use it    
+                return this.input.value2html(this.value, this.$element[0], this.options.display, response);
+            //if display method defined --> use it
             } else if(typeof this.options.display === 'function') {
                 return this.options.display.call(this.$element[0], this.value, response);
-            //else use input's original value2html() method    
+            //else use input's original value2html() method
             } else {
-                return this.input.value2html(this.value, this.$element[0]); 
+                return this.input.value2html(this.value, this.$element[0]);
             }
         },
-        
+
         /**
         Enables editable
         @method enable()
-        **/          
+        **/
         enable: function() {
             this.options.disabled = false;
             this.$element.removeClass('editable-disabled');
             this.handleEmpty(this.isEmpty);
             if(this.options.toggle !== 'manual') {
-                if(this.$element.attr('tabindex') === '-1') {    
-                    this.$element.removeAttr('tabindex');                                
+                if(this.$element.attr('tabindex') === '-1') {
+                    this.$element.removeAttr('tabindex');
                 }
             }
         },
-        
+
         /**
         Disables editable
         @method disable()
-        **/         
+        **/
         disable: function() {
-            this.options.disabled = true; 
-            this.hide();           
+            this.options.disabled = true;
+            this.hide();
             this.$element.addClass('editable-disabled');
             this.handleEmpty(this.isEmpty);
             //do not stop focus on this element
-            this.$element.attr('tabindex', -1);                
+            this.$element.attr('tabindex', -1);
         },
-        
+
         /**
         Toggles enabled / disabled state of editable element
         @method toggleDisabled()
-        **/         
+        **/
         toggleDisabled: function() {
             if(this.options.disabled) {
                 this.enable();
-            } else { 
-                this.disable(); 
+            } else {
+                this.disable();
             }
-        },  
-        
+        },
+
         /**
         Sets new option
-        
+
         @method option(key, value)
         @param {string|object} key option name or object with several options
         @param {mixed} value option new value
         @example
         $('.editable').editable('option', 'pk', 2);
-        **/          
+        **/
         option: function(key, value) {
             //set option(s) by object
             if(key && typeof key === 'object') {
                $.each(key, $.proxy(function(k, v){
-                  this.option($.trim(k), v); 
-               }, this)); 
+                  this.option($.trim(k), v);
+               }, this));
                return;
             }
 
-            //set option by string             
-            this.options[key] = value;                          
-            
+            //set option by string
+            this.options[key] = value;
+
             //disabled
             if(key === 'disabled') {
                return value ? this.disable() : this.enable();
-            } 
-            
+            }
+
             //value
             if(key === 'value') {
                 this.setValue(value);
             }
-            
-            //transfer new option to container! 
+
+            //transfer new option to container!
             if(this.container) {
-                this.container.option(key, value);  
+                this.container.option(key, value);
             }
-             
+
             //pass option to input directly (as it points to the same in form)
             if(this.input.option) {
                 this.input.option(key, value);
             }
-            
-        },              
-        
+
+        },
+
         /*
         * set emptytext if element is empty
         */
@@ -50985,24 +50985,24 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 return;
             }
 
-            /* 
+            /*
             isEmpty may be set directly as param of method.
-            It is required when we enable/disable field and can't rely on content 
+            It is required when we enable/disable field and can't rely on content
             as node content is text: "Empty" that is not empty %)
             */
-            if(isEmpty !== undefined) { 
+            if(isEmpty !== undefined) {
                 this.isEmpty = isEmpty;
             } else {
                 //detect empty
                 //for some inputs we need more smart check
                 //e.g. wysihtml5 may have <br>, <p></p>, <img>
                 if(typeof(this.input.isEmpty) === 'function') {
-                    this.isEmpty = this.input.isEmpty(this.$element);                    
+                    this.isEmpty = this.input.isEmpty(this.$element);
                 } else {
                     this.isEmpty = $.trim(this.$element.html()) === '';
                 }
-            }           
-            
+            }
+
             //emptytext shown only for enabled
             if(!this.options.disabled) {
                 if (this.isEmpty) {
@@ -51022,18 +51022,18 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                     }
                 }
             }
-        },        
-        
+        },
+
         /**
         Shows container with form
         @method show()
         @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
-        **/  
+        **/
         show: function (closeAll) {
             if(this.options.disabled) {
                 return;
             }
-            
+
             //init editableContainer: popover, tooltip, inline, etc..
             if(!this.container) {
                 var containerOptions = $.extend({}, this.options, {
@@ -51041,32 +51041,32 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                     input: this.input //pass input to form (as it is already created)
                 });
                 this.$element.editableContainer(containerOptions);
-                //listen `save` event 
+                //listen `save` event
                 this.$element.on("save.internal", $.proxy(this.save, this));
-                this.container = this.$element.data('editableContainer'); 
+                this.container = this.$element.data('editableContainer');
             } else if(this.container.tip().is(':visible')) {
                 return;
-            }      
-            
+            }
+
             //show container
             this.container.show(closeAll);
         },
-        
+
         /**
         Hides container with form
         @method hide()
-        **/       
-        hide: function () {   
-            if(this.container) {  
+        **/
+        hide: function () {
+            if(this.container) {
                 this.container.hide();
             }
         },
-        
+
         /**
         Toggles container visibility (show / hide)
         @method toggle()
         @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
-        **/  
+        **/
         toggle: function(closeAll) {
             if(this.container && this.container.tip().is(':visible')) {
                 this.hide();
@@ -51074,58 +51074,58 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 this.show(closeAll);
             }
         },
-        
+
         /*
         * called when form was submitted
-        */          
+        */
         save: function(e, params) {
             //mark element with unsaved class if needed
             if(this.options.unsavedclass) {
                 /*
                  Add unsaved css to element if:
-                  - url is not user's function 
+                  - url is not user's function
                   - value was not sent to server
                   - params.response === undefined, that means data was not sent
-                  - value changed 
+                  - value changed
                 */
                 var sent = false;
                 sent = sent || typeof this.options.url === 'function';
-                sent = sent || this.options.display === false; 
-                sent = sent || params.response !== undefined; 
-                sent = sent || (this.options.savenochange && this.input.value2str(this.value) !== this.input.value2str(params.newValue)); 
-                
+                sent = sent || this.options.display === false;
+                sent = sent || params.response !== undefined;
+                sent = sent || (this.options.savenochange && this.input.value2str(this.value) !== this.input.value2str(params.newValue));
+
                 if(sent) {
-                    this.$element.removeClass(this.options.unsavedclass); 
+                    this.$element.removeClass(this.options.unsavedclass);
                 } else {
-                    this.$element.addClass(this.options.unsavedclass);                    
+                    this.$element.addClass(this.options.unsavedclass);
                 }
             }
-            
+
             //highlight when saving
             if(this.options.highlight) {
                 var $e = this.$element,
                     bgColor = $e.css('background-color');
-                    
+
                 $e.css('background-color', this.options.highlight);
                 setTimeout(function(){
                     if(bgColor === 'transparent') {
-                        bgColor = ''; 
+                        bgColor = '';
                     }
                     $e.css('background-color', bgColor);
                     $e.addClass('editable-bg-transition');
                     setTimeout(function(){
-                       $e.removeClass('editable-bg-transition');  
+                       $e.removeClass('editable-bg-transition');
                     }, 1700);
                 }, 10);
             }
-            
+
             //set new value
             this.setValue(params.newValue, false, params.response);
-            
-            /**        
+
+            /**
             Fired when new value was submitted. You can use <code>$(this).data('editable')</code> to access to editable instance
-            
-            @event save 
+
+            @event save
             @param {Object} event event object
             @param {Object} params additional params
             @param {mixed} params.newValue submitted value
@@ -51135,7 +51135,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 alert('Saved value: ' + params.newValue);
             });
             **/
-            //event itself is triggered by editableContainer. Description here is only for documentation              
+            //event itself is triggered by editableContainer. Description here is only for documentation
         },
 
         validate: function () {
@@ -51143,13 +51143,13 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 return this.options.validate.call(this, this.value);
             }
         },
-        
+
         /**
         Sets new value of editable
         @method setValue(value, convertStr)
-        @param {mixed} value new value 
+        @param {mixed} value new value
         @param {boolean} convertStr whether to convert value from string to internal format
-        **/         
+        **/
         setValue: function(value, convertStr, response) {
             if(convertStr) {
                 this.value = this.input.str2value(value);
@@ -51164,40 +51164,40 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 this.handleEmpty();
             }, this));
         },
-        
+
         /**
         Activates input of visible container (e.g. set focus)
         @method activate()
-        **/         
+        **/
         activate: function() {
             if(this.container) {
-               this.container.activate(); 
+               this.container.activate();
             }
         },
-        
+
         /**
         Removes editable feature from element
         @method destroy()
-        **/        
+        **/
         destroy: function() {
             this.disable();
-            
+
             if(this.container) {
-               this.container.destroy(); 
+               this.container.destroy();
             }
-            
+
             this.input.destroy();
 
             if(this.options.toggle !== 'manual') {
                 this.$element.removeClass('editable-click');
                 this.$element.off(this.options.toggle + '.editable');
-            } 
-            
+            }
+
             this.$element.off("save.internal");
-            
+
             this.$element.removeClass('editable editable-open editable-disabled');
             this.$element.removeData('editable');
-        }        
+        }
     };
 
     /* EDITABLE PLUGIN DEFINITION
@@ -51205,7 +51205,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
 
     /**
     jQuery method to initialize editable element.
-    
+
     @method $().editable(options)
     @params {Object} options
     @example
@@ -51221,7 +51221,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
         switch (option) {
             /**
             Runs client-side validation for all matched editables
-            
+
             @method validate()
             @returns {Object} validation errors map
             @example
@@ -51242,11 +51242,11 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             return result;
 
             /**
-            Returns current values of editable elements.   
-            Note that it returns an **object** with name-value pairs, not a value itself. It allows to get data from several elements.    
+            Returns current values of editable elements.
+            Note that it returns an **object** with name-value pairs, not a value itself. It allows to get data from several elements.
             If value of some editable is `null` or `undefined` it is excluded from result object.
-            When param `isSingle` is set to **true** - it is supposed you have single element and will return value of editable instead of object.   
-             
+            When param `isSingle` is set to **true** - it is supposed you have single element and will return value of editable instead of object.
+
             @method getValue()
             @param {bool} isSingle whether to return just value of single element
             @returns {Object} object of element names and values
@@ -51259,7 +51259,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             }
             //isSingle = true
             $('#username').editable('getValue', true);
-            //result "superuser" 
+            //result "superuser"
             **/
             case 'getValue':
                 if(arguments.length === 2 && arguments[1] === true) { //isSingle = true
@@ -51275,16 +51275,16 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             return result;
 
             /**
-            This method collects values from several editable elements and submit them all to server.   
-            Internally it runs client-side validation for all fields and submits only in case of success.  
+            This method collects values from several editable elements and submit them all to server.
+            Internally it runs client-side validation for all fields and submits only in case of success.
             See <a href="#newrecord">creating new records</a> for details.
-            
+
             @method submit(options)
-            @param {object} options 
-            @param {object} options.url url to submit data 
+            @param {object} options
+            @param {object} options.url url to submit data
             @param {object} options.data additional data to submit
             @param {object} options.ajaxOptions additional ajax options
-            @param {function} options.error(obj) error handler 
+            @param {function} options.error(obj) error handler
             @param {function} options.success(obj,config) success handler
             @returns {Object} jQuery object
             **/
@@ -51295,21 +51295,21 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                 values;
 
                 if($.isEmptyObject(errors)) {
-                    values = this.editable('getValue'); 
+                    values = this.editable('getValue');
                     if(config.data) {
                         $.extend(values, config.data);
-                    }                    
-                    
+                    }
+
                     $.ajax($.extend({
-                        url: config.url, 
-                        data: values, 
-                        type: 'POST'                        
+                        url: config.url,
+                        data: values,
+                        type: 'POST'
                     }, config.ajaxOptions))
                     .success(function(response) {
                         //successful response 200 OK
                         if(typeof config.success === 'function') {
                             config.success.call($elems, response, config);
-                        } 
+                        }
                     })
                     .error(function(){  //ajax error
                         if(typeof config.error === 'function') {
@@ -51326,85 +51326,85 @@ Makes editable any HTML element on the page. Applied as jQuery method.
 
         //return jquery object
         return this.each(function () {
-            var $this = $(this), 
-                data = $this.data(datakey), 
+            var $this = $(this),
+                data = $this.data(datakey),
                 options = typeof option === 'object' && option;
 
             //for delegated targets do not store `editable` object for element
             //it's allows several different selectors.
-            //see: https://github.com/vitalets/x-editable/issues/312    
+            //see: https://github.com/vitalets/x-editable/issues/312
             if(options && options.selector) {
                 data = new Editable(this, options);
-                return; 
-            }    
-            
+                return;
+            }
+
             if (!data) {
                 $this.data(datakey, (data = new Editable(this, options)));
             }
 
-            if (typeof option === 'string') { //call method 
+            if (typeof option === 'string') { //call method
                 data[option].apply(data, Array.prototype.slice.call(args, 1));
-            } 
+            }
         });
-    };    
-            
+    };
+
 
     $.fn.editable.defaults = {
         /**
         Type of input. Can be <code>text|textarea|select|date|checklist</code> and more
 
-        @property type 
+        @property type
         @type string
         @default 'text'
         **/
-        type: 'text',        
+        type: 'text',
         /**
         Sets disabled state of editable
 
-        @property disabled 
+        @property disabled
         @type boolean
         @default false
-        **/         
+        **/
         disabled: false,
         /**
-        How to toggle editable. Can be <code>click|dblclick|mouseenter|manual</code>.   
-        When set to <code>manual</code> you should manually call <code>show/hide</code> methods of editable.    
-        **Note**: if you call <code>show</code> or <code>toggle</code> inside **click** handler of some DOM element, 
+        How to toggle editable. Can be <code>click|dblclick|mouseenter|manual</code>.
+        When set to <code>manual</code> you should manually call <code>show/hide</code> methods of editable.
+        **Note**: if you call <code>show</code> or <code>toggle</code> inside **click** handler of some DOM element,
         you need to apply <code>e.stopPropagation()</code> because containers are being closed on any click on document.
-        
+
         @example
         $('#edit-button').click(function(e) {
             e.stopPropagation();
             $('#username').editable('toggle');
         });
 
-        @property toggle 
+        @property toggle
         @type string
         @default 'click'
-        **/          
+        **/
         toggle: 'click',
         /**
         Text shown when element is empty.
 
-        @property emptytext 
+        @property emptytext
         @type string
         @default 'Empty'
-        **/         
+        **/
         emptytext: 'Empty',
         /**
         Allows to automatically set element's text based on it's value. Can be <code>auto|always|never</code>. Useful for select and date.
-        For example, if dropdown list is <code>{1: 'a', 2: 'b'}</code> and element's value set to <code>1</code>, it's html will be automatically set to <code>'a'</code>.  
-        <code>auto</code> - text will be automatically set only if element is empty.  
+        For example, if dropdown list is <code>{1: 'a', 2: 'b'}</code> and element's value set to <code>1</code>, it's html will be automatically set to <code>'a'</code>.
+        <code>auto</code> - text will be automatically set only if element is empty.
         <code>always|never</code> - always(never) try to set element's text.
 
-        @property autotext 
+        @property autotext
         @type string
         @default 'auto'
-        **/          
-        autotext: 'auto', 
+        **/
+        autotext: 'auto',
         /**
-        Initial value of input. If not set, taken from element's text.  
-        Note, that if element's text is empty - text is automatically generated from value and can be customized (see `autotext` option).  
+        Initial value of input. If not set, taken from element's text.
+        Note, that if element's text is empty - text is automatically generated from value and can be customized (see `autotext` option).
         For example, to display currency sign:
         @example
         <a id="price" data-type="text" data-value="100"></a>
@@ -51413,34 +51413,34 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             ...
             display: function(value) {
               $(this).text(value + '$');
-            } 
-        }) 
+            }
+        })
         </script>
-                
-        @property value 
+
+        @property value
         @type mixed
         @default element's text
         **/
         value: null,
         /**
-        Callback to perform custom displaying of value in element's text.  
-        If `null`, default input's display used.  
-        If `false`, no displaying methods will be called, element's text will never change.  
-        Runs under element's scope.  
-        _**Parameters:**_  
-        
+        Callback to perform custom displaying of value in element's text.
+        If `null`, default input's display used.
+        If `false`, no displaying methods will be called, element's text will never change.
+        Runs under element's scope.
+        _**Parameters:**_
+
         * `value` current value to be displayed
         * `response` server response (if display called after ajax submit), since 1.4.0
-         
-        For _inputs with source_ (select, checklist) parameters are different:  
-          
+
+        For _inputs with source_ (select, checklist) parameters are different:
+
         * `value` current value to be displayed
-        * `sourceData` array of items for current input (e.g. dropdown items) 
+        * `sourceData` array of items for current input (e.g. dropdown items)
         * `response` server response (if display called after ajax submit), since 1.4.0
-                  
+
         To get currently selected items use `$.fn.editableutils.itemsByValue(value, sourceData)`.
-        
-        @property display 
+
+        @property display
         @type function|boolean
         @default null
         @since 1.2.0
@@ -51449,46 +51449,46 @@ Makes editable any HTML element on the page. Applied as jQuery method.
            //display checklist as comma-separated values
            var html = [],
                checked = $.fn.editableutils.itemsByValue(value, sourceData);
-               
+
            if(checked.length) {
                $.each(checked, function(i, v) { html.push($.fn.editableutils.escape(v.text)); });
                $(this).html(html.join(', '));
            } else {
-               $(this).empty(); 
+               $(this).empty();
            }
         }
-        **/          
+        **/
         display: null,
         /**
         Css class applied when editable text is empty.
 
-        @property emptyclass 
+        @property emptyclass
         @type string
-        @since 1.4.1        
+        @since 1.4.1
         @default editable-empty
-        **/        
+        **/
         emptyclass: 'editable-empty',
         /**
-        Css class applied when value was stored but not sent to server (`pk` is empty or `send = 'never'`).  
-        You may set it to `null` if you work with editables locally and submit them together.  
+        Css class applied when value was stored but not sent to server (`pk` is empty or `send = 'never'`).
+        You may set it to `null` if you work with editables locally and submit them together.
 
-        @property unsavedclass 
+        @property unsavedclass
         @type string
-        @since 1.4.1        
+        @since 1.4.1
         @default editable-unsaved
-        **/        
+        **/
         unsavedclass: 'editable-unsaved',
         /**
-        If selector is provided, editable will be delegated to the specified targets.  
-        Usefull for dynamically generated DOM elements.  
-        **Please note**, that delegated targets can't be initialized with `emptytext` and `autotext` options, 
-        as they actually become editable only after first click.  
-        You should manually set class `editable-click` to these elements.  
+        If selector is provided, editable will be delegated to the specified targets.
+        Usefull for dynamically generated DOM elements.
+        **Please note**, that delegated targets can't be initialized with `emptytext` and `autotext` options,
+        as they actually become editable only after first click.
+        You should manually set class `editable-click` to these elements.
         Also, if element originally empty you should add class `editable-empty`, set `data-value=""` and write emptytext into element:
 
-        @property selector 
+        @property selector
         @type string
-        @since 1.4.1        
+        @since 1.4.1
         @default null
         @example
         <div id="user">
@@ -51496,8 +51496,8 @@ Makes editable any HTML element on the page. Applied as jQuery method.
           <a href="#" data-name="username" data-type="text" class="editable-click editable-empty" data-value="" title="Username">Empty</a>
           <!-- non-empty -->
           <a href="#" data-name="group" data-type="select" data-source="/groups" data-value="1" class="editable-click" title="Group">Operator</a>
-        </div>     
-        
+        </div>
+
         <script>
         $('#user').editable({
             selector: 'a',
@@ -51505,19 +51505,19 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             pk: 1
         });
         </script>
-        **/         
+        **/
         selector: null,
         /**
         Color used to highlight element after update. Implemented via CSS3 transition, works in modern browsers.
-        
-        @property highlight 
+
+        @property highlight
         @type string|boolean
-        @since 1.4.5        
-        @default #FFFF80 
+        @since 1.4.5
+        @default #FFFF80
         **/
         highlight: '#FFFF80'
     };
-    
+
 }(window.jQuery));
 
 /**
@@ -51539,7 +51539,7 @@ To create your own input you can inherit from this class.
        /**
         Initializes input
 
-        @method init() 
+        @method init()
         **/
        init: function(type, options, defaults) {
            this.type = type;
@@ -51550,12 +51550,12 @@ To create your own input you can inherit from this class.
        this method called before render to init $tpl that is inserted in DOM
        */
        prerender: function() {
-           this.$tpl = $(this.options.tpl); //whole tpl as jquery object    
+           this.$tpl = $(this.options.tpl); //whole tpl as jquery object
            this.$input = this.$tpl;         //control itself, can be changed in render method
            this.$clear = null;              //clear button
-           this.error = null;               //error message, if input cannot be rendered           
+           this.error = null;               //error message, if input cannot be rendered
        },
-       
+
        /**
         Renders input from tpl. Can return jQuery deferred object.
         Can be overwritten in child objects
@@ -51564,10 +51564,10 @@ To create your own input you can inherit from this class.
        **/
        render: function() {
 
-       }, 
+       },
 
        /**
-        Sets element's html by value. 
+        Sets element's html by value.
 
         @method value2html(value, element)
         @param {mixed} value
@@ -51591,13 +51591,13 @@ To create your own input you can inherit from this class.
        /**
         Converts value to string (for internal compare). For submitting to server used value2submit().
 
-        @method value2str(value) 
+        @method value2str(value)
         @param {mixed} value
         @returns {string}
        **/
        value2str: function(value) {
            return value;
-       }, 
+       },
 
        /**
         Converts string received from server into value. Usually from `data-value` attribute.
@@ -51608,12 +51608,12 @@ To create your own input you can inherit from this class.
        **/
        str2value: function(str) {
            return str;
-       }, 
-       
+       },
+
        /**
         Converts value for submitting to server. Result can be string or object.
 
-        @method value2submit(value) 
+        @method value2submit(value)
         @param {mixed} value
         @returns {mixed}
        **/
@@ -51624,7 +51624,7 @@ To create your own input you can inherit from this class.
        /**
         Sets value of input.
 
-        @method value2input(value) 
+        @method value2input(value)
         @param {mixed} value
        **/
        value2input: function(value) {
@@ -51634,16 +51634,16 @@ To create your own input you can inherit from this class.
        /**
         Returns value of input. Value can be object (e.g. datepicker)
 
-        @method input2value() 
+        @method input2value()
        **/
-       input2value: function() { 
+       input2value: function() {
            return this.$input.val();
-       }, 
+       },
 
        /**
         Activates input. For text it sets focus.
 
-        @method activate() 
+        @method activate()
        **/
        activate: function() {
            if(this.$input.is(':visible')) {
@@ -51654,8 +51654,8 @@ To create your own input you can inherit from this class.
        /**
         Creates input.
 
-        @method clear() 
-       **/        
+        @method clear()
+       **/
        clear: function() {
            this.$input.val(null);
        },
@@ -51666,79 +51666,79 @@ To create your own input you can inherit from this class.
        escape: function(str) {
            return $('<div>').text(str).html();
        },
-       
+
        /**
         attach handler to automatically submit form when value changed (useful when buttons not shown)
        **/
        autosubmit: function() {
-        
+
        },
-       
+
        /**
-       Additional actions when destroying element 
+       Additional actions when destroying element
        **/
        destroy: function() {
        },
 
        // -------- helper functions --------
-       setClass: function() {          
+       setClass: function() {
            if(this.options.inputclass) {
-               this.$input.addClass(this.options.inputclass); 
-           } 
+               this.$input.addClass(this.options.inputclass);
+           }
        },
 
        setAttr: function(attr) {
            if (this.options[attr] !== undefined && this.options[attr] !== null) {
                this.$input.attr(attr, this.options[attr]);
-           } 
+           }
        },
-       
+
        option: function(key, value) {
             this.options[key] = value;
        }
-       
+
     };
-        
-    AbstractInput.defaults = {  
+
+    AbstractInput.defaults = {
         /**
         HTML template of input. Normally you should not change it.
 
-        @property tpl 
+        @property tpl
         @type string
         @default ''
-        **/   
+        **/
         tpl: '',
         /**
         CSS class automatically applied to input
-        
-        @property inputclass 
+
+        @property inputclass
         @type string
         @default null
-        **/         
+        **/
         inputclass: null,
-        
+
         /**
-        If `true` - html will be escaped in content of element via $.text() method.  
-        If `false` - html will not be escaped, $.html() used.  
+        If `true` - html will be escaped in content of element via $.text() method.
+        If `false` - html will not be escaped, $.html() used.
         When you use own `display` function, this option obviosly has no effect.
-        
-        @property escape 
+
+        @property escape
         @type boolean
         @since 1.5.0
         @default true
-        **/         
+        **/
         escape: true,
-                
+
         //scope for external methods (e.g. source defined as function)
         //for internal use only
         scope: null,
-        
+
         //need to re-declare showbuttons here to get it's value from common config (passed only options existing in defaults)
-        showbuttons: true 
+        showbuttons: true
     };
-    
+
     $.extend($.fn.editabletypes, {abstractinput: AbstractInput});
-        
+
 }(window.jQuery));
 
 /**
@@ -51749,9 +51749,9 @@ List - abstract class for inputs that have source option loaded from js array or
 **/
 (function ($) {
     "use strict";
-    
+
     var List = function (options) {
-       
+
     };
 
     $.fn.editableutils.inherit(List, $.fn.editabletypes.abstractinput);
@@ -51775,28 +51775,28 @@ List - abstract class for inputs that have source option loaded from js array or
         html2value: function (html) {
             return null; //can't set value by text
         },
-        
+
         value2html: function (value, element, display, response) {
             var deferred = $.Deferred(),
                 success = function () {
                     if(typeof display === 'function') {
                         //custom display method
-                        display.call(element, value, this.sourceData, response); 
+                        display.call(element, value, this.sourceData, response);
                     } else {
                         this.value2htmlFinal(value, element);
                     }
                     deferred.resolve();
                };
-            
+
             //for null value just call success without loading source
             if(value === null) {
-               success.call(this);   
+               success.call(this);
             } else {
                this.onSourceReady(success, function () { deferred.resolve(); });
             }
 
             return deferred.promise();
-        },  
+        },
 
         // ------------- additional functions ------------
 
@@ -51809,12 +51809,12 @@ List - abstract class for inputs that have source option loaded from js array or
                 //note: if function returns the same source as URL - sourceData will be taken from cahce and no extra request performed
             } else {
                 source = this.options.source;
-            }            
-            
+            }
+
             //if allready loaded just call success
             if(this.options.sourceCache && $.isArray(this.sourceData)) {
                 success.call(this);
-                return; 
+                return;
             }
 
             //try parse json in single quotes (for double quotes jquery does automatically)
@@ -51859,7 +51859,7 @@ List - abstract class for inputs that have source option loaded from js array or
                         cache.err_callbacks = [];
                     }
                 }
-                
+
                 //ajaxOptions for source. Can be overwritten bt options.sourceOptions
                 var ajaxOptions = $.extend({
                     url: source,
@@ -51876,7 +51876,7 @@ List - abstract class for inputs that have source option loaded from js array or
                                 //store result in cache
                                 cache.sourceData = this.sourceData;
                                 //run success callbacks for other fields waiting for this source
-                                $.each(cache.callbacks, function () { this.call(); }); 
+                                $.each(cache.callbacks, function () { this.call(); });
                             }
                             this.doPrepend();
                             success.call(this);
@@ -51884,7 +51884,7 @@ List - abstract class for inputs that have source option loaded from js array or
                             error.call(this);
                             if(cache) {
                                 //run error callbacks for other fields waiting for this source
-                                $.each(cache.err_callbacks, function () { this.call(); }); 
+                                $.each(cache.err_callbacks, function () { this.call(); });
                             }
                         }
                     }, this),
@@ -51893,20 +51893,20 @@ List - abstract class for inputs that have source option loaded from js array or
                         if(cache) {
                              cache.loading = false;
                              //run error callbacks for other fields
-                             $.each(cache.err_callbacks, function () { this.call(); }); 
+                             $.each(cache.err_callbacks, function () { this.call(); });
                         }
                     }, this)
                 }, this.options.sourceOptions);
-                
+
                 //loading sourceData from server
                 $.ajax(ajaxOptions);
-                
+
             } else { //options as json/array
                 this.sourceData = this.makeArray(source);
-                    
+
                 if($.isArray(this.sourceData)) {
                     this.doPrepend();
-                    success.call(this);   
+                    success.call(this);
                 } else {
                     error.call(this);
                 }
@@ -51915,23 +51915,23 @@ List - abstract class for inputs that have source option loaded from js array or
 
         doPrepend: function () {
             if(this.options.prepend === null || this.options.prepend === undefined) {
-                return;  
+                return;
             }
-            
+
             if(!$.isArray(this.prependData)) {
                 //run prepend if it is function (once)
                 if ($.isFunction(this.options.prepend)) {
                     this.options.prepend = this.options.prepend.call(this.options.scope);
                 }
-              
+
                 //try parse json in single quotes
                 this.options.prepend = $.fn.editableutils.tryParseJson(this.options.prepend, true);
-                
+
                 //convert prepend from string to object
                 if (typeof this.options.prepend === 'string') {
                     this.options.prepend = {'': this.options.prepend};
                 }
-                
+
                 this.prependData = this.makeArray(this.options.prepend);
             }
 
@@ -51946,13 +51946,13 @@ List - abstract class for inputs that have source option loaded from js array or
         renderList: function() {
             // this method should be overwritten in child class
         },
-       
+
          /*
          set element's html by value
         */
         value2htmlFinal: function(value, element) {
             // this method should be overwritten in child class
-        },        
+        },
 
         /**
         * convert data to array suitable for sourceData, e.g. [{value: 1, text: 'abc'}, {...}]
@@ -51960,13 +51960,13 @@ List - abstract class for inputs that have source option loaded from js array or
         makeArray: function(data) {
             var count, obj, result = [], item, iterateItem;
             if(!data || typeof data === 'string') {
-                return null; 
+                return null;
             }
 
             if($.isArray(data)) { //array
-                /* 
+                /*
                    function to iterate inside item of array if item is object.
-                   Caclulates count of keys in item and store in obj. 
+                   Caclulates count of keys in item and store in obj.
                 */
                 iterateItem = function (k, v) {
                     obj = {value: k, text: v};
@@ -51974,36 +51974,36 @@ List - abstract class for inputs that have source option loaded from js array or
                         return false;// exit from `each` if item has more than one key.
                     }
                 };
-            
+
                 for(var i = 0; i < data.length; i++) {
-                    item = data[i]; 
+                    item = data[i];
                     if(typeof item === 'object') {
                         count = 0; //count of keys inside item
                         $.each(item, iterateItem);
                         //case: [{val1: 'text1'}, {val2: 'text2} ...]
-                        if(count === 1) { 
-                            result.push(obj); 
+                        if(count === 1) {
+                            result.push(obj);
                             //case: [{value: 1, text: 'text1'}, {value: 2, text: 'text2'}, ...]
                         } else if(count > 1) {
                             //removed check of existance: item.hasOwnProperty('value') && item.hasOwnProperty('text')
                             if(item.children) {
-                                item.children = this.makeArray(item.children);   
+                                item.children = this.makeArray(item.children);
                             }
                             result.push(item);
                         }
                     } else {
                         //case: ['text1', 'text2' ...]
-                        result.push({value: item, text: item}); 
+                        result.push({value: item, text: item});
                     }
                 }
             } else {  //case: {val1: 'text1', val2: 'text2, ...}
                 $.each(data, function (k, v) {
                     result.push({value: k, text: v});
-                });  
+                });
             }
             return result;
         },
-        
+
         option: function(key, value) {
             this.options[key] = value;
             if(key === 'source') {
@@ -52011,69 +52011,69 @@ List - abstract class for inputs that have source option loaded from js array or
             }
             if(key === 'prepend') {
                 this.prependData = null;
-            }            
-        }        
+            }
+        }
 
-    });      
+    });
 
     List.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        Source data for list.  
-        If **array** - it should be in format: `[{value: 1, text: "text1"}, {value: 2, text: "text2"}, ...]`  
+        Source data for list.
+        If **array** - it should be in format: `[{value: 1, text: "text1"}, {value: 2, text: "text2"}, ...]`
         For compability, object format is also supported: `{"1": "text1", "2": "text2" ...}` but it does not guarantee elements order.
-        
-        If **string** - considered ajax url to load items. In that case results will be cached for fields with the same source and name. See also `sourceCache` option.
-          
-        If **function**, it should return data in format above (since 1.4.0).
-        
-        Since 1.4.1 key `children` supported to render OPTGROUP (for **select** input only).  
-        `[{text: "group1", children: [{value: 1, text: "text1"}, {value: 2, text: "text2"}]}, ...]` 
 
-		
-        @property source 
+        If **string** - considered ajax url to load items. In that case results will be cached for fields with the same source and name. See also `sourceCache` option.
+
+        If **function**, it should return data in format above (since 1.4.0).
+
+        Since 1.4.1 key `children` supported to render OPTGROUP (for **select** input only).
+        `[{text: "group1", children: [{value: 1, text: "text1"}, {value: 2, text: "text2"}]}, ...]`
+
+
+        @property source
         @type string | array | object | function
         @default null
-        **/         
-        source: null, 
+        **/
+        source: null,
         /**
         Data automatically prepended to the beginning of dropdown list.
-        
-        @property prepend 
+
+        @property prepend
         @type string | array | object | function
         @default false
-        **/         
+        **/
         prepend: false,
         /**
         Error message when list cannot be loaded (e.g. ajax error)
-        
-        @property sourceError 
+
+        @property sourceError
         @type string
         @default Error when loading list
-        **/          
+        **/
         sourceError: 'Error when loading list',
         /**
-        if <code>true</code> and source is **string url** - results will be cached for fields with the same source.    
+        if <code>true</code> and source is **string url** - results will be cached for fields with the same source.
         Usefull for editable column in grid to prevent extra requests.
-        
-        @property sourceCache 
+
+        @property sourceCache
         @type boolean
         @default true
         @since 1.2.0
-        **/        
+        **/
         sourceCache: true,
         /**
         Additional ajax options to be used in $.ajax() when loading list from server.
         Useful to send extra parameters (`data` key) or change request method (`type` key).
-        
-        @property sourceOptions 
+
+        @property sourceOptions
         @type object|function
         @default null
         @since 1.5.0
-        **/        
+        **/
         sourceOptions: null
     });
 
-    $.fn.editabletypes.list = List;      
+    $.fn.editabletypes.list = List;
 
 }(window.jQuery));
 
@@ -52096,7 +52096,7 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
+
     var Text = function (options) {
         this.init('text', options, Text.defaults);
     };
@@ -52109,7 +52109,7 @@ $(function(){
            this.setClass();
            this.setAttr('placeholder');
         },
-        
+
         activate: function() {
             if(this.$input.is(':visible')) {
                 this.$input.focus();
@@ -52119,7 +52119,7 @@ $(function(){
                 }
             }
         },
-        
+
         //render clear button
         renderClear:  function() {
            if (this.options.clear) {
@@ -52130,21 +52130,21 @@ $(function(){
                               //arrows, enter, tab, etc
                               if(~$.inArray(e.keyCode, [40,38,9,13,27])) {
                                 return;
-                              }                            
+                              }
 
                               clearTimeout(this.t);
                               var that = this;
                               this.t = setTimeout(function() {
                                 that.toggleClear(e);
                               }, 100);
-                              
+
                           }, this))
                           .parent().css('position', 'relative');
-                          
-               this.$clear.click($.proxy(this.clear, this));                       
-           }            
+
+               this.$clear.click($.proxy(this.clear, this));
+           }
         },
-        
+
         postrender: function() {
             /*
             //now `clear` is positioned via css
@@ -52153,57 +52153,57 @@ $(function(){
 //                var h = this.$input.outerHeight(true) || 20,
                 var h = this.$clear.parent().height(),
                     delta = (h - this.$clear.height()) / 2;
-                    
+
                 //this.$clear.css({bottom: delta, right: delta});
             }
-            */ 
+            */
         },
-        
+
         //show / hide clear button
         toggleClear: function(e) {
             if(!this.$clear) {
                 return;
             }
-            
+
             var len = this.$input.val().length,
                 visible = this.$clear.is(':visible');
-                 
+
             if(len && !visible) {
                 this.$clear.show();
-            } 
-            
+            }
+
             if(!len && visible) {
                 this.$clear.hide();
-            } 
+            }
         },
-        
+
         clear: function() {
            this.$clear.hide();
            this.$input.val('').focus();
-        }          
+        }
     });
 
     Text.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <input type="text">
-        **/         
+        **/
         tpl: '<input type="text">',
         /**
         Placeholder attribute of input. Shown when input is empty.
 
-        @property placeholder 
+        @property placeholder
         @type string
         @default null
-        **/             
+        **/
         placeholder: null,
-        
+
         /**
-        Whether to show `clear` button 
-        
-        @property clear 
+        Whether to show `clear` button
+
+        @property clear
         @type boolean
-        @default true        
+        @default true
         **/
         clear: true
     });
@@ -52232,7 +52232,7 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
+
     var Textarea = function (options) {
         this.init('textarea', options, Textarea.defaults);
     };
@@ -52243,8 +52243,8 @@ $(function(){
         render: function () {
             this.setClass();
             this.setAttr('placeholder');
-            this.setAttr('rows');                        
-            
+            this.setAttr('rows');
+
             //ctrl + enter
             this.$input.keydown(function (e) {
                 if (e.ctrlKey && e.which === 13) {
@@ -52252,9 +52252,9 @@ $(function(){
                 }
             });
         },
-        
+
        //using `white-space: pre-wrap` solves \n  <--> BR conversion very elegant!
-       /* 
+       /*
        value2html: function(value, element) {
             var html = '', lines;
             if(value) {
@@ -52266,7 +52266,7 @@ $(function(){
             }
             $(element).html(html);
         },
-       
+
         html2value: function(html) {
             if(!html) {
                 return '';
@@ -52316,8 +52316,8 @@ $(function(){
         @property rows
         @type integer
         @default 7
-        **/        
-        rows: 7        
+        **/
+        rows: 7
     });
 
     $.fn.editabletypes.textarea = Textarea;
@@ -52335,7 +52335,7 @@ Select (dropdown)
 <script>
 $(function(){
     $('#status').editable({
-        value: 2,    
+        value: 2,
         source: [
               {value: 1, text: 'Active'},
               {value: 2, text: 'Blocked'},
@@ -52347,7 +52347,7 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
+
     var Select = function (options) {
         this.init('select', options, Select.defaults);
     };
@@ -52365,64 +52365,64 @@ $(function(){
                         attr = {};
                         if(data[i].children) {
                             attr.label = data[i].text;
-                            $el.append(fillItems($('<optgroup>', attr), data[i].children)); 
+                            $el.append(fillItems($('<optgroup>', attr), data[i].children));
                         } else {
                             attr.value = data[i].value;
                             if(data[i].disabled) {
                                 attr.disabled = true;
                             }
-                            $el.append($('<option>', attr).text(data[i].text)); 
+                            $el.append($('<option>', attr).text(data[i].text));
                         }
                     }
                 }
                 return $el;
-            };        
+            };
 
             fillItems(this.$input, this.sourceData);
-            
+
             this.setClass();
-            
+
             //enter submit
             this.$input.on('keydown.editable', function (e) {
                 if (e.which === 13) {
                     $(this).closest('form').submit();
                 }
-            });            
+            });
         },
-       
+
         value2htmlFinal: function(value, element) {
-            var text = '', 
+            var text = '',
                 items = $.fn.editableutils.itemsByValue(value, this.sourceData);
-                
+
             if(items.length) {
                 text = items[0].text;
             }
-            
+
             //$(element).text(text);
             $.fn.editabletypes.abstractinput.prototype.value2html.call(this, text, element);
         },
-        
+
         autosubmit: function() {
             this.$input.off('keydown.editable').on('change.editable', function(){
                 $(this).closest('form').submit();
             });
         }
-    });      
+    });
 
     Select.defaults = $.extend({}, $.fn.editabletypes.list.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <select></select>
-        **/         
+        **/
         tpl:'<select></select>'
     });
 
-    $.fn.editabletypes.select = Select;      
+    $.fn.editabletypes.select = Select;
 
 }(window.jQuery));
 
 /**
-List of checkboxes. 
+List of checkboxes.
 Internally value stored as javascript array of values.
 
 @class checklist
@@ -52433,7 +52433,7 @@ Internally value stored as javascript array of values.
 <script>
 $(function(){
     $('#options').editable({
-        value: [2, 3],    
+        value: [2, 3],
         source: [
               {value: 1, text: 'option1'},
               {value: 2, text: 'option2'},
@@ -52445,7 +52445,7 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
+
     var Checklist = function (options) {
         this.init('checklist', options, Checklist.defaults);
     };
@@ -52455,9 +52455,9 @@ $(function(){
     $.extend(Checklist.prototype, {
         renderList: function() {
             var $label, $div;
-            
+
             this.$tpl.empty();
-            
+
             if(!$.isArray(this.sourceData)) {
                 return;
             }
@@ -52465,21 +52465,21 @@ $(function(){
             for(var i=0; i<this.sourceData.length; i++) {
                 $label = $('<label>').append($('<input>', {
                                            type: 'checkbox',
-                                           value: this.sourceData[i].value 
+                                           value: this.sourceData[i].value
                                      }))
                                      .append($('<span>').text(' '+this.sourceData[i].text));
-                
+
                 $('<div>').append($label).appendTo(this.$tpl);
             }
-            
+
             this.$input = this.$tpl.find('input[type="checkbox"]');
             this.setClass();
         },
-       
+
        value2str: function(value) {
            return $.isArray(value) ? value.sort().join($.trim(this.options.separator)) : '';
-       },  
-       
+       },
+
        //parse separated string
         str2value: function(str) {
            var reg, value = null;
@@ -52487,13 +52487,13 @@ $(function(){
                reg = new RegExp('\\s*'+$.trim(this.options.separator)+'\\s*');
                value = str.split(reg);
            } else if($.isArray(str)) {
-               value = str; 
+               value = str;
            } else {
                value = [str];
            }
            return value;
-        },       
-       
+        },
+
        //set checked on required checkboxes
        value2input: function(value) {
             this.$input.prop('checked', false);
@@ -52504,43 +52504,43 @@ $(function(){
                    $.each(value, function(j, val){
                        /*jslint eqeq: true*/
                        if($el.val() == val) {
-                       /*jslint eqeq: false*/                           
+                       /*jslint eqeq: false*/
                            $el.prop('checked', true);
                        }
                    });
-               }); 
-            }  
-        },  
-        
-       input2value: function() { 
+               });
+            }
+        },
+
+       input2value: function() {
            var checked = [];
            this.$input.filter(':checked').each(function(i, el) {
                checked.push($(el).val());
            });
            return checked;
-       },            
-          
+       },
+
        //collect text of checked boxes
         value2htmlFinal: function(value, element) {
            var html = [],
                checked = $.fn.editableutils.itemsByValue(value, this.sourceData),
                escape = this.options.escape;
-               
+
            if(checked.length) {
                $.each(checked, function(i, v) {
-                   var text = escape ? $.fn.editableutils.escape(v.text) : v.text; 
-                   html.push(text); 
+                   var text = escape ? $.fn.editableutils.escape(v.text) : v.text;
+                   html.push(text);
                });
                $(element).html(html.join('<br>'));
            } else {
-               $(element).empty(); 
+               $(element).empty();
            }
         },
-        
+
        activate: function() {
            this.$input.first().focus();
        },
-       
+
        autosubmit: function() {
            this.$input.on('keydown', function(e){
                if (e.which === 13) {
@@ -52548,33 +52548,33 @@ $(function(){
                }
            });
        }
-    });      
+    });
 
     Checklist.defaults = $.extend({}, $.fn.editabletypes.list.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <div></div>
-        **/         
+        **/
         tpl:'<div class="editable-checklist"></div>',
-        
+
         /**
-        @property inputclass 
+        @property inputclass
         @type string
         @default null
-        **/         
-        inputclass: null,        
-        
+        **/
+        inputclass: null,
+
         /**
         Separator of values when reading from `data-value` attribute
 
-        @property separator 
+        @property separator
         @type string
         @default ','
-        **/         
+        **/
         separator: ','
     });
 
-    $.fn.editabletypes.checklist = Checklist;      
+    $.fn.editabletypes.checklist = Checklist;
 
 }(window.jQuery));
 
@@ -52590,12 +52590,12 @@ Following types are supported:
 * range
 * time
 
-Learn more about html5 inputs:  
-http://www.w3.org/wiki/HTML5_form_additions  
-To check browser compatibility please see:  
+Learn more about html5 inputs:
+http://www.w3.org/wiki/HTML5_form_additions
+To check browser compatibility please see:
 https://developer.mozilla.org/en-US/docs/HTML/Element/Input
-            
-@class html5types 
+
+@class html5types
 @extends text
 @final
 @since 1.3.0
@@ -52612,16 +52612,16 @@ $(function(){
 **/
 
 /**
-@property tpl 
+@property tpl
 @default depends on type
-**/ 
+**/
 
 /*
 Password
 */
 (function ($) {
     "use strict";
-    
+
     var Password = function (options) {
         this.init('password', options, Password.defaults);
     };
@@ -52632,14 +52632,14 @@ Password
            if(value) {
                $(element).text('[hidden]');
            } else {
-               $(element).empty(); 
+               $(element).empty();
            }
        },
        //as password not displayed, should not set value by html
        html2value: function(html) {
            return null;
-       }       
-    });    
+       }
+    });
     Password.defaults = $.extend({}, $.fn.editabletypes.text.defaults, {
         tpl: '<input type="password">'
     });
@@ -52652,7 +52652,7 @@ Email
 */
 (function ($) {
     "use strict";
-    
+
     var Email = function (options) {
         this.init('email', options, Email.defaults);
     };
@@ -52669,7 +52669,7 @@ Url
 */
 (function ($) {
     "use strict";
-    
+
     var Url = function (options) {
         this.init('url', options, Url.defaults);
     };
@@ -52686,7 +52686,7 @@ Tel
 */
 (function ($) {
     "use strict";
-    
+
     var Tel = function (options) {
         this.init('tel', options, Tel.defaults);
     };
@@ -52703,7 +52703,7 @@ Number
 */
 (function ($) {
     "use strict";
-    
+
     var NumberInput = function (options) {
         this.init('number', options, NumberInput.defaults);
     };
@@ -52723,13 +52723,13 @@ Number
                 //can position clear button only here, when form is shown and height can be calculated
                 var h = this.$input.outerHeight(true) || 20,
                     delta = (h - this.$clear.height()) / 2;
-                
-                //add 12px to offset right for up/down arrows    
+
+                //add 12px to offset right for up/down arrows
                 this.$clear.css({top: delta, right: delta + 16});
                 */
-            } 
-        }        
-    });     
+            }
+        }
+    });
     NumberInput.defaults = $.extend({}, $.fn.editabletypes.text.defaults, {
         tpl: '<input type="number">',
         inputclass: 'input-mini',
@@ -52746,7 +52746,7 @@ Range (inherit from number)
 */
 (function ($) {
     "use strict";
-    
+
     var Range = function (options) {
         this.init('range', options, Range.defaults);
     };
@@ -52754,19 +52754,19 @@ Range (inherit from number)
     $.extend(Range.prototype, {
         render: function () {
             this.$input = this.$tpl.filter('input');
-            
+
             this.setClass();
             this.setAttr('min');
             this.setAttr('max');
-            this.setAttr('step');           
-            
+            this.setAttr('step');
+
             this.$input.on('input', function(){
-                $(this).siblings('output').text($(this).val()); 
-            });  
+                $(this).siblings('output').text($(this).val());
+            });
         },
         activate: function() {
             this.$input.focus();
-        }         
+        }
     });
     Range.defaults = $.extend({}, $.fn.editabletypes.number.defaults, {
         tpl: '<input type="range"><output style="width: 30px; display: inline-block"></output>',
@@ -52789,7 +52789,7 @@ Time
     $.extend(Time.prototype, {
         render: function() {
            this.setClass();
-        }        
+        }
     });
     Time.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         tpl: '<input type="time">'
@@ -52798,24 +52798,24 @@ Time
 }(window.jQuery));
 
 /**
-Select2 input. Based on amazing work of Igor Vaynberg https://github.com/ivaynberg/select2.  
-Please see [original select2 docs](http://ivaynberg.github.com/select2) for detailed description and options.  
- 
-You should manually download and include select2 distributive:  
+Select2 input. Based on amazing work of Igor Vaynberg https://github.com/ivaynberg/select2.
+Please see [original select2 docs](http://ivaynberg.github.com/select2) for detailed description and options.
 
-    <link href="select2/select2.css" rel="stylesheet" type="text/css"></link>  
-    <script src="select2/select2.js"></script>  
-    
-To make it **bootstrap-styled** you can use css from [here](https://github.com/t0m/select2-bootstrap-css): 
+You should manually download and include select2 distributive:
 
-    <link href="select2-bootstrap.css" rel="stylesheet" type="text/css"></link>    
-    
-**Note:** currently `autotext` feature does not work for select2 with `ajax` remote source.    
-You need initially put both `data-value` and element's text youself:    
+    <link href="select2/select2.css" rel="stylesheet" type="text/css"></link>
+    <script src="select2/select2.js"></script>
+
+To make it **bootstrap-styled** you can use css from [here](https://github.com/t0m/select2-bootstrap-css):
+
+    <link href="select2-bootstrap.css" rel="stylesheet" type="text/css"></link>
+
+**Note:** currently `autotext` feature does not work for select2 with `ajax` remote source.
+You need initially put both `data-value` and element's text youself:
 
     <a href="#" data-type="select2" data-value="1">Text1</a>
-    
-    
+
+
 @class select2
 @extends abstractinput
 @since 1.4.1
@@ -52837,7 +52837,7 @@ $(function(){
     });
     //remote source (simple)
     $('#country').editable({
-        source: '/getCountries'  
+        source: '/getCountries'
     });
     //remote source (advanced)
     $('#country').editable({
@@ -52868,34 +52868,34 @@ $(function(){
                 return $.get('/getCountryById', { query: element.val() }, function (data) {
                     callback(data);
                 });
-            } 
-        }  
+            }
+        }
     });
 });
 </script>
 **/
 (function ($) {
     "use strict";
-    
+
     var Constructor = function (options) {
         this.init('select2', options, Constructor.defaults);
 
         options.select2 = options.select2 || {};
 
         this.sourceData = null;
-        
+
         //placeholder
         if(options.placeholder) {
             options.select2.placeholder = options.placeholder;
         }
-       
+
         //if not `tags` mode, use source
         if(!options.select2.tags && options.source) {
             var source = options.source;
             //if source is function, call it (once!)
             if ($.isFunction(options.source)) {
                 source = options.source.call(options.scope);
-            }               
+            }
 
             if (typeof source === 'string') {
                 options.select2.ajax = options.select2.ajax || {};
@@ -52912,15 +52912,15 @@ $(function(){
                 this.sourceData = this.convertSource(source);
                 options.select2.data = this.sourceData;
             }
-        } 
-           
+        }
+
         //overriding objects in config (as by default jQuery extend() is not recursive)
         this.options.select2 = $.extend({}, Constructor.defaults.select2, options.select2);
-        
+
         //detect whether it is multi-valued
         this.isMultiple = this.options.select2.tags || this.options.select2.multiple;
         this.isRemote = ('ajax' in this.options.select2);
-        
+
         //store function returning ID of item
         //should be here as used inautotext for local source
         this.idFunc = this.options.select2.id;
@@ -52928,12 +52928,12 @@ $(function(){
             var idKey = this.idFunc || 'id';
             this.idFunc = function (e) { return e[idKey]; };
         }
-        
+
         //store function that renders text in select2
-        this.formatSelection = this.options.select2.formatSelection; 
+        this.formatSelection = this.options.select2.formatSelection;
         if (typeof(this.formatSelection) !== "function") {
             this.formatSelection = function (e) { return e.text; };
-        }       
+        }
     };
 
     $.fn.editableutils.inherit(Constructor, $.fn.editabletypes.abstractinput);
@@ -52942,7 +52942,7 @@ $(function(){
         render: function() {
             this.setClass();
 
-            //can not apply select2 here as it calls initSelection 
+            //can not apply select2 here as it calls initSelection
             //over input that does not have correct value yet.
             //apply select2 only in value2input
             //this.$input.select2(this.options.select2);
@@ -52955,49 +52955,49 @@ $(function(){
                 }, this));
             }
 
-            //trigger resize of editableform to re-position container in multi-valued mode           
+            //trigger resize of editableform to re-position container in multi-valued mode
             if(this.isMultiple) {
                this.$input.on('change', function() {
                    $(this).closest('form').parent().triggerHandler('resize');
-               }); 
+               });
             }
        },
-       
+
        value2html: function(value, element) {
            var text = '', data,
                that = this;
-           
+
            if(this.options.select2.tags) { //in tags mode just assign value
-              data = value; 
-              //data = $.fn.editableutils.itemsByValue(value, this.options.select2.tags, this.idFunc); 
+              data = value;
+              //data = $.fn.editableutils.itemsByValue(value, this.options.select2.tags, this.idFunc);
            } else if(this.sourceData) {
-              data = $.fn.editableutils.itemsByValue(value, this.sourceData, this.idFunc); 
+              data = $.fn.editableutils.itemsByValue(value, this.sourceData, this.idFunc);
            } else {
-              //can not get list of possible values 
-              //(e.g. autotext for select2 with ajax source) 
+              //can not get list of possible values
+              //(e.g. autotext for select2 with ajax source)
            }
-           
-           //data may be array (when multiple values allowed)          
+
+           //data may be array (when multiple values allowed)
            if($.isArray(data)) {
                //collect selected data and show with separator
                text = [];
                $.each(data, function(k, v){
-                   text.push(v && typeof v === 'object' ? that.formatSelection(v) : v); 
-               });                   
+                   text.push(v && typeof v === 'object' ? that.formatSelection(v) : v);
+               });
            } else if(data) {
-               text = that.formatSelection(data);  
+               text = that.formatSelection(data);
            }
 
            text = $.isArray(text) ? text.join(this.options.viewseparator) : text;
 
            //$(element).text(text);
-           Constructor.superclass.value2html.call(this, text, element); 
-       },       
-        
+           Constructor.superclass.value2html.call(this, text, element);
+       },
+
        html2value: function(html) {
            return this.options.select2.tags ? this.str2value(html, this.options.viewseparator) : null;
-       }, 
-       
+       },
+
        value2input: function(value) {
            //for local source use data directly from source (to allow autotext)
            /*
@@ -53007,30 +53007,30 @@ $(function(){
                    this.$input.select2('data', items[0]);
                    return;
                }
-           } 
+           }
            */
-           
+
            //for remote source just set value, text is updated by initSelection
            if(!this.$input.data('select2')) {
                this.$input.val(value);
                this.$input.select2(this.options.select2);
            } else {
-               //second argument needed to separate initial change from user's click (for autosubmit)   
-               this.$input.val(value).trigger('change', true); 
+               //second argument needed to separate initial change from user's click (for autosubmit)
+               this.$input.val(value).trigger('change', true);
            }
-           
+
            //if remote source AND no user's initSelection provided --> try to use element's text
            if(this.isRemote && !this.isMultiple && !this.options.select2.initSelection) {
                var customId = this.options.select2.id,
                    customText = this.options.select2.formatSelection;
-               if(!customId && !customText) {      
+               if(!customId && !customText) {
                    var data = {id: value, text: $(this.options.scope).text()};
-                   this.$input.select2('data', data); 
+                   this.$input.select2('data', data);
                }
            }
        },
-       
-       input2value: function() { 
+
+       input2value: function() {
            return this.$input.select2('val');
        },
 
@@ -53038,11 +53038,11 @@ $(function(){
             if(typeof str !== 'string' || !this.isMultiple) {
                 return str;
             }
-            
+
             separator = separator || this.options.select2.separator || $.fn.select2.defaults.separator;
-            
+
             var val, i, l;
-                
+
             if (str === null || str.length < 1) {
                 return null;
             }
@@ -53050,10 +53050,10 @@ $(function(){
             for (i = 0, l = val.length; i < l; i = i + 1) {
                 val[i] = $.trim(val[i]);
             }
-            
+
             return val;
        },
-       
+
         autosubmit: function() {
             this.$input.on('change', function(e, isInitial){
                 if(!isInitial) {
@@ -53061,7 +53061,7 @@ $(function(){
                 }
             });
         },
-        
+
         /*
         Converts source from x-editable format: {value: 1, text: "1"} to
         select2 format: {id: 1, text: "1"}
@@ -53075,27 +53075,27 @@ $(function(){
                     }
                 }
             }
-            return source;            
+            return source;
         },
-        
+
         destroy: function() {
             if(this.$input.data('select2')) {
                 this.$input.select2('destroy');
             }
-        }               
-        
-    });      
+        }
+
+    });
 
     Constructor.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <input type="hidden">
-        **/         
+        **/
         tpl:'<input type="hidden">',
         /**
         Configuration of select2. [Full list of options](http://ivaynberg.github.com/select2).
-        
-        @property select2 
+
+        @property select2
         @type object
         @default null
         **/
@@ -53103,33 +53103,33 @@ $(function(){
         /**
         Placeholder attribute of select
 
-        @property placeholder 
+        @property placeholder
         @type string
         @default null
-        **/             
+        **/
         placeholder: null,
         /**
         Source data for select. It will be assigned to select2 `data` property and kept here just for convenience.
         Please note, that format is different from simple `select` input: use 'id' instead of 'value'.
-        E.g. `[{id: 1, text: "text1"}, {id: 2, text: "text2"}, ...]`.  
-        
-        @property source 
+        E.g. `[{id: 1, text: "text1"}, {id: 2, text: "text2"}, ...]`.
+
+        @property source
         @type array|string|function
-        @default null        
+        @default null
         **/
         source: null,
         /**
-        Separator used to display tags. 
-        
-        @property viewseparator 
+        Separator used to display tags.
+
+        @property viewseparator
         @type string
-        @default ', '        
+        @default ', '
         **/
         viewseparator: ', '
     });
 
-    $.fn.editabletypes.select2 = Constructor;      
-    
+    $.fn.editabletypes.select2 = Constructor;
+
 }(window.jQuery));
 
 /**
@@ -53137,18 +53137,18 @@ $(function(){
 * Dropdown date and time picker.
 * Converts text input into dropdowns to pick day, month, year, hour, minute and second.
 * Uses momentjs as datetime library http://momentjs.com.
-* For internalization include corresponding file from https://github.com/timrwood/moment/tree/master/lang 
+* For internalization include corresponding file from https://github.com/timrwood/moment/tree/master/lang
 *
 * Confusion at noon and midnight - see http://en.wikipedia.org/wiki/12-hour_clock#Confusion_at_noon_and_midnight
-* In combodate: 
+* In combodate:
 * 12:00 pm --> 12:00 (24-h format, midday)
 * 12:00 am --> 00:00 (24-h format, midnight, start of day)
-* 
+*
 * Differs from momentjs parse rules:
 * 00:00 pm, 12:00 pm --> 12:00 (24-h format, day not change)
 * 00:00 am, 12:00 am --> 00:00 (24-h format, day not change)
-* 
-* 
+*
+*
 * Author: Vitaliy Potapov
 * Project page: http://github.com/vitalets/combodate
 * Copyright (c) 2012 Vitaliy Potapov. Released under MIT License.
@@ -53162,53 +53162,53 @@ $(function(){
             return;
         }
         this.options = $.extend({}, $.fn.combodate.defaults, options, this.$element.data());
-        this.init();  
+        this.init();
      };
 
     Combodate.prototype = {
-        constructor: Combodate, 
+        constructor: Combodate,
         init: function () {
             this.map = {
                 //key   regexp    moment.method
-                day:    ['D',    'date'], 
-                month:  ['M',    'month'], 
-                year:   ['Y',    'year'], 
+                day:    ['D',    'date'],
+                month:  ['M',    'month'],
+                year:   ['Y',    'year'],
                 hour:   ['[Hh]', 'hours'],
-                minute: ['m',    'minutes'], 
+                minute: ['m',    'minutes'],
                 second: ['s',    'seconds'],
-                ampm:   ['[Aa]', ''] 
+                ampm:   ['[Aa]', '']
             };
-            
+
             this.$widget = $('<span class="combodate"></span>').html(this.getTemplate());
-                      
+
             this.initCombos();
-            
-            //update original input on change 
+
+            //update original input on change
             this.$widget.on('change', 'select', $.proxy(function(){
                 this.$element.val(this.getValue());
             }, this));
-            
+
             this.$widget.find('select').css('width', 'auto');
-                                       
-            //hide original input and insert widget                                       
+
+            //hide original input and insert widget
             this.$element.hide().after(this.$widget);
-            
+
             //set initial value
             this.setValue(this.$element.val() || this.options.value);
         },
-        
+
         /*
-         Replace tokens in template with <select> elements 
-        */         
+         Replace tokens in template with <select> elements
+        */
         getTemplate: function() {
             var tpl = this.options.template;
 
             //first pass
             $.each(this.map, function(k, v) {
-                v = v[0]; 
+                v = v[0];
                 var r = new RegExp(v+'+'),
                     token = v.length > 1 ? v.substring(1, 2) : v;
-                    
+
                 tpl = tpl.replace(r, '{'+token+'}');
             });
 
@@ -53219,16 +53219,16 @@ $(function(){
             $.each(this.map, function(k, v) {
                 v = v[0];
                 var token = v.length > 1 ? v.substring(1, 2) : v;
-                    
+
                 tpl = tpl.replace('{'+token+'}', '<select class="'+k+'"></select>');
-            });   
+            });
 
             return tpl;
         },
-        
+
         /*
-         Initialize combos that presents in template 
-        */        
+         Initialize combos that presents in template
+        */
         initCombos: function() {
             var that = this;
             $.each(this.map, function(k, v) {
@@ -53236,42 +53236,42 @@ $(function(){
                if($c.length) {
                    that['$'+k] = $c; //set properties like this.$day, this.$month etc.
                    f = 'fill' + k.charAt(0).toUpperCase() + k.slice(1); //define method name to fill items, e.g `fillDays`
-                   items = that[f](); 
+                   items = that[f]();
                    that['$'+k].html(that.renderItems(items));
                }
-            }); 
+            });
         },
-        
+
         /*
-         Initialize items of combos. Handles `firstItem` option 
+         Initialize items of combos. Handles `firstItem` option
         */
         initItems: function(key) {
             var values = [],
                 relTime;
-                
+
             if(this.options.firstItem === 'name') {
                 //need both to support moment ver < 2 and  >= 2
-                relTime = moment.relativeTime || moment.langData()._relativeTime; 
+                relTime = moment.relativeTime || moment.langData()._relativeTime;
                 var header = typeof relTime[key] === 'function' ? relTime[key](1, true, key, false) : relTime[key];
-                //take last entry (see momentjs lang files structure) 
-                header = header.split(' ').reverse()[0];                
+                //take last entry (see momentjs lang files structure)
+                header = header.split(' ').reverse()[0];
                 values.push(['', header]);
             } else if(this.options.firstItem === 'empty') {
                 values.push(['', '']);
             }
             return values;
-        },        
-        
+        },
+
         /*
         render items to string of <option> tags
         */
         renderItems: function(items) {
             var str = [];
             for(var i=0; i<items.length; i++) {
-                str.push('<option value="'+items[i][0]+'">'+items[i][1]+'</option>');                
+                str.push('<option value="'+items[i][0]+'">'+items[i][1]+'</option>');
             }
             return str.join("\n");
-        },        
+        },
 
         /*
         fill day
@@ -53279,23 +53279,23 @@ $(function(){
         fillDay: function() {
             var items = this.initItems('d'), name, i,
                 twoDigit = this.options.template.indexOf('DD') !== -1;
-                
+
             for(i=1; i<=31; i++) {
                 name = twoDigit ? this.leadZero(i) : i;
                 items.push([i, name]);
             }
-            return items;        
+            return items;
         },
-        
+
         /*
         fill month
         */
         fillMonth: function() {
-            var items = this.initItems('M'), name, i, 
+            var items = this.initItems('M'), name, i,
                 longNames = this.options.template.indexOf('MMMM') !== -1,
                 shortNames = this.options.template.indexOf('MMM') !== -1,
                 twoDigit = this.options.template.indexOf('MM') !== -1;
-                
+
             for(i=0; i<=11; i++) {
                 if(longNames) {
                     //see https://github.com/timrwood/momentjs.com/pull/36
@@ -53308,27 +53308,27 @@ $(function(){
                     name = i+1;
                 }
                 items.push([i, name]);
-            } 
+            }
             return items;
-        },  
-        
+        },
+
         /*
         fill year
         */
         fillYear: function() {
-            var items = [], name, i, 
+            var items = [], name, i,
                 longNames = this.options.template.indexOf('YYYY') !== -1;
-           
+
             for(i=this.options.maxYear; i>=this.options.minYear; i--) {
                 name = longNames ? i : (i+'').substring(2);
                 items[this.options.yearDescending ? 'push' : 'unshift']([i, name]);
             }
-            
+
             items = this.initItems('y').concat(items);
-            
-            return items;              
-        },    
-        
+
+            return items;
+        },
+
         /*
         fill hour
         */
@@ -53337,16 +53337,16 @@ $(function(){
                 h12 = this.options.template.indexOf('h') !== -1,
                 h24 = this.options.template.indexOf('H') !== -1,
                 twoDigit = this.options.template.toLowerCase().indexOf('hh') !== -1,
-                min = h12 ? 1 : 0, 
+                min = h12 ? 1 : 0,
                 max = h12 ? 12 : 23;
-                
+
             for(i=min; i<=max; i++) {
                 name = twoDigit ? this.leadZero(i) : i;
                 items.push([i, name]);
-            } 
-            return items;                 
-        },    
-        
+            }
+            return items;
+        },
+
         /*
         fill minute
         */
@@ -53357,10 +53357,10 @@ $(function(){
             for(i=0; i<=59; i+= this.options.minuteStep) {
                 name = twoDigit ? this.leadZero(i) : i;
                 items.push([i, name]);
-            }    
-            return items;              
-        },  
-        
+            }
+            return items;
+        },
+
         /*
         fill second
         */
@@ -53371,85 +53371,85 @@ $(function(){
             for(i=0; i<=59; i+= this.options.secondStep) {
                 name = twoDigit ? this.leadZero(i) : i;
                 items.push([i, name]);
-            }    
-            return items;              
-        },  
-        
+            }
+            return items;
+        },
+
         /*
         fill ampm
         */
         fillAmpm: function() {
             var ampmL = this.options.template.indexOf('a') !== -1,
-                ampmU = this.options.template.indexOf('A') !== -1,            
+                ampmU = this.options.template.indexOf('A') !== -1,
                 items = [
                     ['am', ampmL ? 'am' : 'AM'],
                     ['pm', ampmL ? 'pm' : 'PM']
                 ];
-            return items;                              
-        },                                       
-        
+            return items;
+        },
+
         /*
-         Returns current date value from combos. 
+         Returns current date value from combos.
          If format not specified - `options.format` used.
          If format = `null` - Moment object returned.
         */
         getValue: function(format) {
-            var dt, values = {}, 
+            var dt, values = {},
                 that = this,
                 notSelected = false;
-                
-            //getting selected values    
+
+            //getting selected values
             $.each(this.map, function(k, v) {
                 if(k === 'ampm') {
                     return;
                 }
                 var def = k === 'day' ? 1 : 0;
-                  
-                values[k] = that['$'+k] ? parseInt(that['$'+k].val(), 10) : def; 
-                
+
+                values[k] = that['$'+k] ? parseInt(that['$'+k].val(), 10) : def;
+
                 if(isNaN(values[k])) {
                    notSelected = true;
-                   return false; 
+                   return false;
                 }
             });
-            
+
             //if at least one visible combo not selected - return empty string
             if(notSelected) {
                return '';
             }
-            
-            //convert hours 12h --> 24h 
+
+            //convert hours 12h --> 24h
             if(this.$ampm) {
                 //12:00 pm --> 12:00 (24-h format, midday), 12:00 am --> 00:00 (24-h format, midnight, start of day)
                 if(values.hour === 12) {
-                    values.hour = this.$ampm.val() === 'am' ? 0 : 12;                    
+                    values.hour = this.$ampm.val() === 'am' ? 0 : 12;
                 } else {
                     values.hour = this.$ampm.val() === 'am' ? values.hour : values.hour+12;
                 }
-            }    
-            
+            }
+
             dt = moment([values.year, values.month, values.day, values.hour, values.minute, values.second]);
-            
+
             //highlight invalid date
             this.highlight(dt);
-                              
+
             format = format === undefined ? this.options.format : format;
             if(format === null) {
-               return dt.isValid() ? dt : null; 
+               return dt.isValid() ? dt : null;
             } else {
-               return dt.isValid() ? dt.format(format) : ''; 
-            }           
+               return dt.isValid() ? dt.format(format) : '';
+            }
         },
-        
+
         setValue: function(value) {
             if(!value) {
                 return;
             }
-            
+
             var dt = typeof value === 'string' ? moment(value, this.options.format) : moment(value),
                 that = this,
                 values = {};
-            
+
                 //function to find nearest value in select options
                 function getNearest($select, value) {
                     var delta = {};
@@ -53458,23 +53458,23 @@ $(function(){
                         distance;
 
                         if(optValue === '') return;
-                        distance = Math.abs(optValue - value); 
+                        distance = Math.abs(optValue - value);
                         if(typeof delta.distance === 'undefined' || distance < delta.distance) {
                             delta = {value: optValue, distance: distance};
-                        } 
-                    }); 
+                        }
+                    });
                     return delta.value;
-                }             
-            
+                }
+
             if(dt.isValid()) {
                  //read values from date object
                  $.each(this.map, function(k, v) {
                      if(k === 'ampm') {
-                         return; 
+                         return;
                      }
                      values[k] = dt[v[1]]();
                  });
-               
+
                if(this.$ampm) {
                    //12:00 pm --> 12:00 (24-h format, midday), 12:00 am --> 00:00 (24-h format, midnight, start of day)
                    if(values.hour >= 12) {
@@ -53487,29 +53487,29 @@ $(function(){
                        if(values.hour === 0) {
                            values.hour = 12;
                        }
-                   } 
+                   }
                }
-               
+
                $.each(values, function(k, v) {
                    //call val() for each existing combo, e.g. this.$hour.val()
                    if(that['$'+k]) {
-                       
+
                        if(k === 'minute' && that.options.minuteStep > 1 && that.options.roundTime) {
                           v = getNearest(that['$'+k], v);
                        }
-                       
+
                        if(k === 'second' && that.options.secondStep > 1 && that.options.roundTime) {
                           v = getNearest(that['$'+k], v);
-                       }                       
-                       
-                       that['$'+k].val(v);                       
+                       }
+
+                       that['$'+k].val(v);
                    }
                });
-               
+
                this.$element.val(dt.format(this.options.format));
             }
         },
-        
+
         /*
          highlight combos if date is invalid
         */
@@ -53520,29 +53520,29 @@ $(function(){
                 } else {
                     //store original border color
                     if(!this.borderColor) {
-                        this.borderColor = this.$widget.find('select').css('border-color'); 
+                        this.borderColor = this.$widget.find('select').css('border-color');
                     }
                     this.$widget.find('select').css('border-color', 'red');
-                } 
+                }
             } else {
                 if(this.options.errorClass) {
                     this.$widget.removeClass(this.options.errorClass);
                 } else {
                     this.$widget.find('select').css('border-color', this.borderColor);
-                }  
+                }
             }
         },
-        
+
         leadZero: function(v) {
-            return v <= 9 ? '0' + v : v; 
+            return v <= 9 ? '0' + v : v;
         },
-        
+
         destroy: function() {
             this.$widget.remove();
             this.$element.removeData('combodate').show();
         }
-        
-        //todo: clear method        
+
+        //todo: clear method
     };
 
     $.fn.combodate = function ( option ) {
@@ -53552,8 +53552,8 @@ $(function(){
         //getValue returns date as string / object (not jQuery object)
         if(option === 'getValue' && this.length && (d = this.eq(0).data('combodate'))) {
           return d.getValue.apply(d, args);
-        }        
-        
+        }
+
         return this.each(function () {
             var $this = $(this),
             data = $this.data('combodate'),
@@ -53565,15 +53565,15 @@ $(function(){
                 data[option].apply(data, args);
             }
         });
-    };  
-    
+    };
+
     $.fn.combodate.defaults = {
          //in this format value stored in original input
-        format: 'DD-MM-YYYY HH:mm',      
+        format: 'DD-MM-YYYY HH:mm',
         //in this format items in dropdowns are displayed
         template: 'D / MMM / YYYY   H : mm',
-        //initial value, can be `new Date()`    
-        value: null,                       
+        //initial value, can be `new Date()`
+        value: null,
         minYear: 1970,
         maxYear: 2015,
         yearDescending: true,
@@ -53586,19 +53586,19 @@ $(function(){
 
 }(window.jQuery));
 /**
-Combodate input - dropdown date and time picker.    
+Combodate input - dropdown date and time picker.
 Based on [combodate](http://vitalets.github.com/combodate) plugin (included). To use it you should manually include [momentjs](http://momentjs.com).
 
     <script src="js/moment.min.js"></script>
-   
+
 Allows to input:
 
 * only date
-* only time 
-* both date and time  
+* only time
+* both date and time
 
-Please note, that format is taken from momentjs and **not compatible** with bootstrap-datepicker / jquery UI datepicker.  
-Internally value stored as `momentjs` object. 
+Please note, that format is taken from momentjs and **not compatible** with bootstrap-datepicker / jquery UI datepicker.
+Internally value stored as `momentjs` object.
 
 @class combodate
 @extends abstractinput
@@ -53609,9 +53609,9 @@ Internally value stored as `momentjs` object.
 <script>
 $(function(){
     $('#dob').editable({
-        format: 'YYYY-MM-DD',    
-        viewformat: 'DD.MM.YYYY',    
-        template: 'D / MMMM / YYYY',    
+        format: 'YYYY-MM-DD',
+        viewformat: 'DD.MM.YYYY',
+        template: 'D / MMMM / YYYY',
         combodate: {
                 minYear: 2000,
                 maxYear: 2015,
@@ -53627,15 +53627,15 @@ $(function(){
 
 (function ($) {
     "use strict";
-    
+
     var Constructor = function (options) {
         this.init('combodate', options, Constructor.defaults);
-        
+
         //by default viewformat equals to format
         if(!this.options.viewformat) {
             this.options.viewformat = this.options.format;
-        }        
-        
+        }
+
         //try parse combodate config defined as json string in data-combodate
         options.combodate = $.fn.editableutils.tryParseJson(options.combodate, true);
 
@@ -53646,19 +53646,19 @@ $(function(){
         });
     };
 
-    $.fn.editableutils.inherit(Constructor, $.fn.editabletypes.abstractinput);    
-    
+    $.fn.editableutils.inherit(Constructor, $.fn.editabletypes.abstractinput);
+
     $.extend(Constructor.prototype, {
         render: function () {
             this.$input.combodate(this.options.combodate);
-                    
+
             if($.fn.editableform.engine === 'bs3') {
                 this.$input.siblings().find('select').addClass('form-control');
             }
-            
+
             if(this.options.inputclass) {
                 this.$input.siblings().find('select').addClass(this.options.inputclass);
-            }            
+            }
             //"clear" link
             /*
             if(this.options.clear) {
@@ -53667,117 +53667,117 @@ $(function(){
                     e.stopPropagation();
                     this.clear();
                 }, this));
-                
-                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));  
-            } 
-            */               
+
+                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));
+            }
+            */
         },
-        
+
         value2html: function(value, element) {
             var text = value ? value.format(this.options.viewformat) : '';
             //$(element).text(text);
-            Constructor.superclass.value2html.call(this, text, element);  
+            Constructor.superclass.value2html.call(this, text, element);
         },
 
         html2value: function(html) {
             return html ? moment(html, this.options.viewformat) : null;
-        },   
-        
+        },
+
         value2str: function(value) {
             return value ? value.format(this.options.format) : '';
-       }, 
-       
+       },
+
        str2value: function(str) {
            return str ? moment(str, this.options.format) : null;
-       }, 
-       
+       },
+
        value2submit: function(value) {
            return this.value2str(value);
-       },                    
+       },
 
        value2input: function(value) {
            this.$input.combodate('setValue', value);
        },
-        
-       input2value: function() { 
+
+       input2value: function() {
            return this.$input.combodate('getValue', null);
-       },       
-       
+       },
+
        activate: function() {
            this.$input.siblings('.combodate').find('select').eq(0).focus();
        },
-       
+
        /*
        clear:  function() {
           this.$input.data('datepicker').date = null;
           this.$input.find('.active').removeClass('active');
        },
        */
-       
+
        autosubmit: function() {
-           
+
        }
 
     });
-    
+
     Constructor.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <input type="text">
-        **/         
+        **/
         tpl:'<input type="text">',
         /**
-        @property inputclass 
+        @property inputclass
         @default null
-        **/         
+        **/
         inputclass: null,
         /**
         Format used for sending value to server. Also applied when converting date from <code>data-value</code> attribute.<br>
-        See list of tokens in [momentjs docs](http://momentjs.com/docs/#/parsing/string-format)  
-        
-        @property format 
+        See list of tokens in [momentjs docs](http://momentjs.com/docs/#/parsing/string-format)
+
+        @property format
         @type string
         @default YYYY-MM-DD
-        **/         
+        **/
         format:'YYYY-MM-DD',
         /**
-        Format used for displaying date. Also applied when converting date from element's text on init.   
+        Format used for displaying date. Also applied when converting date from element's text on init.
         If not specified equals to `format`.
-        
-        @property viewformat 
+
+        @property viewformat
         @type string
         @default null
-        **/          
-        viewformat: null,        
+        **/
+        viewformat: null,
         /**
         Template used for displaying dropdowns.
-        
-        @property template 
+
+        @property template
         @type string
         @default D / MMM / YYYY
-        **/          
-        template: 'D / MMM / YYYY',  
+        **/
+        template: 'D / MMM / YYYY',
         /**
         Configuration of combodate.
         Full list of options: http://vitalets.github.com/combodate/#docs
-        
-        @property combodate 
+
+        @property combodate
         @type object
         @default null
         **/
         combodate: null
-        
+
         /*
         (not implemented yet)
-        Text shown as clear date button. 
+        Text shown as clear date button.
         If <code>false</code> clear button will not be rendered.
-        
-        @property clear 
+
+        @property clear
         @type boolean|string
-        @default 'x clear'         
+        @default 'x clear'
         */
         //clear: '&times; clear'
-    });   
+    });
 
     $.fn.editabletypes.combodate = Constructor;
 
@@ -53788,67 +53788,67 @@ Editableform based on Twitter Bootstrap 3
 */
 (function ($) {
     "use strict";
-    
+
     //store parent methods
     var pInitInput = $.fn.editableform.Constructor.prototype.initInput;
-    
+
     $.extend($.fn.editableform.Constructor.prototype, {
         initTemplate: function() {
-            this.$form = $($.fn.editableform.template); 
+            this.$form = $($.fn.editableform.template);
             this.$form.find('.control-group').addClass('form-group');
             this.$form.find('.editable-error-block').addClass('help-block');
         },
-        initInput: function() {  
+        initInput: function() {
             pInitInput.apply(this);
 
             //for bs3 set default class `input-sm` to standard inputs
             var emptyInputClass = this.input.options.inputclass === null || this.input.options.inputclass === false;
             var defaultClass = 'input-sm';
-            
+
             //bs3 add `form-control` class to standard inputs
-            var stdtypes = 'text,select,textarea,password,email,url,tel,number,range,time,typeaheadjs'.split(','); 
+            var stdtypes = 'text,select,textarea,password,email,url,tel,number,range,time,typeaheadjs'.split(',');
             if(~$.inArray(this.input.type, stdtypes)) {
                 this.input.$input.addClass('form-control');
                 if(emptyInputClass) {
                     this.input.options.inputclass = defaultClass;
                     this.input.$input.addClass(defaultClass);
                 }
-            }             
-        
+            }
+
             //apply bs3 size class also to buttons (to fit size of control)
             var $btn = this.$form.find('.editable-buttons');
             var classes = emptyInputClass ? [defaultClass] : this.input.options.inputclass.split(' ');
             for(var i=0; i<classes.length; i++) {
                 // `btn-sm` is default now
                 /*
-                if(classes[i].toLowerCase() === 'input-sm') { 
-                    $btn.find('button').addClass('btn-sm');  
+                if(classes[i].toLowerCase() === 'input-sm') {
+                    $btn.find('button').addClass('btn-sm');
                 }
                 */
                 if(classes[i].toLowerCase() === 'input-lg') {
-                    $btn.find('button').removeClass('btn-sm').addClass('btn-lg'); 
+                    $btn.find('button').removeClass('btn-sm').addClass('btn-lg');
                 }
             }
         }
-    });    
-    
+    });
+
     //buttons
-    $.fn.editableform.buttons = 
+    $.fn.editableform.buttons =
       '<button type="submit" class="btn btn-primary btn-sm editable-submit">'+
         '<i class="icon-ok"></i>'+
       '</button>'+
       '<button type="button" class="btn btn-default btn-sm editable-cancel">'+
         '<i class="icon-remove"></i>'+
-      '</button>';         
-    
+      '</button>';
+
     //error classes
     $.fn.editableform.errorGroupClass = 'has-error';
-    $.fn.editableform.errorBlockClass = null;  
+    $.fn.editableform.errorBlockClass = null;
     //engine
-    $.fn.editableform.engine = 'bs3';  
+    $.fn.editableform.engine = 'bs3';
 }(window.jQuery));
 /**
-* Editable Popover3 (for Bootstrap 3) 
+* Editable Popover3 (for Bootstrap 3)
 * ---------------------
 * requires bootstrap-popover.js
 */
@@ -53869,49 +53869,49 @@ Editableform based on Twitter Bootstrap 3
                 content: ' ',
                 template: this.defaults.template
             });
-            
+
             //as template property is used in inputs, hide it from popover
             var t;
             if(this.$element.data('template')) {
                t = this.$element.data('template');
-               this.$element.removeData('template');  
-            } 
-            
+               this.$element.removeData('template');
+            }
+
             this.call(this.containerOptions);
-            
+
             if(t) {
                //restore data('template')
-               this.$element.data('template', t); 
+               this.$element.data('template', t);
             }
-        }, 
-        
+        },
+
         /* show */
         innerShow: function () {
-            this.call('show');                
-        },  
-        
+            this.call('show');
+        },
+
         /* hide */
         innerHide: function () {
-            this.call('hide');       
-        }, 
-        
+            this.call('hide');
+        },
+
         /* destroy */
         innerDestroy: function() {
             this.call('destroy');
-        },                               
-        
+        },
+
         setContainerOption: function(key, value) {
-            this.container().options[key] = value; 
-        },               
+            this.container().options[key] = value;
+        },
 
         /**
         * move popover to new position. This function mainly copied from bootstrap-popover.
         */
         /*jshint laxcomma: true, eqeqeq: false*/
-        setPosition: function () { 
+        setPosition: function () {
 
             (function() {
-            /*    
+            /*
                 var $tip = this.tip()
                 , inside
                 , pos
@@ -53929,14 +53929,14 @@ Editableform based on Twitter Bootstrap 3
                 this.options.placement;
 
                 inside = /in/.test(placement);
-               
+
                 $tip
               //  .detach()
               //vitalets: remove any placement class because otherwise they dont influence on re-positioning of visible popover
                 .removeClass('top right bottom left')
                 .css({ top: 0, left: 0, display: 'block' });
               //  .insertAfter(this.$element);
-               
+
                 pos = this.getPosition(inside);
 
                 actualWidth = $tip[0].offsetWidth;
@@ -54022,27 +54022,27 @@ Editableform based on Twitter Bootstrap 3
                 .addClass(placement)
                 .addClass('in');
            */
-                     
-           
+
+
             var $tip = this.tip();
-            
+
             var placement = typeof this.options.placement == 'function' ?
                 this.options.placement.call(this, $tip[0], this.$element[0]) :
-                this.options.placement;            
-            
-            
+                this.options.placement;
+
+
             var pos = this.getPosition();
             var actualWidth = $tip[0].offsetWidth;
             var actualHeight = $tip[0].offsetHeight;
             var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight);
 
-            this.applyPlacement(calculatedOffset, placement);            
-           
-           
-                
+            this.applyPlacement(calculatedOffset, placement);
+
+
+
             }).call(this.container());
-          /*jshint laxcomma: false, eqeqeq: true*/  
-        }            
+          /*jshint laxcomma: false, eqeqeq: true*/
+        }
     });
 
 }(window.jQuery));
@@ -55303,11 +55303,11 @@ Editableform based on Twitter Bootstrap 3
 }( window.jQuery ));
 
 /**
-Bootstrap-datepicker.  
-Description and examples: https://github.com/eternicode/bootstrap-datepicker.  
+Bootstrap-datepicker.
+Description and examples: https://github.com/eternicode/bootstrap-datepicker.
 For **i18n** you should include js file from here: https://github.com/eternicode/bootstrap-datepicker/tree/master/js/locales
-and set `language` option.  
-Since 1.4.0 date has different appearance in **popup** and **inline** modes. 
+and set `language` option.
+Since 1.4.0 date has different appearance in **popup** and **inline** modes.
 
 @class date
 @extends abstractinput
@@ -55317,8 +55317,8 @@ Since 1.4.0 date has different appearance in **popup** and **inline** modes.
 <script>
 $(function(){
     $('#dob').editable({
-        format: 'yyyy-mm-dd',    
-        viewformat: 'dd/mm/yyyy',    
+        format: 'yyyy-mm-dd',
+        viewformat: 'dd/mm/yyyy',
         datepicker: {
                 weekStart: 1
            }
@@ -55329,20 +55329,20 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
+
     //store bootstrap-datepicker as bdateicker to exclude conflict with jQuery UI one
     $.fn.bdatepicker = $.fn.datepicker.noConflict();
     if(!$.fn.datepicker) { //if there were no other datepickers, keep also original name
-        $.fn.datepicker = $.fn.bdatepicker;    
-    }    
-    
+        $.fn.datepicker = $.fn.bdatepicker;
+    }
+
     var Date = function (options) {
         this.init('date', options, Date.defaults);
         this.initPicker(options, Date.defaults);
     };
 
-    $.fn.editableutils.inherit(Date, $.fn.editabletypes.abstractinput);    
-    
+    $.fn.editableutils.inherit(Date, $.fn.editabletypes.abstractinput);
+
     $.extend(Date.prototype, {
         initPicker: function(options, defaults) {
             //'format' is set directly from settings or data-* attributes
@@ -55351,30 +55351,30 @@ $(function(){
             if(!this.options.viewformat) {
                 this.options.viewformat = this.options.format;
             }
-            
+
             //try parse datepicker config defined as json string in data-datepicker
             options.datepicker = $.fn.editableutils.tryParseJson(options.datepicker, true);
-            
+
             //overriding datepicker config (as by default jQuery extend() is not recursive)
             //since 1.4 datepicker internally uses viewformat instead of format. Format is for submit only
             this.options.datepicker = $.extend({}, defaults.datepicker, options.datepicker, {
                 format: this.options.viewformat
             });
-            
+
             //language
-            this.options.datepicker.language = this.options.datepicker.language || 'en'; 
+            this.options.datepicker.language = this.options.datepicker.language || 'en';
 
             //store DPglobal
-            this.dpg = $.fn.bdatepicker.DPGlobal; 
+            this.dpg = $.fn.bdatepicker.DPGlobal;
 
             //store parsed formats
             this.parsedFormat = this.dpg.parseFormat(this.options.format);
-            this.parsedViewFormat = this.dpg.parseFormat(this.options.viewformat);            
+            this.parsedViewFormat = this.dpg.parseFormat(this.options.viewformat);
         },
-        
+
         render: function () {
             this.$input.bdatepicker(this.options.datepicker);
-            
+
             //"clear" link
             if(this.options.clear) {
                 this.$clear = $('<a href="#"></a>').html(this.options.clear).click($.proxy(function(e){
@@ -55382,39 +55382,39 @@ $(function(){
                     e.stopPropagation();
                     this.clear();
                 }, this));
-                
-                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));  
-            }                
+
+                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));
+            }
         },
-        
+
         value2html: function(value, element) {
            var text = value ? this.dpg.formatDate(value, this.parsedViewFormat, this.options.datepicker.language) : '';
-           Date.superclass.value2html.call(this, text, element); 
+           Date.superclass.value2html.call(this, text, element);
         },
 
         html2value: function(html) {
             return this.parseDate(html, this.parsedViewFormat);
-        },   
+        },
 
         value2str: function(value) {
             return value ? this.dpg.formatDate(value, this.parsedFormat, this.options.datepicker.language) : '';
-        }, 
+        },
 
         str2value: function(str) {
             return this.parseDate(str, this.parsedFormat);
-        }, 
+        },
 
         value2submit: function(value) {
             return this.value2str(value);
-        },                    
+        },
 
         value2input: function(value) {
             this.$input.bdatepicker('update', value);
         },
 
-        input2value: function() { 
+        input2value: function() {
             return this.$input.data('datepicker').date;
-        },       
+        },
 
         activate: function() {
         },
@@ -55423,7 +55423,7 @@ $(function(){
             this.$input.data('datepicker').date = null;
             this.$input.find('.active').removeClass('active');
             if(!this.options.showbuttons) {
-                this.$input.closest('form').submit(); 
+                this.$input.closest('form').submit();
             }
         },
 
@@ -55447,11 +55447,11 @@ $(function(){
            });
            */
        },
-       
+
        /*
         For incorrect date bootstrap-datepicker returns current date that is not suitable
         for datefield.
-        This function returns null for incorrect date.  
+        This function returns null for incorrect date.
        */
        parseDate: function(str, format) {
            var date = null, formattedBack;
@@ -55471,29 +55471,29 @@ $(function(){
 
     Date.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <div></div>
-        **/         
+        **/
         tpl:'<div class="editable-date well"></div>',
         /**
-        @property inputclass 
+        @property inputclass
         @default null
         **/
         inputclass: null,
         /**
         Format used for sending value to server. Also applied when converting date from <code>data-value</code> attribute.<br>
-        Possible tokens are: <code>d, dd, m, mm, yy, yyyy</code>  
+        Possible tokens are: <code>d, dd, m, mm, yy, yyyy</code>
 
-        @property format 
+        @property format
         @type string
         @default yyyy-mm-dd
         **/
         format:'yyyy-mm-dd',
         /**
-        Format used for displaying date. Also applied when converting date from element's text on init.   
+        Format used for displaying date. Also applied when converting date from element's text on init.
         If not specified equals to <code>format</code>
 
-        @property viewformat 
+        @property viewformat
         @type string
         @default null
         **/
@@ -55502,7 +55502,7 @@ $(function(){
         Configuration of datepicker.
         Full list of options: http://vitalets.github.com/bootstrap-datepicker
 
-        @property datepicker 
+        @property datepicker
         @type object
         @default {
             weekStart: 0,
@@ -55518,10 +55518,10 @@ $(function(){
             autoclose: false
         },
         /**
-        Text shown as clear date button. 
+        Text shown as clear date button.
         If <code>false</code> clear button will not be rendered.
 
-        @property clear 
+        @property clear
         @type boolean|string
         @default 'x clear'
         **/
@@ -55534,7 +55534,7 @@ $(function(){
 
 /**
 Bootstrap datefield input - modification for inline mode.
-Shows normal <input type="text"> and binds popup datepicker.  
+Shows normal <input type="text"> and binds popup datepicker.
 Automatically shown in inline mode.
 
 @class datefield
@@ -55544,63 +55544,63 @@ Automatically shown in inline mode.
 **/
 (function ($) {
     "use strict";
-    
+
     var DateField = function (options) {
         this.init('datefield', options, DateField.defaults);
         this.initPicker(options, DateField.defaults);
     };
 
-    $.fn.editableutils.inherit(DateField, $.fn.editabletypes.date);    
-    
+    $.fn.editableutils.inherit(DateField, $.fn.editabletypes.date);
+
     $.extend(DateField.prototype, {
         render: function () {
             this.$input = this.$tpl.find('input');
             this.setClass();
             this.setAttr('placeholder');
-    
-            //bootstrap-datepicker is set `bdateicker` to exclude conflict with jQuery UI one. (in date.js)        
+
+            //bootstrap-datepicker is set `bdateicker` to exclude conflict with jQuery UI one. (in date.js)
             this.$tpl.bdatepicker(this.options.datepicker);
-            
+
             //need to disable original event handlers
             this.$input.off('focus keydown');
-            
+
             //update value of datepicker
             this.$input.keyup($.proxy(function(){
                this.$tpl.removeData('date');
                this.$tpl.bdatepicker('update');
             }, this));
-            
-        },   
-        
+
+        },
+
        value2input: function(value) {
            this.$input.val(value ? this.dpg.formatDate(value, this.parsedViewFormat, this.options.datepicker.language) : '');
            this.$tpl.bdatepicker('update');
        },
-        
-       input2value: function() { 
+
+       input2value: function() {
            return this.html2value(this.$input.val());
-       },              
-        
+       },
+
        activate: function() {
            $.fn.editabletypes.text.prototype.activate.call(this);
        },
-       
+
        autosubmit: function() {
-         //reset autosubmit to empty  
+         //reset autosubmit to empty
        }
     });
-    
+
     DateField.defaults = $.extend({}, $.fn.editabletypes.date.defaults, {
         /**
-        @property tpl 
-        **/         
+        @property tpl
+        **/
         tpl:'<div class="input-append date"><input type="text"/><span class="add-on"><i class="icon-th"></i></span></div>',
         /**
-        @property inputclass 
+        @property inputclass
         @default 'input-small'
-        **/         
+        **/
         inputclass: 'input-small',
-        
+
         /* datepicker config */
         datepicker: {
             weekStart: 0,
@@ -55609,20 +55609,20 @@ Automatically shown in inline mode.
             autoclose: true
         }
     });
-    
+
     $.fn.editabletypes.datefield = DateField;
 
 }(window.jQuery));
 /**
-Bootstrap-datetimepicker.  
-Based on [smalot bootstrap-datetimepicker plugin](https://github.com/smalot/bootstrap-datetimepicker). 
+Bootstrap-datetimepicker.
+Based on [smalot bootstrap-datetimepicker plugin](https://github.com/smalot/bootstrap-datetimepicker).
 Before usage you should manually include dependent js and css:
 
-    <link href="css/datetimepicker.css" rel="stylesheet" type="text/css"></link> 
+    <link href="css/datetimepicker.css" rel="stylesheet" type="text/css"></link>
     <script src="js/bootstrap-datetimepicker.js"></script>
 
 For **i18n** you should include js file from here: https://github.com/smalot/bootstrap-datetimepicker/tree/master/js/locales
-and set `language` option.  
+and set `language` option.
 
 @class datetime
 @extends abstractinput
@@ -55633,8 +55633,8 @@ and set `language` option.
 <script>
 $(function(){
     $('#last_seen').editable({
-        format: 'yyyy-mm-dd hh:ii',    
-        viewformat: 'dd/mm/yyyy hh:ii',    
+        format: 'yyyy-mm-dd hh:ii',
+        viewformat: 'dd/mm/yyyy hh:ii',
         datetimepicker: {
                 weekStart: 1
            }
@@ -55661,7 +55661,7 @@ $(function(){
             if(!this.options.viewformat) {
                 this.options.viewformat = this.options.format;
             }
-            
+
             //try parse datetimepicker config defined as json string in data-datetimepicker
             options.datetimepicker = $.fn.editableutils.tryParseJson(options.datetimepicker, true);
 
@@ -55672,10 +55672,10 @@ $(function(){
             });
 
             //language
-            this.options.datetimepicker.language = this.options.datetimepicker.language || 'en'; 
+            this.options.datetimepicker.language = this.options.datetimepicker.language || 'en';
 
             //store DPglobal
-            this.dpg = $.fn.datetimepicker.DPGlobal; 
+            this.dpg = $.fn.datetimepicker.DPGlobal;
 
             //store parsed formats
             this.parsedFormat = this.dpg.parseFormat(this.options.format, this.options.formatType);
@@ -55703,7 +55703,7 @@ $(function(){
                     this.clear();
                 }, this));
 
-                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));  
+                this.$tpl.parent().append($('<div class="editable-clear">').append(this.$clear));
             }
         },
 
@@ -55719,7 +55719,7 @@ $(function(){
 
         html2value: function(html) {
             //parseDate return utc date!
-            var value = this.parseDate(html, this.parsedViewFormat); 
+            var value = this.parseDate(html, this.parsedViewFormat);
             return value ? this.fromUTC(value) : null;
         },
 
@@ -55744,7 +55744,7 @@ $(function(){
            }
        },
 
-       input2value: function() { 
+       input2value: function() {
            //date may be cleared, in that case getDate() triggers error
            var dt = this.$input.data('datetimepicker');
            return dt.date ? dt.getDate() : null;
@@ -55757,8 +55757,8 @@ $(function(){
           this.$input.data('datetimepicker').date = null;
           this.$input.find('.active').removeClass('active');
           if(!this.options.showbuttons) {
-             this.$input.closest('form').submit(); 
-          }          
+             this.$input.closest('form').submit();
+          }
        },
 
        autosubmit: function() {
@@ -55772,18 +55772,18 @@ $(function(){
 
        //convert date from local to utc
        toUTC: function(value) {
-         return value ? new Date(value.valueOf() - value.getTimezoneOffset() * 60000) : value;  
+         return value ? new Date(value.valueOf() - value.getTimezoneOffset() * 60000) : value;
        },
 
        //convert date from utc to local
        fromUTC: function(value) {
-         return value ? new Date(value.valueOf() + value.getTimezoneOffset() * 60000) : value;  
+         return value ? new Date(value.valueOf() + value.getTimezoneOffset() * 60000) : value;
        },
 
        /*
         For incorrect date bootstrap-datetimepicker returns current date that is not suitable
         for datetimefield.
-        This function returns null for incorrect date.  
+        This function returns null for incorrect date.
        */
        parseDate: function(str, format) {
            var date = null, formattedBack;
@@ -55793,7 +55793,7 @@ $(function(){
                    formattedBack = this.dpg.formatDate(date, format, this.options.datetimepicker.language, this.options.formatType);
                    if(str !== formattedBack) {
                        date = null;
-                   } 
+                   }
                }
            }
            return date;
@@ -55803,30 +55803,30 @@ $(function(){
 
     DateTime.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         /**
-        @property tpl 
+        @property tpl
         @default <div></div>
-        **/         
+        **/
         tpl:'<div class="editable-date well"></div>',
         /**
-        @property inputclass 
+        @property inputclass
         @default null
         **/
         inputclass: null,
         /**
         Format used for sending value to server. Also applied when converting date from <code>data-value</code> attribute.<br>
-        Possible tokens are: <code>d, dd, m, mm, yy, yyyy, h, i</code>  
-        
-        @property format 
+        Possible tokens are: <code>d, dd, m, mm, yy, yyyy, h, i</code>
+
+        @property format
         @type string
         @default yyyy-mm-dd hh:ii
-        **/         
+        **/
         format:'yyyy-mm-dd hh:ii',
         formatType:'standard',
         /**
-        Format used for displaying date. Also applied when converting date from element's text on init.   
+        Format used for displaying date. Also applied when converting date from element's text on init.
         If not specified equals to <code>format</code>
-        
-        @property viewformat 
+
+        @property viewformat
         @type string
         @default null
         **/
@@ -55835,7 +55835,7 @@ $(function(){
         Configuration of datetimepicker.
         Full list of options: https://github.com/smalot/bootstrap-datetimepicker
 
-        @property datetimepicker 
+        @property datetimepicker
         @type object
         @default { }
         **/
@@ -55844,10 +55844,10 @@ $(function(){
             autoclose: false
         },
         /**
-        Text shown as clear date button. 
+        Text shown as clear date button.
         If <code>false</code> clear button will not be rendered.
 
-        @property clear 
+        @property clear
         @type boolean|string
         @default 'x clear'
         **/
@@ -55859,7 +55859,7 @@ $(function(){
 }(window.jQuery));
 /**
 Bootstrap datetimefield input - datetime input for inline mode.
-Shows normal <input type="text"> and binds popup datetimepicker.  
+Shows normal <input type="text"> and binds popup datetimepicker.
 Automatically shown in inline mode.
 
 @class datetimefield
@@ -55868,69 +55868,69 @@ Automatically shown in inline mode.
 **/
 (function ($) {
     "use strict";
-    
+
     var DateTimeField = function (options) {
         this.init('datetimefield', options, DateTimeField.defaults);
         this.initPicker(options, DateTimeField.defaults);
     };
 
     $.fn.editableutils.inherit(DateTimeField, $.fn.editabletypes.datetime);
-    
+
     $.extend(DateTimeField.prototype, {
         render: function () {
             this.$input = this.$tpl.find('input');
             this.setClass();
             this.setAttr('placeholder');
-            
+
             this.$tpl.datetimepicker(this.options.datetimepicker);
-            
+
             //need to disable original event handlers
             this.$input.off('focus keydown');
-            
+
             //update value of datepicker
             this.$input.keyup($.proxy(function(){
                this.$tpl.removeData('date');
                this.$tpl.datetimepicker('update');
             }, this));
-            
-        },   
-      
+
+        },
+
        value2input: function(value) {
            this.$input.val(this.value2html(value));
            this.$tpl.datetimepicker('update');
        },
-        
-       input2value: function() { 
+
+       input2value: function() {
            return this.html2value(this.$input.val());
-       },              
-        
+       },
+
        activate: function() {
            $.fn.editabletypes.text.prototype.activate.call(this);
        },
-       
+
        autosubmit: function() {
-         //reset autosubmit to empty  
+         //reset autosubmit to empty
        }
     });
-    
+
     DateTimeField.defaults = $.extend({}, $.fn.editabletypes.datetime.defaults, {
         /**
-        @property tpl 
-        **/         
+        @property tpl
+        **/
         tpl:'<div class="input-append date"><input type="text"/><span class="add-on"><i class="icon-th"></i></span></div>',
         /**
-        @property inputclass 
+        @property inputclass
         @default 'input-medium'
-        **/         
+        **/
         inputclass: 'input-medium',
-        
+
         /* datetimepicker config */
         datetimepicker:{
             todayHighlight: false,
             autoclose: true
         }
     });
-    
+
     $.fn.editabletypes.datetimefield = DateTimeField;
 
 }(window.jQuery));
@@ -55949,8 +55949,8 @@ Automatically shown in inline mode.
         url: '/post',
         title: 'Enter city, street and building #',
         value: {
-            city: "Moscow", 
-            street: "Lenina", 
+            city: "Moscow",
+            street: "Lenina",
             building: "15"
         }
     });
@@ -56118,7 +56118,7 @@ $(function(){
         $('#user .editable').editable('toggleDisabled');
     });
 
-    //editables 
+    //editables
     $('#username').editable({
         type: 'text',
         pk: 1,
@@ -56272,33 +56272,33 @@ $(function(){
  * to offer multiple easing options
  *
  * TERMS OF USE - jQuery Easing
- * 
- * Open source under the BSD License. 
- * 
+ *
+ * Open source under the BSD License.
+ *
  * Copyright © 2008 George McGinley Smith
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
+ *
+ * Redistributions of source code must retain the above copyright notice, this list of
  * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
+ * Redistributions in binary form must reproduce the above copyright notice, this list
+ * of conditions and the following disclaimer in the documentation and/or other materials
  * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
+ *
+ * Neither the name of the author nor the names of contributors may be used to endorse
  * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
  *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
 */
 
@@ -56414,7 +56414,7 @@ jQuery.extend( jQuery.easing,
 		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 	},
 	easeInOutBack: function (x, t, b, c, d, s) {
-		if (s == undefined) s = 1.70158; 
+		if (s == undefined) s = 1.70158;
 		if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
 		return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
 	},
@@ -56441,33 +56441,33 @@ jQuery.extend( jQuery.easing,
 /*
  *
  * TERMS OF USE - EASING EQUATIONS
- * 
- * Open source under the BSD License. 
- * 
+ *
+ * Open source under the BSD License.
+ *
  * Copyright © 2001 Robert Penner
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
+ *
+ * Redistributions of source code must retain the above copyright notice, this list of
  * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
+ * Redistributions in binary form must reproduce the above copyright notice, this list
+ * of conditions and the following disclaimer in the documentation and/or other materials
  * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
+ *
+ * Neither the name of the author nor the names of contributors may be used to endorse
  * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
  *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
 ;
@@ -56597,14 +56597,14 @@ $.fn.metadata = function( opts ){
 /*!
  * iButton jQuery Plug-in
  *
- * Copyright 2011 Giva, Inc. (http://www.givainc.com/labs/) 
- * 
+ * Copyright 2011 Giva, Inc. (http://www.givainc.com/labs/)
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * 	http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56623,17 +56623,17 @@ $.fn.metadata = function( opts ){
 			$.extend(defaults, options);
 		}
 	};
-	
+
 	$.fn.iButton = function(options) {
 		var method = typeof arguments[0] == "string" && arguments[0];
 		var args = method && Array.prototype.slice.call(arguments, 1) || arguments;
 		// get a reference to the first iButton found
 		var self = (this.length == 0) ? null : $.data(this[0], "iButton");
-		
+
 		// if a method is supplied, execute it for non-empty results
 		if( self && method && this.length ){
 
-			// if request a copy of the object, return it			
+			// if request a copy of the object, return it
 			if( method.toLowerCase() == "object" ) return self;
 			// if method is defined, run it and return either it's results or the chain
 			else if( self[method] ){
@@ -56672,7 +56672,7 @@ $.fn.metadata = function( opts ){
 		};
 	};
 
-	// count instances	
+	// count instances
 	var counter = 0;
 	// detect iPhone
 	var iButton = function (input, options){
@@ -56697,17 +56697,17 @@ $.fn.metadata = function( opts ){
 
 		// store a reference to this marquee
 		$.data($input[0], "iButton", self);
-		
+
 		// if using the "auto" setting, then don't resize handle or container if using the default label (since we'll trust the CSS)
 		if( options.resizeHandle == "auto" ) options.resizeHandle = !bDefaultLabelsUsed;
 		if( options.resizeContainer == "auto" ) options.resizeContainer = !bDefaultLabelsUsed;
-		
+
 		// toggles the state of a button (or can turn on/off)
 		this.toggle = function (t){
 			var toggle = (arguments.length > 0) ? t : !$input[0].checked;
 			$input.prop("checked", toggle).trigger("change");
 		};
-		
+
 		// disable/enable the control
 		this.disable = function (t){
 			var toggle = (arguments.length > 0) ? t : !disabled;
@@ -56720,12 +56720,12 @@ $.fn.metadata = function( opts ){
 			// run callback
 			if( $.isFunction(options.disable) ) options.disable.apply(self, [disabled, $input, options]);
 		};
-		
+
 		// repaint the button
 		this.repaint = function (){
 			positionHandle();
 		};
-		
+
 		// this will destroy the iButton style
 		this.destroy = function (){
 			// remove behaviors
@@ -56762,7 +56762,7 @@ $.fn.metadata = function( opts ){
 			width.onspan = $onspan.outerWidth();
 			width.offspan = $offspan.outerWidth();
 		}
-			
+
 		// automatically resize the handle
         if( options.resizeHandle ){
             if (options.handleWidth) {
@@ -56791,7 +56791,7 @@ $.fn.metadata = function( opts ){
 		}
 
 		var handleRight = width.container - width.handle - 5;
-    
+
 		var positionHandle = function (animate){
 			var checked = $input[0].checked
 				, x = (checked) ? handleRight : 0
@@ -56810,9 +56810,9 @@ $.fn.metadata = function( opts ){
 			}
 		};
 
-		// place the buttons in their default location	
+		// place the buttons in their default location
 		positionHandle(false);
-		
+
 		var getDragPos = function(e){
 			return e.pageX || ((e.originalEvent.changedTouches) ? e.originalEvent.changedTouches[0].pageX : 0);
 		};
@@ -56821,7 +56821,7 @@ $.fn.metadata = function( opts ){
 		$container.bind("mousedown.iButton touchstart.iButton", function(e) {
 			// abort if disabled or allow clicking the input to toggle the status (if input is visible)
 			if( $(e.target).is(allow) || disabled || (!options.allowRadioUncheck && $input.is(":radio:checked")) ) return;
-			
+
 			e.preventDefault();
 			mouse.clicked = $handle;
 			dragStart.position = getDragPos(e);
@@ -56830,41 +56830,41 @@ $.fn.metadata = function( opts ){
 			return false;
 		});
 
-		// make sure dragging support is enabled		
+		// make sure dragging support is enabled
 		if( options.enableDrag ){
 			// monitor mouse movement on the page
 			$(document).bind("mousemove.iButton_" + id + " touchmove.iButton_" + id, function(e) {
 				// if we haven't clicked on the container, cancel event
 				if( mouse.clicked != $handle ){ return }
 				e.preventDefault();
-				
+
 				var x = getDragPos(e);
 				if( x != dragStart.offset ){
 					mouse.dragging = true;
 					$container.addClass(options.classHandleActive);
 				}
-	
-				// make sure number is between 0 and 1			
+
+				// make sure number is between 0 and 1
 				var pct = Math.min(1, Math.max(0, (x - dragStart.offset) / handleRight));
-				
+
 				$handle.css("left", pct * handleRight);
 				$onlabel.css("width", pct * handleRight + 4);
 				$offspan.css("marginRight", -pct * handleRight);
 				$onspan.css("marginLeft", -(1 - pct) * handleRight);
-				
+
 				return false;
 			});
 		}
-    
+
 		// monitor when the mouse button is released
 		$(document).bind("mouseup.iButton_" + id + " touchend.iButton_" + id, function(e) {
 			if( mouse.clicked != $handle ){ return false }
 			e.preventDefault();
 
-			// track if the value has changed			
+			// track if the value has changed
 			var changed = true;
 
-			// if not dragging or click time under a certain millisecond, then just toggle			
+			// if not dragging or click time under a certain millisecond, then just toggle
 			if( !mouse.dragging || (((new Date()).getTime() - dragStart.time) < options.clickOffset ) ){
 				var checked = $input[0].checked;
 				$input.prop("checked", !checked);
@@ -56873,17 +56873,17 @@ $.fn.metadata = function( opts ){
 				if( $.isFunction(options.click) ) options.click.apply(self, [!checked, $input, options]);
 			} else {
 				var x = getDragPos(e);
-				
+
 				var pct = (x - dragStart.offset) / handleRight;
 				var checked = (pct >= 0.5);
-				
+
 				// if the value is the same, don't run change event
 				if( $input[0].checked == checked ) changed = false;
 
 				$input.prop("checked", checked);
 			}
-			
-			// remove the active handler class			
+
+			// remove the active handler class
 			$container.removeClass(options.classHandleActive);
 			mouse.clicked =  null;
 			mouse.dragging = null;
@@ -56891,10 +56891,10 @@ $.fn.metadata = function( opts ){
 			if( changed ) $input.trigger("change");
 			// if the value didn't change, just reset the handle
 			else positionHandle();
-			
+
 			return false;
 		});
-		
+
 		// animate when we get a change event
 		$input
 			.bind("change.iButton", function (){
@@ -56904,11 +56904,11 @@ $.fn.metadata = function( opts ){
 				// if a radio element, then we must repaint the other elements in it's group to show them as not selected
 				if( $input.is(":radio") ){
 					var el = $input[0];
-	
+
 					// try to use the DOM to get the grouped elements, but if not in a form get by name attr
 					var $radio = $(el.form ? el.form[el.name] : ":radio[name=" + el.name + "]");
 
-					// repaint the radio elements that are not checked	
+					// repaint the radio elements that are not checked
 					$radio.filter(":not(:checked)").iButton("repaint");
 				}
 
@@ -56933,7 +56933,7 @@ $.fn.metadata = function( opts ){
 
 		// if the field is disabled, mark it as such
 		if( $input.is(":disabled") ) this.disable(true);
-		
+
 		// run the init callback
 		if( $.isFunction(options.init) ) options.init.apply(self, [$input, options]);
 	};
@@ -57179,6 +57179,75 @@ $(function () {
 	    //"main" : document.getElementById("xchart-sine").getAttribute("data-value"),
             "main":[
                 {
+                    "className":".main.sa",
+                    "data":[
+                        { "y":15, "x":"11/13" },
+                        { "y":25, "x":"11/14" },
+                        { "y":45, "x":"11/15" },
+                        { "y":55, "x":"11/16" },
+                        { "y":10, "x":"11/17" }
+                    ]
+                },{
+                    "className":".main.cpd",
+                    "data":[
+                        {"y":20,"x":"11/13"},
+                        {"y":10,"x":"11/14" },
+                        {"y":20,"x":"11/15" },
+                        {"y":30,"x":"11/16" },
+                        {"y":40,"x":"11/17" }
+                    ]
+                },{
+                    "className":".main.ca",
+                    "data":[
+                        {"y":10,"x":"11/13"},
+                        {"y":35,"x":"11/14" },
+                        {"y":65,"x":"11/15" },
+                        {"y":75,"x":"11/16" },
+                        {"y":90,"x":"11/17" }
+                    ]
+                },{
+                    "className":".main.cov",
+                    "data":[
+                        { "y":75, "x":"11/13" },
+                        { "y":70, "x":"11/14" },
+                        { "y":50, "x":"11/15" },
+                        { "y":35, "x":"11/16" },
+                        { "y":20, "x":"11/17" }
+                    ]
+                },{
+                    "className":".main.mcc",
+                    "data":[
+                        {"y":10,"x":"11/13"},
+                        {"y":15,"x":"11/14" },
+                        {"y":25,"x":"11/15" },
+                        {"y":40,"x":"11/16" },
+                        {"y":30,"x":"11/17" }
+                    ]
+                },{
+                    "className":".main.p0",
+                    "data":[
+                        {"y":10,"x":"11/13"},
+                        {"y":20,"x":"11/14" },
+                        {"y":30,"x":"11/15" },
+                        {"y":40,"x":"11/16" },
+                        {"y":50,"x":"11/17" }
+                    ]
+                }
+            ],
+            "type":"line-dotted",
+            "yScale":"linear"
+        }
+    ];
+
+    var data2 = [
+        {
+            "xScale":"ordinal",
+            "comp":[],
+    	    //"main": ($("#xchart-sine")).xchart-data,
+            //"main": $(this).attr("data-value"),
+	    //"main" : document.getElementById("xchart-sine").getAttribute("data-value"),
+            "main":[
+                {
                     "className":".main.l1",
                     "data":[
                         { "y":15, "x":"2012-11-19T00:00:00" },
@@ -57213,7 +57282,7 @@ $(function () {
                     ]
                 }
 
-            ], 
+            ],
             "type":"line-dotted",
             "yScale":"linear"
         },{
@@ -57304,26 +57373,26 @@ $(function () {
 
         }
     ];
-  
+
 var xyz =[
 {
-"xScale": "ordinal", 
-"comp": [], 
+"xScale": "ordinal",
+"comp": [],
 "main": [
 {
 "className": ".main.l1",
  "data": [
-     {"y": 15, "x": "2012-11-19T00:00:00"}, 
-     {"y": 11, "x": "2012-11-20T00:00:00"}, 
-     {"y": 8, "x": "2012-11-21T00:00:00"}, 
-      {"y": 10, "x": "2012-11-22T00:00:00"}, 
-      {"y": 1, "x": "2012-11-23T00:00:00"}, 
-      {"y": 6, "x": "2012-11-24T00:00:00"}, 
+     {"y": 15, "x": "2012-11-19T00:00:00"},
+     {"y": 11, "x": "2012-11-20T00:00:00"},
+     {"y": 8, "x": "2012-11-21T00:00:00"},
+      {"y": 10, "x": "2012-11-22T00:00:00"},
+      {"y": 1, "x": "2012-11-23T00:00:00"},
+      {"y": 6, "x": "2012-11-24T00:00:00"},
       {"y": 8, "x": "2012-11-25T00:00:00"}
  ]
 }
 ],
- "type": "line-dotted", 
+ "type": "line-dotted",
 "yScale": "linear"
 }
 ];
@@ -57340,13 +57409,13 @@ var xyz =[
         t = 3500;
 
     if ($("#xchart-sine").length > 0) {
-	
+
 	//Bhavesh - uncomment this to reporoduce
 	//var datan =  (document.getElementById("xchart-sine").getAttribute("data-value"));
 	//alert(datan);
 	//Bhavesh - uncomment this to reporoduce
 
-	
+
 	//console.log(datan[0]);
 	//document.write(datan);
         //chart = new xChart('bar', pdata[0], '#xchart-sine', {
@@ -57754,7 +57823,7 @@ $(function () {
         value: $(this).attr("data-value"),
         //value: getRandomInt(1, 80),
         label: $(this).attr("label"),
-        //gaugeColor: $(this).attr("color"), 
+        //gaugeColor: $(this).attr("color"),
         levelColorsGradient: false,
         showMinMax: showMinMax,
         gaugeWidthScale: gaugeWidthScale,
@@ -57762,7 +57831,7 @@ $(function () {
         startAnimationType: ">",
         refreshAnimationTime: 1000,
         refreshAnimationType: refreshAnimationType,
-        levelThresholds: [60,80,95],
+        levelThresholds: [30,60,75],
         levelColors: [Theme.colors.green, Theme.colors.orange, Theme.colors.red]
       }));
     });

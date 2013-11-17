@@ -137,11 +137,11 @@
 <tbody>
 
 {% for item in project_list %}
-    <tr> 
+    <tr>
         <td>{{ item.project_name }}</td>
         <td>{{ item.group_name }}</td>
         <td>11/12/2013</td>
-        <td>11/12/2013</td>
+        <td>11/20/2013</td>
 	{% if item.trend < 0 %}
   	    <td class="status-error"><i class="icon-circle-arrow-down"></i>{{ item.trend }} </td>
 	{% else %}
