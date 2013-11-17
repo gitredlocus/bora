@@ -147,7 +147,11 @@
 	{% else %}
 	   <td class="status-success"><i class="icon-circle-arrow-up"></i> {{ item.trend }} </td>
 	{% endif %}
+	{% if item.trend < 0 %}
+	 <td class="status-error"><i class="icon-remove"></i> </td>
+	{% else %}
 	 <td class="status-success"><i class="icon-ok"></i> </td>
+	{% endif %}
         <td>
 	    <div class="btn-group">
             <button class="btn btn-default"><i class="icon-list-ul"></i></button>
