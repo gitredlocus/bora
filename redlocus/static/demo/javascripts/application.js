@@ -57762,6 +57762,7 @@ $(function () {
         startAnimationType: ">",
         refreshAnimationTime: 1000,
         refreshAnimationType: refreshAnimationType,
+        levelThresholds: [60,80,95],
         levelColors: [Theme.colors.green, Theme.colors.orange, Theme.colors.red]
       }));
     });
