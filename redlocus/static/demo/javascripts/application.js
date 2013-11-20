@@ -57373,33 +57373,25 @@ $(function () {
 
         }
     ];
+   var tt = document.createElement('div'),
+  leftOffset = -(~~$('html').css('padding-left').replace('px', '') + ~~$('body').css('margin-left').replace('px', '')),
+  topOffset = -32;
+  tt.className = 'ex-tooltip';
+  document.body.appendChild(tt);
 
-var xyz =[
-{
-"xScale": "ordinal",
-"comp": [],
-"main": [
-{
-"className": ".main.l1",
- "data": [
-     {"y": 15, "x": "2012-11-19T00:00:00"},
-     {"y": 11, "x": "2012-11-20T00:00:00"},
-     {"y": 8, "x": "2012-11-21T00:00:00"},
-      {"y": 10, "x": "2012-11-22T00:00:00"},
-      {"y": 1, "x": "2012-11-23T00:00:00"},
-      {"y": 6, "x": "2012-11-24T00:00:00"},
-      {"y": 8, "x": "2012-11-25T00:00:00"}
- ]
-}
-],
- "type": "line-dotted",
-"yScale": "linear"
-}
-];
-
-
-
-
+  var opts = {
+  "mouseover": function (d, i) {
+    var pos = $(this).offset();
+    $(tt).text(d.x + ': ' + d.y)
+      .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+      .show();
+  },
+  "mouseout": function (x) {
+    $(tt).hide();
+  },
+  axisPaddingTop: 5,
+            paddingLeft: 30
+};
 
     var order = [0, 1, 0, 2],
         i = 0,
@@ -57419,7 +57411,8 @@ var xyz =[
 	//console.log(datan[0]);
 	//document.write(datan);
         //chart = new xChart('bar', pdata[0], '#xchart-sine', {
-        chart = new xChart('bar', data[order[i]], '#xchart-sine', {
+        chart = new xChart('bar', data[order[i]], '#xchart-sine', opts);
+        /*chart = new xChart('bar', data[order[i]], '#xchart-sine', {
         //chart = new xChart('bar', datan[0], '#xchart-sine', {
             axisPaddingTop: 5,
             paddingLeft: 30,
@@ -57427,7 +57420,7 @@ var xyz =[
     	    //data[order[i]].main: ($("#xchart-sine")).data-value
             //dataFormatX: function (x) { return new Date(x); },
             //tickFormatX: function (x) { return d3.time.format('%a')(x); }
-        });
+        });*/
 
         //rotateTimer = setTimeout(rotateChart, t);
     }

@@ -75,12 +75,12 @@
 
 
   <div class="box-content padded separate-sections" style="text-align: center">
-    <div class="justgage" data-title="SA"  id="gauge1"  data-value = 66 label ="22" ></div>
-    <div class="justgage" data-title="CPD" id="gauge2"  data-value = 55    label ="21"></div>
-    <div class="justgage" data-title="CA"  id="gauge3"  data-value = 22     label = "31"></div>
-    <div class="justgage" data-title="COV" id="gauge4"  data-value = 98   label ="12"></div>
-    <div class="justgage" data-title="MCC" id="gauge5"  data-value = 12    label ="21" ></div>
-    <div class="justgage" data-title="P0"  id="gauge6"  data-value = 90     label ="0"></div>
+    <div class="justgage" data-title="Static Analysis"  id="gauge1"  data-value = 66 label ="22" ><!--span title="Static Analysis">Static Analysis</span--></div>
+    <div class="justgage" data-title="Code Duplication" id="gauge2"  data-value = 55    label ="21"></div>
+    <div class="justgage" data-title="Culprit Analysis"  id="gauge3"  data-value = 22     label = "31"></div>
+    <div class="justgage" data-title="Code Coverage" id="gauge4"  data-value = 98   label ="12"></div>
+    <div class="justgage" data-title="Code Complexity" id="gauge5"  data-value = 12    label ="21" ></div>
+    <div class="justgage" data-title="P0 Bugs"  id="gauge6"  data-value = 90     label ="0"></div>
     <!--div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="SA" data-percent="89" data-color="orange"> <span>89%</span></div>
     <div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="CPD" data-percent="73" data-color="orange"><span>73%</span></div>
     <div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="CA"data-percent="33" data-color="green"><span>33%</span></div>
@@ -90,7 +90,32 @@
   </div>
 </div>
 
+<!--script>
 
+/*$( "#gauge1" ).mouseover(function() {
+	$( "#gauge1" ).text =  "% of projects where Static Analysis is not meeting Ship Criteria." ;
+	//alert("geell");
+
+});*/
+
+
+$( "div.justgage" )
+  .mouseover(function() {
+    if(document.getElementById("gauge1") ) {
+    	var x =document.getElementById("gauge1"); 
+      	x.title =  "% of projects where Static Analysis is not meeting Ship Criteria." ;
+    }
+    else if(document.getElementById("gauge3") ) {
+	alert ("gauge 2");
+    	var x =document.getElementById("gauge3") ; 
+      	x.title =  "% of projects where Code Duplication is not meeting Ship Criteria." ;
+    }
+
+  })
+  .mouseout(function() {
+  });
+
+</script-->
 
 <div class="row-fluid">
   <div class="span12">
