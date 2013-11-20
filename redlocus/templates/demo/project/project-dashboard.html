@@ -18,13 +18,13 @@
 	  <div class="btn-toolbar" style="margin: 0;">
           <div class="btn-group">
             <button class="btn btn-default"><i class="icon-file"></i></button>
-            <button class="btn btn-default"><i class="icon-list-ul"></i></button>
+            <button class="btn btn-default" title="View Source Code." ><i class="icon-list-ul"></i></button>
             <button class="btn btn-default"><i class="icon-save"></i></button>
           </div>
           <div class="btn-group">
-            <button class="btn btn-default"><i class="icon-off"></i></button>
+            <button class="btn btn-default"title="Fire New Run." ><i class="icon-off"></i></button>
             <button class="btn btn-default"><i class="icon-refresh"></i></button>
-            <button class="btn btn-default"><i class=" icon-share"></i></button>
+            <button class="btn btn-default" title="Share Reports." ><i class=" icon-share"></i></button>
           </div>
           <div class="btn-group">
             <button class="btn btn-default"><i class="icon-search"></i></button>
@@ -59,7 +59,7 @@
 
   <div class="container">
     <div class="box">
-  <div class="box-header"><span class="title">Trend</span></div>
+  <div class="box-header" title="Trend of the project wrt each tool for last 5 runs." class="masterTooltip"><span class="title">Trend</span></div>
   <div class="box-content padded">
     <div class="sine-chart" style="height: 250px" id="xchart-sine" data-value = {{ data }} ></div>
   </div>

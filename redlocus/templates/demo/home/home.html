@@ -75,12 +75,12 @@
 
 
   <div class="box-content padded separate-sections" style="text-align: center">
-    <div class="justgage" data-title="Static Analysis"  id="gauge1"  data-value = 66 label ="22" ><!--span title="Static Analysis">Static Analysis</span--></div>
-    <div class="justgage" data-title="Code Duplication" id="gauge2"  data-value = 55    label ="21"></div>
-    <div class="justgage" data-title="Culprit Analysis"  id="gauge3"  data-value = 22     label = "31"></div>
-    <div class="justgage" data-title="Code Coverage" id="gauge4"  data-value = 98   label ="12"></div>
-    <div class="justgage" data-title="Code Complexity" id="gauge5"  data-value = 12    label ="21" ></div>
-    <div class="justgage" data-title="P0 Bugs"  id="gauge6"  data-value = 90     label ="0"></div>
+    <div class="justgage" data-title="Static Analysis"  id="gauge1"  data-value = 66 label ="22"  title="% of projects not meeting Static Analysis Criteria." class="masterTooltip"></div>
+    <div class="justgage" data-title="Code Duplication" id="gauge2"  data-value = 55 label ="21"  title="% of projects not meeting Code Duplication Criteria." class="masterTooltip"></div>
+    <div class="justgage" data-title="Culprit Analysis" id="gauge3"  data-value = 22 label = "31"  title="% of projects not meeting Culprit Analysis Criteria." class="masterTooltip"></div>
+    <div class="justgage" data-title="Code Coverage" id="gauge4"  data-value = 98   label ="12"  title="% of projects not meeting Code Coverage Criteria." class="masterTooltip"></div>
+    <div class="justgage" data-title="Code Complexity" id="gauge5"  data-value = 12    label ="21"  title="% of projects not meeting Code Complexity Criteria." class="masterTooltip"></div>
+    <div class="justgage" data-title="P0 Bugs"  id="gauge6"  data-value = 90     label ="0"  title="% of projects not meeting P0 Bugs Criteria." class="masterTooltip"></div>
     <!--div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="SA" data-percent="89" data-color="orange"> <span>89%</span></div>
     <div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="CPD" data-percent="73" data-color="orange"><span>73%</span></div>
     <div class="easy-pie-chart" style="display: inline-block; margin-left: 20px;" id="CA"data-percent="33" data-color="green"><span>33%</span></div>
@@ -90,6 +90,30 @@
   </div>
 </div>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
 <!--script>
 
 /*$( "#gauge1" ).mouseover(function() {
@@ -158,9 +182,9 @@ $( "div.justgage" )
 	{% endif %}
         <td>
 	    <div class="btn-group">
-            <button class="btn btn-default"><i class="icon-list-ul"></i></button>
-            <button class="btn btn-default"><i class="icon-trash"></i></button>
-            <button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class=" icon-chevron-right"></i></button>
+            <button class="btn btn-default"  title="View Project Source Code." class="masterTooltip"><i class="icon-list-ul"></i></button>
+            <button class="btn btn-default" title="Delete Project." class="masterTooltip"><i class="icon-trash"></i></button>
+            <button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown" title="See Project Details." class="masterTooltip"><i class=" icon-chevron-right"></i></button>
             <ul class="dropdown-menu">
               <li><a href= /demo/project/{{ item.id }} >Details</a></li>
             </ul>
